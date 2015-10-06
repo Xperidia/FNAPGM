@@ -1,0 +1,92 @@
+DeriveGamemode( "fnafgm" )
+
+--[[ Base config ]]--
+
+GM.Name 	= "Five Nights at Pinkie's"
+GM.ShortName = "FNAPGM"
+GM.Author 	= "Xperidia"
+GM.Email 	= "contact@Xperidia.com"
+GM.Website 	= "N/A"
+
+GM.Version 	= 0.05
+GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
+
+for _, gamemodec in pairs(engine.GetGamemodes()) do
+	
+	if gamemodec.name=="fnafgm" then
+		fnafgmishere=true
+	end
+	
+end
+
+if !fnafgmishere then
+	if SERVER then
+		PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!")
+		hook.Add( "PlayerSpawn", "fnafgmnotdetected", function() PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!") end )
+	end
+	Error( "FNAFGM is not detected!\n" )
+end
+
+--[[GM.Sound_end = {
+	fnap_scc = Sound("fnapgm/end_fnap_scc.ogg")
+}]]
+
+--[[GM.Sound_Calls = {
+	fnap_scc = { "fnapgm/voiceover1.ogg", "fnapgm/voiceover2.ogg", "fnapgm/voiceover3.ogg", "fnapgm/voiceover4.ogg", "fnapgm/voiceover5.ogg" }
+}]]
+
+GM.SecurityRoom = {
+	fnap_scc = { Vector(-510,-125,26), Vector(-334,-372,170), Vector(-510,-125,26), Vector(-195,-258,170) }
+}
+
+GM.DeadBodiesTeleport = {
+	fnap_scc = { Vector(200, 432, 96) }
+}
+
+GM.FNaFView = {
+	fnap_scc = { Vector( -465, -255, 32 ), Angle( 0, 0, 0 ), Angle( 0, 58, 0 ), Angle( 0, -58, 0 ) }
+}
+
+--[[GM.Materials_intro = {
+	fnap_scc = "fnapgm/intro_fnap_scc"
+}]]
+
+--[[GM.Materials_end = {
+	fnap_scc = { "fnapgm/end_fnap_scc", "fnapgm/end_fnap_scc_6" }
+}]]
+
+GM.Models_deadsp = nil
+GM.Models_dead = {}
+
+GM.CamsNames = {
+	fnap_scc_1 = "Kitchen",
+	fnap_scc_2 = "Stage",
+	fnap_scc_3 = "Dining Area",
+	fnap_scc_4 = "Entrance",
+	fnap_scc_5 = "North Hall B",
+	fnap_scc_6 = "Bath-Rooms",
+	fnap_scc_7 = "North Hall A",
+	fnap_scc_8 = "Pinkie's Bedroom",
+	fnap_scc_9 = "Storage",
+	fnap_scc_10 = "Supply Room",
+	fnap_scc_11 = "Trash",
+	fnap_scc_12 = "Cave",
+	fnap_scc_13 = "Storage",
+	fnap_scc_14 = "Generator"
+}
+
+GM.MapList = {
+	fnap_scc = "Sugar Cube Corner"
+}
+
+function GM:CheckDerivCreator(pl)
+	if (pl:SteamID()=="STEAM_0:1:33606814" or pl:SteamID()=="STEAM_0:0:59390945" or pl:SteamID()=="STEAM_0:1:97860556") then
+		return true
+	end
+	return false
+end
+
+--[[local function LoadConfig()
+	
+end
+hook.Add( "Initialize", "fnafgmDeriveLoadConfig", LoadConfig )]]

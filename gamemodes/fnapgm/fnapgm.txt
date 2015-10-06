@@ -1,0 +1,7 @@
+"fnapgm"
+{
+	"base"		"fnafgm"
+	"title"		"Five Nights at Pinkie's"
+	"maps"		"^fnap_"
+	"menusystem"	"1"
+}
