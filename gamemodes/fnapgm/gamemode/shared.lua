@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "N/A"
 
-GM.Version 	= 0.05
+GM.Version 	= 0.06
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -47,9 +47,9 @@ GM.FNaFView = {
 	fnap_scc = { Vector( -465, -255, 32 ), Angle( 0, 0, 0 ), Angle( 0, 58, 0 ), Angle( 0, -58, 0 ) }
 }
 
---[[GM.Materials_intro = {
-	fnap_scc = "fnapgm/intro_fnap_scc"
-}]]
+GM.Materials_intro = {
+	fnap_scc = { en = "fnapgm/intro_fnap_scc", fr = "fnapgm/intro_fnap_scc_fr" }
+}
 
 --[[GM.Materials_end = {
 	fnap_scc = { "fnapgm/end_fnap_scc", "fnapgm/end_fnap_scc_6" }
@@ -80,7 +80,7 @@ GM.MapList = {
 }
 
 function GM:CheckDerivCreator(pl)
-	if (pl:SteamID()=="STEAM_0:1:33606814" or pl:SteamID()=="STEAM_0:0:59390945" or pl:SteamID()=="STEAM_0:1:97860556") then
+	if (pl:SteamID()=="STEAM_0:1:33606814" or pl:SteamID()=="STEAM_0:0:59390945") then
 		return true
 	end
 	return false
