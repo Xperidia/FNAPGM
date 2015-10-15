@@ -31,9 +31,9 @@ end
 	fnap_scc = Sound("fnapgm/end_fnap_scc.ogg")
 }]]
 
---[[GM.Sound_Calls = {
-	fnap_scc = { "fnapgm/voiceover1.ogg", "fnapgm/voiceover2.ogg", "fnapgm/voiceover3.ogg", "fnapgm/voiceover4.ogg", "fnapgm/voiceover5.ogg" }
-}]]
+GM.Sound_Calls = {
+	fnap_scc = { "fnapgm/call_1.ogg", "fnapgm/call_2.ogg", "fnapgm/call_3.ogg", "fnapgm/call_4.ogg", "fnapgm/call_5.ogg" }
+}
 
 GM.SecurityRoom = {
 	fnap_scc = { Vector(-510,-125,26), Vector(-334,-372,170), Vector(-510,-125,26), Vector(-195,-258,170) }

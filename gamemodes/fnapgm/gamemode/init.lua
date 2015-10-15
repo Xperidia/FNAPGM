@@ -36,26 +36,26 @@ function fnapgmUse(ply, ent, test, test2)
 			local sound = ""
 			local mutetime = 0
 			
-			--[[if night==1 then
+			if night==1 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[1]
 				mute = false
-				mutetime = 0
+				mutetime = 64.2
 			elseif night==2 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[2]
 				mute = false
-				mutetime = 0
+				mutetime = 46.7
 			elseif night==3 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[3]
 				mute = false
-				mutetime = 0
+				mutetime = 47.4
 			elseif night==4 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[4]
 				mute = false
-				mutetime = 0
+				mutetime = 64.3
 			elseif night==5 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[5]
 				mute = false
-				mutetime = 0
+				mutetime = 76.8
 			end
 			
 			for k, v in pairs(ents.FindByName("fnafgm_CallSource")) do
@@ -66,7 +66,7 @@ function fnapgmUse(ply, ent, test, test2)
 				v:Fire("addoutput", "OnPressed fnafgm_CallSource,Volume,0,0.00,1")
 				v:Fire("addoutput", "OnPressed fnafgm_CallSprite,ToggleSprite,none,0,1")
 				v:Fire("addoutput", "OnPressed fnafgm_link,MuteCall,,0,-1")
-			end]]
+			end
 			
 			if Halloween or fnafgm_forceseasonalevent:GetInt()==3 then
 				ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 5)
