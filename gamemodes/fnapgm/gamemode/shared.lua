@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "N/A"
 
-GM.Version 	= 0.06
+GM.Version 	= 0.07
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -51,9 +51,9 @@ GM.Materials_intro = {
 	fnap_scc = { en = "fnapgm/intro_fnap_scc", fr = "fnapgm/intro_fnap_scc_fr" }
 }
 
---[[GM.Materials_end = {
+GM.Materials_end = {
 	fnap_scc = { "fnapgm/end_fnap_scc", "fnapgm/end_fnap_scc_6" }
-}]]
+}
 
 GM.Models_deadsp = nil
 GM.Models_dead = {}
