@@ -631,7 +631,7 @@ function fnapgmPowerCalc()
 		
 		end
 		
-		if power==0 and !poweroff then
+		if power<=0 and !poweroff then
 			ents.FindByName( "NoMorePower" )[1]:Fire("use")
 			for k, v in pairs(team.GetPlayers(1)) do
 				if v:Alive() then

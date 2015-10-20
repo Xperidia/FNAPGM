@@ -27,9 +27,9 @@ if !fnafgmishere then
 	Error( "FNAFGM is not detected!\n" )
 end
 
---[[GM.Sound_end = {
-	fnap_scc = Sound("fnapgm/end_fnap_scc.ogg")
-}]]
+GM.Sound_end = {
+	fnap_scc = Sound("fnafsounds/musicbox.ogg")
+}
 
 GM.Sound_Calls = {
 	fnap_scc = { "fnapgm/call_1.ogg", "fnapgm/call_2.ogg", "fnapgm/call_3.ogg", "fnapgm/call_4.ogg", "fnapgm/call_5.ogg" }
