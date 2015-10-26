@@ -18,7 +18,7 @@ hook.Add( "fnafgmSecurityTabletCustomInit", "fnapgmSecurityTabletInit", fnapgmSe
 function fnapgmSecurityTablet()
 	
 	if game.GetMap()=="fnap_scc" then
-				
+		
 		local CamsNames = vgui.Create( "DLabel" )
 		CamsNames:SetParent(Monitor)
 		CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
@@ -26,6 +26,28 @@ function fnapgmSecurityTablet()
 		CamsNames:SetFont("FNAFGMTIME")
 		CamsNames:SetPos( ScrW()-64-512, ScrH()-64-512 )
 		CamsNames:SetSize( 512, 64 )
+		
+		if !tobool(mute) then
+			local MUTET = vgui.Create( "DImage" )
+			MUTET:SetParent(Monitor)
+			MUTET:SetImage( "fnafgm/mute" )
+			MUTET:SetSize( 128, 32 )
+			MUTET:SetPos( 64, 64 )
+			
+			local MUTEbT = vgui.Create( "DButton" )
+			MUTEbT:SetParent(MUTET)
+			MUTEbT:SetSize( 121, 31 )
+			MUTEbT:SetPos( 0, 0 )
+			MUTEbT:SetText( "" )
+			MUTEbT.DoClick = function( button )
+				fnafgmMuteCall()
+				MUTET:Remove()
+				MUTEbT:Remove()
+			end
+			MUTEbT.Paint = function( self, w, h )
+				
+			end
+		end
 		
 		local map = vgui.Create( "DImage" )
 		map:SetParent(Monitor)
@@ -303,6 +325,7 @@ function fnapgmSecurityTablet()
 			Monitor:Close()
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
 			if IsValid(OpenT) then OpenT:Show() end
+			if IsValid(lightroom) then lightroom:Show() end
 		end
 		CloseT.OnCursorEntered = function()
 			if IsValid(FNaFView) then
@@ -312,6 +335,7 @@ function fnapgmSecurityTablet()
 					Monitor:Close()
 					LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
 					if IsValid(OpenT) then OpenT:Show() end
+					if IsValid(lightroom) then lightroom:Show() end
 				end
 			end
 		end
@@ -339,3 +363,76 @@ function fnapgmSecurityTablet()
 	
 end
 hook.Add( "fnafgmSecurityTabletCustom", "fnapgmSecurityTablet", fnapgmSecurityTablet)
+
+function fnapgmFNaFViewHUD()
+	
+	if game.GetMap()=="fnap_scc" then
+		
+		lightroom = vgui.Create( "DButton" )
+		lightroom:SetParent(FNaFView)
+		lightroom:SetSize( 256, 80 )
+		lightroom:SetPos( ScrW()/2-128, 50 )
+		lightroom:SetText( "LIGHT" )
+		lightroom:SetTextColor( Color( 255, 255, 255, 255 ) )
+		lightroom:SetFont("FNAFGMNIGHT")
+		lightroom.DoClick = function( button )
+			fnafgmUseLight(3)
+		end
+		lightroom.Paint = function( self, w, h )
+			
+			draw.RoundedBox( 0, 1, 1, w-2, h-2, Color( 255, 255, 255, 5 ) )
+			
+			surface.SetDrawColor( 255, 255, 255, 128 )
+			
+			draw.NoTexture()
+			
+			surface.DrawOutlinedRect( 0, 0, w, h )
+			
+		end
+		
+		OpenT = vgui.Create( "DButton" )
+		OpenT:SetParent(FNaFView)
+		OpenT:SetSize( 512, 80 )
+		OpenT:SetPos( ScrW()/2-256, ScrH()-80-50 )
+		OpenT:SetText( "" )
+		OpenT.DoClick = function( button )
+			waitt = CurTime()+1
+			fnafgmSecurityTablet() 
+			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
+			OpenT:Hide()
+			lightroom:Hide()
+		end
+		OpenT.OnCursorEntered = function()
+			if !waitt then waitt=0 end
+			if waitt<CurTime() then
+				waitt = CurTime()+0.5
+				fnafgmSecurityTablet() 
+				LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
+				OpenT:Hide()
+				lightroom:Hide()
+			end
+		end
+		OpenT.Paint = function( self, w, h )
+			
+			draw.RoundedBox( 0, 1, 1, w-2, h-2, Color( 255, 255, 255, 32 ) )
+			
+			surface.SetDrawColor( 255, 255, 255, 128 )
+			
+			draw.NoTexture()
+			
+			surface.DrawLine( w/2-64, h/2-16, w/2, h/2 )
+			surface.DrawLine( w/2, h/2, w/2+64, h/2-16 )
+			
+			surface.DrawLine( w/2-64, h/2-16+16, w/2, h/2+16 )
+			surface.DrawLine( w/2, h/2+16, w/2+64, h/2-16+16 )
+			
+			surface.DrawOutlinedRect( 0, 0, w, h )
+			
+		end
+		
+	end
+	
+	return true
+	
+end
+hook.Add( "fnafgmFNaFViewCustom", "fnapgmFNaFViewHUD", fnapgmFNaFViewHUD)
