@@ -80,7 +80,7 @@ GM.MapList = {
 }
 
 GM.MapListLinks = {
-	fnap_scc = "http://steamcommunity.com/sharedfiles/filedetails/?id=542724054"
+	fnap_scc = "http://go.Xperidia.com/FNAP_SCC"
 }
 
 function GM:CheckDerivCreator(pl)
