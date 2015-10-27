@@ -6,9 +6,9 @@ GM.Name 	= "Five Nights at Pinkie's"
 GM.ShortName = "FNAPGM"
 GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
-GM.Website 	= "N/A"
+GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 0.08
+GM.Version 	= 1.00
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -79,14 +79,13 @@ GM.MapList = {
 	fnap_scc = "Sugar Cube Corner"
 }
 
+GM.MapListLinks = {
+	fnap_scc = "http://steamcommunity.com/sharedfiles/filedetails/?id=542724054"
+}
+
 function GM:CheckDerivCreator(pl)
 	if (pl:SteamID()=="STEAM_0:1:33606814" or pl:SteamID()=="STEAM_0:0:59390945") then
 		return true
 	end
 	return false
 end
-
---[[local function LoadConfig()
-	
-end
-hook.Add( "Initialize", "fnafgmDeriveLoadConfig", LoadConfig )]]
