@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.02
+GM.Version 	= 1.03
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -23,8 +23,8 @@ if !fnafgmishere then
 	if SERVER then
 		PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!")
 		hook.Add( "PlayerSpawn", "fnafgmnotdetected", function() PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!") end )
+		Error( "FNAFGM is not detected!\n" )
 	end
-	Error( "FNAFGM is not detected!\n" )
 end
 
 GM.Sound_end = {
