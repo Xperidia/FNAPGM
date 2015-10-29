@@ -27,6 +27,11 @@ if !fnafgmishere then
 	end
 end
 
+hook.Add( "Initialize", "fnapgmInit", function()
+	GAMEMODE.Strings.en.fnap_scc = "Turn off the main power to start the night"
+	GAMEMODE.Strings.fr.fnap_scc = "Coupez le courant pour démarrer la nuit"
+end)
+
 GM.Sound_end = {
 	fnap_scc = Sound("fnafsounds/musicbox.ogg")
 }
