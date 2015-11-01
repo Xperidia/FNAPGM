@@ -436,3 +436,28 @@ function fnapgmFNaFViewHUD()
 	
 end
 hook.Add( "fnafgmFNaFViewCustom", "fnapgmFNaFViewHUD", fnapgmFNaFViewHUD)
+
+function fnapgmMenu()
+	
+	questionbtn = vgui.Create( "DButton" )
+	questionbtn:SetParent(fnafgmMenuF.links)
+	questionbtn:SetText( tostring(GAMEMODE.TranslatedStrings.faqbtn or GAMEMODE.Strings.en.faqbtn) )
+	questionbtn:SetPos( 10, 185 )
+	questionbtn:SetSize( 140, 20 )
+	questionbtn.DoClick = function()
+		gui.OpenURL( "http://steamcommunity.com/workshop/filedetails/discussion/542710334/490123938445012064/" )
+		fnafgmMenuF:Close()
+	end
+	
+	bugreportbtn = vgui.Create( "DButton" )
+	bugreportbtn:SetParent(fnafgmMenuF.links)
+	bugreportbtn:SetText( "Bug report" )
+	bugreportbtn:SetPos( 155, 185 )
+	bugreportbtn:SetSize( 140, 20 )
+	bugreportbtn.DoClick = function()
+		gui.OpenURL( "http://steamcommunity.com/workshop/filedetails/discussion/542710334/496880203071666595/" )
+		fnafgmMenuF:Close()
+	end
+	
+end
+hook.Add( "fnafgmMenuCustom", "fnapgmMenu", fnapgmMenu)
