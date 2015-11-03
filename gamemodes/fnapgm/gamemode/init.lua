@@ -472,6 +472,14 @@ function fnapgmUse(ply, ent, test, test2)
 				fnafgmVarsUpdate()
 				fnafgmPowerUpdate()
 				
+				if IsValid(ents.FindByName( "ApplejackTimer" )[1]) then ents.FindByName( "ApplejackTimer" )[1]:Fire("Enable") end
+				if IsValid(ents.FindByName( "FluttershyTimer" )[1]) then ents.FindByName( "FluttershyTimer" )[1]:Fire("Enable") end
+				if IsValid(ents.FindByName( "PinkieTimer" )[1]) then ents.FindByName( "PinkieTimer" )[1]:Fire("Enable") end
+				if IsValid(ents.FindByName( "RainbowTimer" )[1]) then ents.FindByName( "RainbowTimer" )[1]:Fire("Enable") end
+				if IsValid(ents.FindByName( "RarityTimer" )[1]) then ents.FindByName( "RarityTimer" )[1]:Fire("Enable") end
+				if IsValid(ents.FindByName( "TwilightTimer" )[1]) then ents.FindByName( "TwilightTimer" )[1]:Fire("Enable") end
+				if IsValid(ents.FindByName( "NewTwilyTimer" )[1]) then ents.FindByName( "NewTwilyTimer" )[1]:Fire("Enable") end
+				
 				if !mute then
 					
 					ents.FindByName("fnafgm_CallSprite")[1]:Fire("ToggleSprite")
