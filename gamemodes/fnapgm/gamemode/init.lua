@@ -548,6 +548,9 @@ function fnapgmMapOverrides()
 			light3 = v
 		end
 		
+		if IsValid(ents.FindByName( "WarningTimer" )[1]) then ents.FindByName( "WarningTimer" )[1]:Fire("Kill") end
+		if IsValid(ents.FindByName( "Warning" )[1]) then ents.FindByName( "Warning" )[1]:Fire("Kill") end
+		
 		mapoverrideok = true
 		
 	end
