@@ -667,6 +667,16 @@ function fnapgmPowerCalc()
 end
 hook.Add( "fnafgmCustomPowerCalc", "fnapgmPowerCalc", fnapgmPowerCalc)
 
+function fnapgmGeneralDeath()
+	if IsValid(ents.FindByName( "ApplejackTimer" )[1]) then ents.FindByName( "ApplejackTimer" )[1]:Fire("Disable") end
+	if IsValid(ents.FindByName( "FluttershyTimer" )[1]) then ents.FindByName( "FluttershyTimer" )[1]:Fire("Disable") end
+	if IsValid(ents.FindByName( "PinkieTimer" )[1]) then ents.FindByName( "PinkieTimer" )[1]:Fire("Disable") end
+	if IsValid(ents.FindByName( "RainbowTimer" )[1]) then ents.FindByName( "RainbowTimer" )[1]:Fire("Disable") end
+	if IsValid(ents.FindByName( "RarityTimer" )[1]) then ents.FindByName( "RarityTimer" )[1]:Fire("Disable") end
+	if IsValid(ents.FindByName( "TwilightTimer" )[1]) then ents.FindByName( "TwilightTimer" )[1]:Fire("Disable") end
+	if IsValid(ents.FindByName( "NewTwilyTimer" )[1]) then ents.FindByName( "NewTwilyTimer" )[1]:Fire("Disable") end
+end
+hook.Add( "fnafgmGeneralDeath", "fnapgmGeneralDeath", fnapgmGeneralDeath)
 
 function fnapgmDigits(n)
 	
