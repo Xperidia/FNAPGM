@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture" "fnapgm/map_fnap_scc_2"
+	"$basetexture" "fnapgm/maps/fnap_scc_1"
 	"$translucent" 1
 	"$ignorez" "1"
 	"$vertexcolor" "1"

@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.08
+GM.Version 	= 1.09
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -54,12 +54,8 @@ GM.FNaFView = {
 	fnap_scc = { Vector( -465, -255, 32 ), Angle( 0, 0, 0 ), Angle( 0, 58, 0 ), Angle( 0, -58, 0 ) }
 }
 
-GM.Materials_intro = {
-	fnap_scc = { en = "fnapgm/intro_fnap_scc", fr = "fnapgm/intro_fnap_scc_fr" }
-}
-
 GM.Materials_end = {
-	fnap_scc = { "fnapgm/end_fnap_scc", "fnapgm/end_fnap_scc_6" }
+	fnap_scc = true
 }
 
 GM.Models_dead = {}

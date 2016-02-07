@@ -51,13 +51,13 @@ function fnapgmSecurityTablet()
 		
 		local map = vgui.Create( "DImage" )
 		map:SetParent(Monitor)
-		map:SetImage( "fnapgm/map_fnap_scc_1" )
+		map:SetImage( "fnapgm/maps/fnap_scc_1" )
 		map:SetPos( ScrW()-64-512, ScrH()-64-512 )
 		map:SetSize( 512, 512 )
 		
 		local map2 = vgui.Create( "DImage" )
 		map2:SetParent(Monitor)
-		map2:SetImage( "fnapgm/map_fnap_scc_2" )
+		map2:SetImage( "fnapgm/maps/fnap_scc_2" )
 		map2:SetPos( 64, ScrH()-64-512 )
 		map2:SetSize( 512, 512 )
 		
