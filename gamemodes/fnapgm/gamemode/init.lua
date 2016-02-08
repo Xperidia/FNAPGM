@@ -456,7 +456,7 @@ function fnapgmUse(ply, ent, test, test2)
 			
 			timer.Create( "fnafgmTempoStart", 8.2, 1, function()
 				
-				tempostart = false
+				GAMEMODE.Vars.tempostart = false
 				
 				fnafgmVarsUpdate()
 				fnafgmPowerUpdate()
@@ -469,7 +469,7 @@ function fnapgmUse(ply, ent, test, test2)
 				if IsValid(ents.FindByName( "TwilightTimer" )[1]) then ents.FindByName( "TwilightTimer" )[1]:Fire("Enable") end
 				if IsValid(ents.FindByName( "NewTwilyTimer" )[1]) then ents.FindByName( "NewTwilyTimer" )[1]:Fire("Enable") end
 				
-				if !mute then
+				if !GAMEMODE.Vars.mute then
 					
 					ents.FindByName("fnafgm_CallSprite")[1]:Fire("ToggleSprite")
 				
@@ -492,7 +492,7 @@ function fnapgmUse(ply, ent, test, test2)
 					end
 				end
 				
-				timer.Create( "fnafgmTimeThink", hourtime, 0, fnafgmTimeThink)
+				timer.Create( "fnafgmTimeThink", GAMEMODE.HourTime, 0, fnafgmTimeThink)
 				
 				timer.Remove( "fnafgmTempoStart" )
 				
@@ -595,7 +595,7 @@ function fnapgmPowerCalc()
 				
 			end
 			
-			if AprilFool or fnafgm_forceseasonalevent:GetInt()==2 then -- Troll use
+			if GAMEMODE.Vars.AprilFool or fnafgm_forceseasonalevent:GetInt()==2 then -- Troll use
 				
 				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+5
 				
