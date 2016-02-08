@@ -21,20 +21,9 @@ function fnapgmUse(ply, ent, test, test2)
 	
 	if (game.GetMap()=="fnap_scc") then
 		
-		if ( test or ( btn and btn:IsValid() and ent==btn and ply:IsValid() and ply:Alive() ) ) and !startday then
+		if ( test or ( btn and btn:IsValid() and ent==btn and ply:IsValid() and ply:Alive() ) ) and !GAMEMODE.Vars.startday then
 			
-			startday = true
-			tempostart = true
-			night = night+1
-			AMPM = GAMEMODE.AMPM
-			time = GAMEMODE.TimeBase
-			hourtime = hourtime+GAMEMODE.HourTime_add
-			power = GAMEMODE.Power_Max
-			nightpassed = false
-			iniok = true
-			norespawn = false
-			foxyknockdoorpena = 2
-			addfoxyknockdoorpena = 4
+			GAMEMODE:SetNightTemplate(true)
 			
 			btn:Fire("use")
 			
@@ -42,23 +31,23 @@ function fnapgmUse(ply, ent, test, test2)
 			local sound = ""
 			local mutetime = 0
 			
-			if night==1 then
+			if GAMEMODE.Vars.night==1 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[1]
 				mute = false
 				mutetime = 64.2
-			elseif night==2 then
+			elseif GAMEMODE.Vars.night==2 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[2]
 				mute = false
 				mutetime = 46.7
-			elseif night==3 then
+			elseif GAMEMODE.Vars.night==3 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[3]
 				mute = false
 				mutetime = 47.4
-			elseif night==4 then
+			elseif GAMEMODE.Vars.night==4 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[4]
 				mute = false
 				mutetime = 64.3
-			elseif night==5 then
+			elseif GAMEMODE.Vars.night==5 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[5]
 				mute = false
 				mutetime = 76.8
@@ -122,7 +111,7 @@ function fnapgmUse(ply, ent, test, test2)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.7)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.7)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.6)
-			elseif night==1 then
+			elseif GAMEMODE.Vars.night==1 then
 				ents.FindByName( "PinkieTimer" )[1]:Fire("Kill")
 				ents.FindByName( "RainbowTimer" )[1]:Fire("Kill")
 				ents.FindByName( "ApplejackTimer" )[1]:Fire("Kill")
@@ -154,7 +143,7 @@ function fnapgmUse(ply, ent, test, test2)
 				ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.3)
 				ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0.3)
 				ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0.3)
-			elseif night==2 then
+			elseif GAMEMODE.Vars.night==2 then
 				ents.FindByName( "PinkieTimer" )[1]:Fire("Kill")
 				ents.FindByName( "ApplejackTimer" )[1]:Fire("Kill")
 				
@@ -190,7 +179,7 @@ function fnapgmUse(ply, ent, test, test2)
 				ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.4)
 				ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0.2)
 				ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0.2)
-			elseif night==3 then
+			elseif GAMEMODE.Vars.night==3 then
 				ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 15)
 				ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 30)
 				
@@ -235,7 +224,7 @@ function fnapgmUse(ply, ent, test, test2)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.5)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.5)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.4)
-			elseif night==4 then
+			elseif GAMEMODE.Vars.night==4 then
 				ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 10)
 				ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 20)
 				
@@ -283,7 +272,7 @@ function fnapgmUse(ply, ent, test, test2)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.6)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.6)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.5)
-			elseif night==5 then
+			elseif GAMEMODE.Vars.night==5 then
 				ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 7)
 				ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 10)
 				
@@ -331,7 +320,7 @@ function fnapgmUse(ply, ent, test, test2)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.7)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.7)
 				ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.6)
-			elseif night==6 then
+			elseif GAMEMODE.Vars.night==6 then
 				ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 5)
 				ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 7)
 				
@@ -430,9 +419,9 @@ function fnapgmUse(ply, ent, test, test2)
 			end
 			
 			if IsValid(ply) then
-				MsgC( Color( 255, 255, 85 ), "FNAFGM: Night "..night.." started by "..ply:GetName().."\n" )
+				MsgC( Color( 255, 255, 85 ), "FNAFGM: Night "..GAMEMODE.Vars.night.." started by "..ply:GetName().."\n" )
 			else
-				MsgC( Color( 255, 255, 85 ), "FNAFGM: Night "..night.." started by console/map/other\n" )
+				MsgC( Color( 255, 255, 85 ), "FNAFGM: Night "..GAMEMODE.Vars.night.." started by console/map/other\n" )
 			end
 			
 			timer.Create( "fnafgmTempoStartU", 1.3, 1, function()
@@ -560,13 +549,13 @@ hook.Add( "fnafgmMapOverridesCustom", "fnapgmMapOverrides", fnapgmMapOverrides)
 
 function fnapgmPowerCalc()
 
-	if iniok and mapoverrideok and startday and active and (game.GetMap()=="fnap_scc") then
+	if GAMEMODE.Vars.iniok and mapoverrideok and GAMEMODE.Vars.startday and active and (game.GetMap()=="fnap_scc") then
 		
-		powerusage = GAMEMODE.Power_Usage_Base
+		GAMEMODE.Vars.powerusage = GAMEMODE.Power_Usage_Base
 		
-		if poweroff then
+		if GAMEMODE.Vars.poweroff then
 			
-			powerusage = 0
+			GAMEMODE.Vars.powerusage = 0
 			
 		else
 		
@@ -584,37 +573,37 @@ function fnapgmPowerCalc()
 			
 			if tabactualuse then -- Tab use
 				
-				powerusage = powerusage+1
+				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
 				
 			end
 			
 			if DoorClosed[1] then -- Door 1 use
 				
-				powerusage = powerusage+1
+				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
 				
 			end
 			
 			if DoorClosed[2] then -- Door 2 use
 				
-				powerusage = powerusage+1
+				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
 				
 			end
 			
 			if LightUse[1] or LightUse[2] then -- Lights use
 				
-				powerusage = powerusage+1
+				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
 				
 			end
 			
 			if AprilFool or fnafgm_forceseasonalevent:GetInt()==2 then -- Troll use
 				
-				powerusage = powerusage+5
+				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+5
 				
 			end
 			
 		end
 		
-		if powerusage==0 then
+		if GAMEMODE.Vars.powerusage==0 then
 			
 			powerdrain = 0
 			
@@ -622,16 +611,16 @@ function fnapgmPowerCalc()
 			
 			powerdrain = GAMEMODE.Power_Drain_Time
 		
-			for i=1, powerusage-1 do
+			for i=1, GAMEMODE.Vars.powerusage-1 do
 				powerdrain = powerdrain/2
 			end
 			
-			if powerchecktime==nil and oldpowerdrain==nil and !poweroff then
+			if powerchecktime==nil and oldpowerdrain==nil and !GAMEMODE.Vars.poweroff then
 				
 				powerchecktime = CurTime()+powerdrain
 				oldpowerdrain = powerdrain
 				
-			elseif powerchecktime!=nil and oldpowerdrain!=nil and !poweroff then
+			elseif powerchecktime!=nil and oldpowerdrain!=nil and !GAMEMODE.Vars.poweroff then
 				
 				local calcchangepower = oldpowerdrain-powerdrain
 				
@@ -639,8 +628,8 @@ function fnapgmPowerCalc()
 					
 					powerchecktime=nil
 					oldpowerdrain=nil
-					power = power-1
-					fnapgmDigits(power)
+					GAMEMODE.Vars.power = GAMEMODE.Vars.power-1
+					fnapgmDigits(GAMEMODE.Vars.power)
 				
 				end
 				
@@ -648,14 +637,14 @@ function fnapgmPowerCalc()
 		
 		end
 		
-		if power<=0 and !poweroff then
+		if GAMEMODE.Vars.power<=0 and !GAMEMODE.Vars.poweroff then
 			ents.FindByName( "NoMorePower" )[1]:Fire("use")
 			for k, v in pairs(team.GetPlayers(1)) do
 				if v:Alive() then
 					v:SetPos( Vector( -465, -255, 32 ) )
 				end
 			end
-			poweroff = true
+			GAMEMODE.Vars.poweroff = true
 			if !game.SinglePlayer() then norespawn = true end
 			MsgC( Color( 255, 255, 85 ), "FNAFGM: The power is gone :)\n" )
 		end
@@ -688,8 +677,8 @@ function fnapgmDigits(n)
 		n=0
 	end
 	
-	left = math.floor(n/10)
-	right = math.fmod(n,10)
+	local left = math.floor(n/10)
+	local right = math.fmod(n,10)
 	
 	if left==0 and n!=0 then
 		ents.FindByName( "Timer_#1_SegmentE1" )[1]:Fire("Enable")
