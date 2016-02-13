@@ -434,8 +434,8 @@ function fnapgmUse(ply, ent, test, test2)
 					end
 				end
 				
-				LightUse[1] = false
-				LightUse[2] = false
+				GAMEMODE.Vars.LightUse[1] = false
+				GAMEMODE.Vars.LightUse[2] = false
 				
 				timer.Remove( "fnafgmTempoStartU" )
 				
@@ -444,7 +444,7 @@ function fnapgmUse(ply, ent, test, test2)
 			timer.Create( "fnafgmTempoStartM", 1.6, 1, function()
 				
 				for k, v in pairs(team.GetPlayers(1)) do
-					if v:Alive() and !CheckPlayerSecurityRoom(v) then
+					if v:Alive() and !GAMEMODE:CheckPlayerSecurityRoom(v) then
 						v:SetPos( Vector( -465, -255, 32 ) )
 						v:SetEyeAngles(Angle( 0, 0, 0 ))
 					end
@@ -540,7 +540,7 @@ function fnapgmMapOverrides()
 		if IsValid(ents.FindByName( "WarningTimer" )[1]) then ents.FindByName( "WarningTimer" )[1]:Fire("Kill") end
 		if IsValid(ents.FindByName( "Warning" )[1]) then ents.FindByName( "Warning" )[1]:Fire("Kill") end
 		
-		mapoverrideok = true
+		GAMEMODE.Vars.mapoverrideok = true
 		
 	end
 	
@@ -549,7 +549,7 @@ hook.Add( "fnafgmMapOverridesCustom", "fnapgmMapOverrides", fnapgmMapOverrides)
 
 function fnapgmPowerCalc()
 
-	if GAMEMODE.Vars.iniok and mapoverrideok and GAMEMODE.Vars.startday and active and (game.GetMap()=="fnap_scc") then
+	if GAMEMODE.Vars.iniok and GAMEMODE.Vars.mapoverrideok and GAMEMODE.Vars.startday and GAMEMODE.Vars.active and (game.GetMap()=="fnap_scc") then
 		
 		GAMEMODE.Vars.powerusage = GAMEMODE.Power_Usage_Base
 		
@@ -563,7 +563,7 @@ function fnapgmPowerCalc()
 			
 			for k, v in pairs(team.GetPlayers(1)) do
 				
-				if tabused[v] and tabused[v]==true then
+				if GAMEMODE.Vars.tabused[v] and GAMEMODE.Vars.tabused[v]==true then
 						
 					tabactualuse = true
 					
@@ -577,19 +577,19 @@ function fnapgmPowerCalc()
 				
 			end
 			
-			if DoorClosed[1] then -- Door 1 use
+			if GAMEMODE.Vars.DoorClosed[1] then -- Door 1 use
 				
 				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
 				
 			end
 			
-			if DoorClosed[2] then -- Door 2 use
+			if GAMEMODE.Vars.DoorClosed[2] then -- Door 2 use
 				
 				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
 				
 			end
 			
-			if LightUse[1] or LightUse[2] then -- Lights use
+			if GAMEMODE.Vars.LightUse[1] or GAMEMODE.Vars.LightUse[2] then -- Lights use
 				
 				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
 				
@@ -605,29 +605,29 @@ function fnapgmPowerCalc()
 		
 		if GAMEMODE.Vars.powerusage==0 then
 			
-			powerdrain = 0
+			GAMEMODE.Vars.powerdrain = 0
 			
 		else
 			
-			powerdrain = GAMEMODE.Power_Drain_Time
+			GAMEMODE.Vars.powerdrain = GAMEMODE.Power_Drain_Time
 		
 			for i=1, GAMEMODE.Vars.powerusage-1 do
-				powerdrain = powerdrain/2
+				GAMEMODE.Vars.powerdrain = GAMEMODE.Vars.powerdrain/2
 			end
 			
-			if powerchecktime==nil and oldpowerdrain==nil and !GAMEMODE.Vars.poweroff then
+			if GAMEMODE.Vars.powerchecktime==nil and GAMEMODE.Vars.oldpowerdrain==nil and !GAMEMODE.Vars.poweroff then
 				
-				powerchecktime = CurTime()+powerdrain
-				oldpowerdrain = powerdrain
+				GAMEMODE.Vars.powerchecktime = CurTime()+GAMEMODE.Vars.powerdrain
+				GAMEMODE.Vars.oldpowerdrain = GAMEMODE.Vars.powerdrain
 				
-			elseif powerchecktime!=nil and oldpowerdrain!=nil and !GAMEMODE.Vars.poweroff then
+			elseif GAMEMODE.Vars.powerchecktime!=nil and GAMEMODE.Vars.oldpowerdrain!=nil and !GAMEMODE.Vars.poweroff then
 				
-				local calcchangepower = oldpowerdrain-powerdrain
+				local calcchangepower = GAMEMODE.Vars.oldpowerdrain-GAMEMODE.Vars.powerdrain
 				
-				if powerchecktime<=CurTime()+calcchangepower then
+				if GAMEMODE.Vars.powerchecktime<=CurTime()+calcchangepower then
 					
-					powerchecktime=nil
-					oldpowerdrain=nil
+					GAMEMODE.Vars.powerchecktime=nil
+					GAMEMODE.Vars.oldpowerdrain=nil
 					GAMEMODE.Vars.power = GAMEMODE.Vars.power-1
 					fnapgmDigits(GAMEMODE.Vars.power)
 				
