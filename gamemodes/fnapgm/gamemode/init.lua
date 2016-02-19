@@ -33,23 +33,23 @@ function fnapgmUse(ply, ent, test, test2)
 			
 			if GAMEMODE.Vars.night==1 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[1]
-				mute = false
+				GAMEMODE.Vars.mute = false
 				mutetime = 64.2
 			elseif GAMEMODE.Vars.night==2 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[2]
-				mute = false
+				GAMEMODE.Vars.mute = false
 				mutetime = 46.7
 			elseif GAMEMODE.Vars.night==3 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[3]
-				mute = false
+				GAMEMODE.Vars.mute = false
 				mutetime = 47.4
 			elseif GAMEMODE.Vars.night==4 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[4]
-				mute = false
+				GAMEMODE.Vars.mute = false
 				mutetime = 64.3
 			elseif GAMEMODE.Vars.night==5 then
 				sound = GAMEMODE.Sound_Calls.fnap_scc[5]
-				mute = false
+				GAMEMODE.Vars.mute = false
 				mutetime = 76.8
 			end
 			
@@ -478,7 +478,7 @@ function fnapgmUse(ply, ent, test, test2)
 					end
 					
 					timer.Create( "fnafgmEndCall", mutetime, 1, function()
-						mute = true
+						GAMEMODE.Vars.mute = true
 						for k, v in pairs(ents.FindByName("fnafgm_CallButton")) do
 							v:Fire("Use")
 						end
