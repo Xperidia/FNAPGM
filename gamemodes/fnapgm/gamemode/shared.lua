@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.12
+GM.Version 	= 1.13
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -32,6 +32,7 @@ hook.Add( "Initialize", "fnapgmInit", function()
 	GAMEMODE.Strings.fr.fnap_scc = "Coupez le courant pour démarrer la nuit"
 	GAMEMODE.Strings.ru.fnap_scc = "Выключите главное питание, чтобы начать ночь" --Translation by http://steamcommunity.com/profiles/76561198135819236
 	GAMEMODE.Strings.uk.fnap_scc = "Вимкніть головне живлення, щоб почати ніч" --Translation by http://steamcommunity.com/profiles/76561198135819236
+	local fuckWubsy = true
 end)
 
 GM.Sound_end = {

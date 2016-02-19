@@ -488,7 +488,7 @@ function fnapgmUse(ply, ent, test, test2)
 				
 				for k, v in pairs(team.GetPlayers(1)) do
 					if v:Team()==1 and v:Alive() and v:GetInfoNum("fnafgm_cl_autofnafview", 1)==1 then
-						fnafgmFNaFView(v)
+						GAMEMODE:GoFNaFView(v)
 					end
 				end
 				
