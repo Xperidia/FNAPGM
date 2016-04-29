@@ -27,7 +27,7 @@ function fnapgmSecurityTablet()
 		CamsNames:SetPos( ScrW()-64-512, ScrH()-64-512 )
 		CamsNames:SetSize( 512, 64 )
 		
-		if !tobool(GAMEMODE.Vars.mute) then
+		if !GAMEMODE.Vars.mute then
 			local MUTET = vgui.Create( "DImage" )
 			MUTET:SetParent(Monitor)
 			MUTET:SetImage( "fnafgm/mute" )

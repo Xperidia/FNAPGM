@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.14
+GM.Version 	= 1.15
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -55,10 +55,6 @@ GM.FNaFView = {
 	fnap_scc = { Vector( -465, -255, 32 ), Angle( 0, 0, 0 ), Angle( 0, 58, 0 ), Angle( 0, -58, 0 ) }
 }
 
-GM.Materials_end = {
-	fnap_scc = true
-}
-
 GM.Models_dead = {}
 
 GM.CamsNames = {
@@ -79,12 +75,26 @@ GM.CamsNames = {
 }
 
 GM.MapList = {
-	fnap_scc = "Sugar Cube Corner"
+	fnap_scc = "Sugar Cube Corner",
+	fnap_cb = "Carousel Boutique"
 }
 
 GM.MapListLinks = {
 	fnap_scc = "http://go.Xperidia.com/FNAP_SCC"
+	--fnap_cb = ""
 }
+
+GM.Animatronic = {}
+GM.Animatronic.Pinkie = 11
+
+GM.AnimatronicName = {}
+GM.AnimatronicName[11] = "Pinkie Pie"
+
+GM.Animatronic_Models = {}
+GM.Animatronic_Models[GM.Animatronic.Pinkie] = {}
+GM.Animatronic_Models[GM.Animatronic.Pinkie].fnap_scc = Model("models/brokenmlpanimatronics/pinkie_pie.mdl")
+GM.Animatronic_Models[GM.Animatronic.Pinkie].fnap_cb = Model("models/brokenmlpanimatronics/pinkie_pie.mdl")
+
 
 function GM:CheckDerivCreator(pl)
 	if (pl:SteamID()=="STEAM_0:1:33606814" or pl:SteamID()=="STEAM_0:0:59390945") then
