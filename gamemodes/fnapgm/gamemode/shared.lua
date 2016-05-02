@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.15
+GM.Version 	= 1.16
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -86,14 +86,27 @@ GM.MapListLinks = {
 
 GM.Animatronic = {}
 GM.Animatronic.Pinkie = 11
+GM.Animatronic.Fluttershy = 12
+GM.Animatronic.Twilight = 13
+GM.Animatronic.Rarity = 14
+GM.Animatronic.Applejack = 15
 
 GM.AnimatronicName = {}
 GM.AnimatronicName[11] = "Pinkie Pie"
+GM.AnimatronicName[12] = "Fluttershy"
+GM.AnimatronicName[13] = "Twilight"
+GM.AnimatronicName[14] = "Rarity"
+GM.AnimatronicName[15] = "Applejack"
 
 GM.Animatronic_Models = {}
 GM.Animatronic_Models[GM.Animatronic.Pinkie] = {}
 GM.Animatronic_Models[GM.Animatronic.Pinkie].fnap_scc = Model("models/brokenmlpanimatronics/pinkie_pie.mdl")
 GM.Animatronic_Models[GM.Animatronic.Pinkie].fnap_cb = Model("models/brokenmlpanimatronics/pinkie_pie.mdl")
+
+--[[GM.APos = {}
+GM.APos.fnap_cb = {
+	
+}]]
 
 
 function GM:CheckDerivCreator(pl)
