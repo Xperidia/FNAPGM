@@ -4,8 +4,8 @@ DeriveGamemode( "fnafgm" )
 function fnapgmSecurityTabletInit()
 	
 	if game.GetMap()=="fnap_scc" then
-		if !lastcam then
-			lastcam = 2
+		if !GAMEMODE.Vars.lastcam then
+			GAMEMODE.Vars.lastcam = 2
 		end
 		LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
 	end
@@ -21,7 +21,7 @@ function fnapgmSecurityTablet()
 		
 		local CamsNames = vgui.Create( "DLabel" )
 		CamsNames:SetParent(Monitor)
-		CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+		CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		CamsNames:SetTextColor( Color( 255, 255, 255, 255 ) )
 		CamsNames:SetFont("FNAFGMTIME")
 		CamsNames:SetPos( ScrW()-64-512, ScrH()-64-512 )
@@ -69,11 +69,11 @@ function fnapgmSecurityTablet()
 		Kitchen.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 1 )
-			lastcam = 1
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 1
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Kitchen.Paint = function( self, w, h )
-			if lastcam==1 then
+			if GAMEMODE.Vars.lastcam==1 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -86,11 +86,11 @@ function fnapgmSecurityTablet()
 		Stage.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 2 )
-			lastcam = 2
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 2
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Stage.Paint = function( self, w, h )
-			if lastcam==2 then
+			if GAMEMODE.Vars.lastcam==2 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -103,11 +103,11 @@ function fnapgmSecurityTablet()
 		Dining_Area.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 3 )
-			lastcam = 3
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 3
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Dining_Area.Paint = function( self, w, h )
-			if lastcam==3 then
+			if GAMEMODE.Vars.lastcam==3 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -120,11 +120,11 @@ function fnapgmSecurityTablet()
 		Entrance.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 4 )
-			lastcam = 4
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 4
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Entrance.Paint = function( self, w, h )
-			if lastcam==4 then
+			if GAMEMODE.Vars.lastcam==4 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -137,11 +137,11 @@ function fnapgmSecurityTablet()
 		North_Hall_B.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 5 )
-			lastcam = 5
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 5
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		North_Hall_B.Paint = function( self, w, h )
-			if lastcam==5 then
+			if GAMEMODE.Vars.lastcam==5 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -154,11 +154,11 @@ function fnapgmSecurityTablet()
 		Bathroom.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 6 )
-			lastcam = 6
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 6
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Bathroom.Paint = function( self, w, h )
-			if lastcam==6 then
+			if GAMEMODE.Vars.lastcam==6 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -171,11 +171,11 @@ function fnapgmSecurityTablet()
 		North_Hall_A.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 7 )
-			lastcam = 7
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 7
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		North_Hall_A.Paint = function( self, w, h )
-			if lastcam==7 then
+			if GAMEMODE.Vars.lastcam==7 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -188,11 +188,11 @@ function fnapgmSecurityTablet()
 		Pinkie_Bedroom.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 8 )
-			lastcam = 8
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 8
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Pinkie_Bedroom.Paint = function( self, w, h )
-			if lastcam==8 then
+			if GAMEMODE.Vars.lastcam==8 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -205,11 +205,11 @@ function fnapgmSecurityTablet()
 		Storage.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 9 )
-			lastcam = 9
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 9
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Storage.Paint = function( self, w, h )
-			if lastcam==9 then
+			if GAMEMODE.Vars.lastcam==9 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -222,11 +222,11 @@ function fnapgmSecurityTablet()
 		Supply_Room.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 10 )
-			lastcam = 10
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 10
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Supply_Room.Paint = function( self, w, h )
-			if lastcam==10 then
+			if GAMEMODE.Vars.lastcam==10 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -239,11 +239,11 @@ function fnapgmSecurityTablet()
 		Trash.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 11 )
-			lastcam = 11
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 11
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Trash.Paint = function( self, w, h )
-			if lastcam==11 then
+			if GAMEMODE.Vars.lastcam==11 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -256,11 +256,11 @@ function fnapgmSecurityTablet()
 		Cave.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 12 )
-			lastcam = 12
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 12
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Cave.Paint = function( self, w, h )
-			if lastcam==12 then
+			if GAMEMODE.Vars.lastcam==12 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -273,11 +273,11 @@ function fnapgmSecurityTablet()
 		Storage.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 13 )
-			lastcam = 13
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 13
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Storage.Paint = function( self, w, h )
-			if lastcam==13 then
+			if GAMEMODE.Vars.lastcam==13 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -290,11 +290,11 @@ function fnapgmSecurityTablet()
 		Generator.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 14 )
-			lastcam = 14
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 14
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Generator.Paint = function( self, w, h )
-			if lastcam==14 then
+			if GAMEMODE.Vars.lastcam==14 then
 				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
 			end
 		end
@@ -307,8 +307,8 @@ function fnapgmSecurityTablet()
 		Unknown.DoClick = function( button )
 			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
 			fnafgmSetView( 15 )
-			lastcam = 15
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..lastcam] or "" )
+			GAMEMODE.Vars.lastcam = 15
+			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Unknown.Paint = function( self, w, h )
 			
