@@ -8,6 +8,11 @@ function fnapgmSecurityTabletInit()
 			GAMEMODE.Vars.lastcam = 2
 		end
 		LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
+	else
+		if !GAMEMODE.Vars.lastcam then
+			GAMEMODE.Vars.lastcam = 1
+		end
+		LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
 	end
 	
 	return true

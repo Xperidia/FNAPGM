@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.17
+GM.Version 	= 1.18
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
