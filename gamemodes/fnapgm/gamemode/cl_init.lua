@@ -362,6 +362,71 @@ function fnapgmSecurityTablet()
 			
 		end
 		
+	else
+		
+		local CamsNames = vgui.Create( "DLabel" )
+		CamsNames:SetParent(Monitor)
+		CamsNames:SetText( "CAM"..GAMEMODE.Vars.lastcam )
+		CamsNames:SetTextColor( Color( 255, 255, 255, 255 ) )
+		CamsNames:SetFont("FNAFGMTIME")
+		CamsNames:SetPos( 70, 60 )
+		CamsNames:SetSize( 200, 64 )
+		
+		local CAM = vgui.Create( "DNumberWang" )
+		CAM:SetParent(Monitor)
+		CAM:SetPos( ScrW()/2-16, ScrH()-80-50-80 )
+		CAM:SetMinMax(1,table.Count(ents.FindByClass( "fnafgm_camera" )))
+		CAM:SetSize( 34, 28 )
+		CAM:SetValue(GAMEMODE.Vars.lastcam)
+		CAM.OnValueChanged = function( val )
+			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_camselect)
+			fnafgmSetView( math.Round( val:GetValue() ) )
+			GAMEMODE.Vars.lastcam = val:GetValue()
+			CamsNames:SetText( "CAM"..val:GetValue() )
+		end
+		
+		CloseT = vgui.Create( "DButton" )
+		CloseT:SetParent(Monitor)
+		CloseT:SetSize( 512, 80 )
+		CloseT:SetPos( ScrW()/2-256, ScrH()-80-50 )
+		CloseT:SetText( "" )
+		CloseT:SetTextColor( Color( 255, 255, 255, 255 ) )
+		CloseT:SetFont("FNAFGMID")
+		CloseT.DoClick = function( button )
+			if IsValid(FNaFView) then waitt = CurTime()+1 end
+			Monitor:Close()
+			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
+			if IsValid(OpenT) then OpenT:Show() end
+		end
+		CloseT.OnCursorEntered = function()
+			if IsValid(FNaFView) then
+				if !waitt then waitt=0 end
+				if waitt<CurTime() then
+					waitt = CurTime()+0.5
+					Monitor:Close()
+					LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
+					if IsValid(OpenT) then OpenT:Show() end
+				end
+			end
+		end
+		CloseT.Paint = function( self, w, h )
+			
+			draw.RoundedBox( 0, 1, 1, w-2, h-2, Color( 255, 255, 255, 32 ) )
+			
+			surface.SetDrawColor( 255, 255, 255, 128 )
+			
+			draw.NoTexture()
+			
+			surface.DrawLine( w/2-64, h/2-16, w/2, h/2 )
+			surface.DrawLine( w/2, h/2, w/2+64, h/2-16 )
+			
+			surface.DrawLine( w/2-64, h/2-16+16, w/2, h/2+16 )
+			surface.DrawLine( w/2, h/2+16, w/2+64, h/2-16+16 )
+			
+			surface.DrawOutlinedRect( 0, 0, w, h )
+			
+		end
+		
 	end
 	
 	return true
