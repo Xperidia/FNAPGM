@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.20
+GM.Version 	= 1.21
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -74,7 +74,18 @@ GM.CamsNames = {
 	fnap_scc_11 = "Trash",
 	fnap_scc_12 = "Cave",
 	fnap_scc_13 = "Storage",
-	fnap_scc_14 = "Generator"
+	fnap_scc_14 = "Generator",
+	fnap_cb_1 = "Stage",
+	fnap_cb_2 = "Main Hall",
+	fnap_cb_3 = "Backroom",
+	fnap_cb_4 = "Storage",
+	fnap_cb_5 = "Kitchen",
+	fnap_cb_6 = "Supply Room",
+	fnap_cb_7 = "Stairs",
+	fnap_cb_8 = "Rarity's Bedroom",
+	fnap_cb_9 = "Left Vent",
+	fnap_cb_10 = "Right Vent",
+	fnap_cb_11 = "Office"
 }
 
 GM.MapList = {
@@ -118,10 +129,20 @@ GM.Animatronic_Models[GM.Animatronic.Pinkie] = {}
 GM.Animatronic_Models[GM.Animatronic.Pinkie].fnap_scc = Model("models/brokenmlpanimatronics/pinkie_pie.mdl")
 GM.Animatronic_Models[GM.Animatronic.Pinkie].fnap_cb = Model("models/brokenmlpanimatronics/pinkie_pie.mdl")
 
---[[GM.APos = {}
+GM.APos = {}
 GM.APos.fnap_cb = {
-	
-}]]
+	SS = 1,
+	MH = 2,
+	BR = 3,
+	Storage = 4,
+	Kitchen = 5,
+	SR = 6,
+	Stairs = 7,
+	Rarity = 8,
+	LV = 9,
+	RV = 10,
+	Office = 11
+}
 
 
 function GM:CheckDerivCreator(pl)
