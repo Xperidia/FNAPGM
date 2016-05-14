@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.21
+GM.Version 	= 1.22
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -143,6 +143,9 @@ GM.APos.fnap_cb = {
 	RV = 10,
 	Office = 11
 }
+
+GM.ASSEye = {}
+GM.ASSEye.fnap_cb = Vector(-12, -240, 128)
 
 
 function GM:CheckDerivCreator(pl)
