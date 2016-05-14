@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.18
+GM.Version 	= 1.19
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 for _, gamemodec in pairs(engine.GetGamemodes()) do
@@ -44,15 +44,18 @@ GM.Sound_Calls = {
 }
 
 GM.SecurityRoom = {
-	fnap_scc = { Vector(-510,-125,26), Vector(-334,-372,170), Vector(-510,-125,26), Vector(-195,-258,170) }
+	fnap_scc = { Vector(-510,-125,26), Vector(-334,-372,170), Vector(-510,-125,26), Vector(-195,-258,170) },
+	fnap_cb = { Vector(144,-80,339), Vector(337,-319,210) }
 }
 
 GM.DeadBodiesTeleport = {
-	fnap_scc = { Vector(200, 432, 96) }
+	fnap_scc = { Vector(200, 432, 96) },
+	fnap_cb = { Vector(177, -224, 144) }
 }
 
 GM.FNaFView = {
-	fnap_scc = { Vector( -465, -255, 32 ), Angle( 0, 0, 0 ), Angle( 0, 58, 0 ), Angle( 0, -58, 0 ) }
+	fnap_scc = { Vector( -465, -255, 32 ), Angle( 0, 0, 0 ), Angle( 0, 58, 0 ), Angle( 0, -58, 0 ) },
+	fnap_cb = { Vector( 256, -272, 272 ), Angle( 0, 90, 0 ), Angle( 0, 128, 0 ), Angle( 0, 50, 0 ) }
 }
 
 GM.Models_dead = {}
@@ -90,6 +93,12 @@ GM.Animatronic.Fluttershy = 12
 GM.Animatronic.Twilight = 13
 GM.Animatronic.Rarity = 14
 GM.Animatronic.Applejack = 15
+GM.Animatronic.RainbowDash = 16
+GM.Animatronic.ToyPinkie = 17
+GM.Animatronic.ToyFluttershy = 18
+GM.Animatronic.ToyTwilight = 19
+GM.Animatronic.Discord = 20
+GM.Animatronic.Spike = 21
 
 GM.AnimatronicName = {}
 GM.AnimatronicName[11] = "Pinkie Pie"
@@ -97,6 +106,12 @@ GM.AnimatronicName[12] = "Fluttershy"
 GM.AnimatronicName[13] = "Twilight"
 GM.AnimatronicName[14] = "Rarity"
 GM.AnimatronicName[15] = "Applejack"
+GM.AnimatronicName[16] = "Rainbow Dash"
+GM.AnimatronicName[17] = "Toy Pinkie Pie"
+GM.AnimatronicName[18] = "Toy Fluttershy"
+GM.AnimatronicName[19] = "Toy Twilight"
+GM.AnimatronicName[20] = "Discord"
+GM.AnimatronicName[21] = "Spike"
 
 GM.Animatronic_Models = {}
 GM.Animatronic_Models[GM.Animatronic.Pinkie] = {}
