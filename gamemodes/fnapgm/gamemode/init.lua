@@ -490,7 +490,57 @@ function fnapgmStartNightCustom(ply)
 			timer.Remove( "fnafgmTempoStart" )
 			
 		end)
-	
+		
+	elseif (game.GetMap()=="fnap_cb") then
+		
+		GAMEMODE:SetNightTemplate(true)
+		
+		timer.Create( "fnafgmTempoStartU", 1.3, 1, function()
+			
+			fnafgmVarsUpdate()
+			
+			for k, v in pairs(team.GetPlayers(1)) do
+				if v:Alive() then
+					v:ScreenFade(SCREENFADE.OUT, color_black, 0.25, 8.2-1.3-0.25 )
+				end
+			end
+			
+			timer.Remove( "fnafgmTempoStartU" )
+			
+		end)
+		
+		timer.Create( "fnafgmTempoStartM", 1.6, 1, function()
+			
+			for k, v in pairs(team.GetPlayers(1)) do
+				if v:Alive() and !GAMEMODE:CheckPlayerSecurityRoom(v) then
+					v:SetPos( GAMEMODE.FNaFView.fnap_cb[1] )
+					v:SetEyeAngles( GAMEMODE.FNaFView.fnap_cb[2] )
+				end
+			end
+			
+			timer.Remove( "fnafgmTempoStartM" )
+			
+		end)
+		
+		timer.Create( "fnafgmTempoStart", 8.2, 1, function()
+			
+			GAMEMODE.Vars.tempostart = false
+			
+			fnafgmVarsUpdate()
+			fnafgmPowerUpdate()
+			
+			for k, v in pairs(team.GetPlayers(1)) do
+				if v:Team()==1 and v:Alive() and v:GetInfoNum("fnafgm_cl_autofnafview", 1)==1 then
+					GAMEMODE:GoFNaFView(v)
+				end
+			end
+			
+			timer.Create( "fnafgmTimeThink", GAMEMODE.HourTime, 0, fnafgmTimeThink)
+			
+			timer.Remove( "fnafgmTempoStart" )
+			
+		end)
+		
 	end
 	
 	return true
