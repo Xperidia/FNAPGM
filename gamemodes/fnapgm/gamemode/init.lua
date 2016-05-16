@@ -493,7 +493,23 @@ function fnapgmStartNightCustom(ply)
 		
 	elseif (game.GetMap()=="fnap_cb") then
 		
-		GAMEMODE:SetNightTemplate(true)
+		GAMEMODE:SetNightTemplate(false)
+		if GAMEMODE.Vars.night==1 then
+			GAMEMODE.Vars.power = 115
+			GAMEMODE.Vars.powertot = 115
+		elseif GAMEMODE.Vars.night==2 then
+			GAMEMODE.Vars.power = 100
+			GAMEMODE.Vars.powertot = 100
+		elseif GAMEMODE.Vars.night==3 then
+			GAMEMODE.Vars.power = 85
+			GAMEMODE.Vars.powertot = 85
+		elseif GAMEMODE.Vars.night==4 then
+			GAMEMODE.Vars.power = 67
+			GAMEMODE.Vars.powertot = 67
+		else
+			GAMEMODE.Vars.power = 50
+			GAMEMODE.Vars.powertot = 50
+		end
 		
 		timer.Create( "fnafgmTempoStartU", 1.3, 1, function()
 			
@@ -625,6 +641,19 @@ function fnapgmPowerCalc()
 				
 				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
 				
+			else
+				
+				for k, v in pairs(ents.FindByClass( "fnafgm_camera" )) do
+					
+					if v:GetLightState() then
+						
+						GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
+						break
+						
+					end
+					
+				end
+				
 			end
 			
 			if GAMEMODE.Vars.AprilFool or fnafgm_forceseasonalevent:GetInt()==2 then -- Troll use
@@ -679,6 +708,77 @@ function fnapgmPowerCalc()
 			GAMEMODE.Vars.poweroff = true
 			if !game.SinglePlayer() then norespawn = true end
 			GAMEMODE:Log("The power is gone :)")
+		end
+		
+		fnafgmPowerUpdate()
+		
+	elseif GAMEMODE.Vars.iniok and GAMEMODE.Vars.mapoverrideok and GAMEMODE.Vars.startday and GAMEMODE.Vars.active and (game.GetMap()=="fnap_cb") then
+		
+		GAMEMODE.Vars.powerusage = 0
+		
+		if !GAMEMODE.Vars.poweroff then
+			
+			if GAMEMODE.Vars.LightUse[1] or GAMEMODE.Vars.LightUse[2] or GAMEMODE.Vars.LightUse[3] then
+				
+				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage + 1
+				
+			end
+			
+			for k, v in pairs(ents.FindByClass( "fnafgm_camera" )) do
+				
+				if v:GetLightState() then
+					
+					GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
+					
+				end
+				
+			end
+			
+			for k, v in pairs(team.GetPlayers(1)) do
+				
+				if v:FlashlightIsOn() then
+					
+					GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage + 1
+					
+				end
+				
+			end
+			
+		end
+		
+		if GAMEMODE.Vars.powerusage==0 or !GAMEMODE.Vars.powerchecktime then
+			
+			GAMEMODE.Vars.powerchecktime = CurTime()+1
+			
+		else
+			
+			if GAMEMODE.Vars.powerchecktime<=CurTime() then
+				
+				GAMEMODE.Vars.powerchecktime = CurTime()+1
+				GAMEMODE.Vars.power = GAMEMODE.Vars.power-1
+				
+			end
+		
+		end
+		
+		if GAMEMODE.Vars.power==0 and !GAMEMODE.Vars.poweroff then
+			
+			GAMEMODE.Vars.poweroff = true
+			
+			for k, v in pairs(team.GetPlayers(1)) do
+				
+				if v:FlashlightIsOn() and !fnafgmPlayerCanByPass(v,"flashlight") then
+					
+					v:Flashlight( false )
+					
+					v:ConCommand("play "..GAMEMODE.Sound_lighterror)
+					
+				end
+				
+			end
+			
+			GAMEMODE:Log("The battery is dead")
+			
 		end
 		
 		fnafgmPowerUpdate()
