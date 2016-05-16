@@ -500,6 +500,48 @@ function fnapgmFNaFViewHUD()
 			
 		end
 		
+	elseif game.GetMap()=="fnap_cb" then
+		
+		OpenT = vgui.Create( "DButton" )
+		OpenT:SetParent(FNaFView)
+		OpenT:SetSize( 512, 80 )
+		OpenT:SetPos( ScrW()/2-256, ScrH()-80-50 )
+		OpenT:SetText( "" )
+		OpenT.DoClick = function( button )
+			waitt = CurTime()+1
+			fnafgmSecurityTablet() 
+			LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
+			OpenT:Hide()
+			--SafeE:Hide()
+		end
+		OpenT.OnCursorEntered = function()
+			if !waitt then waitt=0 end
+			if waitt<CurTime() then
+				waitt = CurTime()+0.5
+				fnafgmSecurityTablet() 
+				LocalPlayer():ConCommand("play "..GAMEMODE.Sound_securitycampop)
+				OpenT:Hide()
+				--SafeE:Hide()
+			end
+		end
+		OpenT.Paint = function( self, w, h )
+			
+			draw.RoundedBox( 0, 1, 1, w-2, h-2, Color( 255, 255, 255, 32 ) )
+			
+			surface.SetDrawColor( 255, 255, 255, 128 )
+			
+			draw.NoTexture()
+			
+			surface.DrawLine( w/2-64, h/2-16, w/2, h/2 )
+			surface.DrawLine( w/2, h/2, w/2+64, h/2-16 )
+			
+			surface.DrawLine( w/2-64, h/2-16+16, w/2, h/2+16 )
+			surface.DrawLine( w/2, h/2+16, w/2+64, h/2-16+16 )
+			
+			surface.DrawOutlinedRect( 0, 0, w, h )
+			
+		end
+		
 	end
 	
 	return true
