@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.26
+GM.Version 	= 1.27
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -80,6 +80,10 @@ GM.CamsNames = {
 	fnap_scc_12 = "Cave",
 	fnap_scc_13 = "Storage",
 	fnap_scc_14 = "Generator",
+	fnap_scc_16 = "Office",
+	fnap_scc_17 = "Staff",
+	fnap_scc_18 = "Staff",
+	fnap_scc_19 = "Kitchen",
 	fnap_cb_1 = "Stage",
 	fnap_cb_2 = "Main Hall",
 	fnap_cb_3 = "Backroom",
@@ -133,8 +137,32 @@ GM.Animatronic_Models = {}
 GM.Animatronic_Models[GM.Animatronic.Pinkie] = {}
 GM.Animatronic_Models[GM.Animatronic.Pinkie].fnap_scc = Model("models/brokenmlpanimatronics/pinkie_pie.mdl")
 GM.Animatronic_Models[GM.Animatronic.Pinkie].fnap_cb = Model("models/brokenmlpanimatronics/pinkie_pie.mdl")
+GM.Animatronic_Models[GM.Animatronic.Fluttershy] = {}
+GM.Animatronic_Models[GM.Animatronic.Fluttershy].fnap_scc = Model("models/brokenmlpanimatronics/fluttershy.mdl")
+GM.Animatronic_Models[GM.Animatronic.Twilight] = {}
+GM.Animatronic_Models[GM.Animatronic.Twilight].fnap_scc = Model("models/brokenmlpanimatronics/twilight.mdl")
 
 GM.APos = {}
+GM.APos.fnap_scc = {
+	Kitchen = 1,
+	SS = 2,
+	DA = 3,
+	Entrance = 4,
+	NHB = 5,
+	BR = 6,
+	NHA = 7,
+	Pinkie = 8,
+	StorageT = 9,
+	SR = 10,
+	Trash = 11,
+	Cave = 12,
+	StorageD = 13,
+	Generator = 14,
+	Office = 16,
+	StaffD = 17,
+	Staff = 18,
+	Kitchen2 = 19
+}
 GM.APos.fnap_cb = {
 	SS = 1,
 	MH = 2,
@@ -150,7 +178,45 @@ GM.APos.fnap_cb = {
 }
 
 GM.ASSEye = {}
+GM.ASSEye.fnap_scc = Vector(62, -22, 96)
 GM.ASSEye.fnap_cb = Vector(-12, -240, 128)
+
+GM.AnimatronicAPos = {}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie] = {}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy] = {}
+GM.AnimatronicAPos[GM.Animatronic.Twilight] = {}
+
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc = {}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(64.193, 139.1, 90.3044), Angle(0,270,0) }
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.NHA] = { Vector(-289, 301, 32.031250), Angle(0,-173,0) }
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Pinkie] = { Vector(-374.231, 426.545, 32.9537), Angle(0,213,0) }
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SR] = { Vector(242.611, 470.115, 79.554), Angle(0,300,0) }
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Cave] = { Vector(260.138, -331.65, -98.2724), Angle(0,220,0) }
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Generator] = { Vector(-342.764, -257.734, -96.1159), Angle(0,75,0) }
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-427.235, -416.156, 32), Angle(0,90,0) }
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.StaffD] = { Vector(-227.427, -428.674, 31.1774), Angle(0,150,0) }
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Staff] = { Vector(-377.114, -451.607, 31.3187), Angle(0,135,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc = {}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen] = { Vector(-207.467, 39.4443, 32.031250), Angle(0,234,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(146.607, 129.722, 63.4359), Angle(0,237,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.DA] = { Vector(-35.0655, -378.776, 32.031250), Angle(0,113,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Entrance] = { Vector(468.435, -473.789, 32.031250), Angle(0,150,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.BR] = { Vector(441.505, 79.8756, 32.031250), Angle(0,115,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.NHA] = { Vector(-81.9206, 287.78, 32.031250), Angle(0,180,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.StorageT] = { Vector(-79.3985, 456.384, 32.031250), Angle(0,240,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Cave] = { Vector(214.599, -292.129, -91.8968), Angle(0,243,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-434.534, -78.391, 32), Angle(0,270,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { Vector(-351.923, 21.8385, 32.031250), Angle(0,254,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc = {}
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen] = { Vector(-145.811, -3.71502, 32), Angle(0,180,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(229.355, 566.11, 87), Angle(0,234,87) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.NHA] = { Vector(226.063, 307.311, 32), Angle(0,320,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.BR] = { Vector(423.922, 29.9327, 32), Angle(0,90,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SR] = { Vector(217.167, 417.786, 36.1032), Angle(0,270,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.StorageD] = { Vector(-54.393, -92.0667, -96.1156), Angle(0,64,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Generator] = { Vector(-336.451, -342.729, -96.9048), Angle(0,90,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-362.534, -85.6415, 64.2119), Angle(0,270,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { Vector(-292.778, 43.7329, 31.5654), Angle(0,235,0) }
 
 
 function GM:CheckDerivCreator(pl)
