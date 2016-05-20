@@ -66,269 +66,63 @@ function fnapgmStartNightCustom(ply)
 			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 5)
 			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 7)
 			
-			ents.FindByName( "TwilightTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "TwilightTimer" )[1]:Fire("UpperRandomBound", 7)
-			
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("UpperRandomBound", 7)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
 			
-			ents.FindByName( "PinkieTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "PinkieTimer" )[1]:Fire("UpperRandomBound", 7)
-			
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("LowerRandomBound", 5)
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("UpperRandomBound", 7)
-			
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase01", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase02", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase03", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase04", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase05", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase06", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase07", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase08", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase09", 0.6)
-			
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase01", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase02", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase03", 0)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase04", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase05", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.6)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0)
-			
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase01", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase02", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase03", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase04", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase05", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.7)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.7)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.6)
 		elseif GAMEMODE.Vars.night==1 then
-			ents.FindByName( "PinkieTimer" )[1]:Fire("Kill")
 			ents.FindByName( "RainbowTimer" )[1]:Fire("Kill")
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("Kill")
 			
 			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 40)
 			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 60)
-			
-			ents.FindByName( "TwilightTimer" )[1]:Fire("LowerRandomBound", 40)
-			ents.FindByName( "TwilightTimer" )[1]:Fire("UpperRandomBound", 60)
-			
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("LowerRandomBound", 40)
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("UpperRandomBound", 60)
-			
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase01", 0.6)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase02", 0.6)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase03", 0.4)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase04", 0.4)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase05", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase06", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase07", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase08", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase09", 0.3)
-			
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase01", 0.5)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase02", 0.5)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase03", 0.4)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase04", 0.6)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase05", 0.4)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.3)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0.3)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0.3)
 		elseif GAMEMODE.Vars.night==2 then
-			ents.FindByName( "PinkieTimer" )[1]:Fire("Kill")
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("Kill")
 			
 			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 50)
 			
-			ents.FindByName( "TwilightTimer" )[1]:Fire("LowerRandomBound", 30)
-			ents.FindByName( "TwilightTimer" )[1]:Fire("UpperRandomBound", 50)
-			
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("LowerRandomBound", 30)
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("UpperRandomBound", 50)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 150)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 400)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 50)
-			
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase01", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase02", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase03", 0.4)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase04", 0.4)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase05", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase06", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase07", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase08", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase09", 0.4)
-			
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase01", 0.5)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase02", 0.5)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase03", 0.4)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase04", 0.6)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase05", 0.4)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.4)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0.2)
 		elseif GAMEMODE.Vars.night==3 then
 			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 15)
 			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 30)
-			
-			ents.FindByName( "TwilightTimer" )[1]:Fire("LowerRandomBound", 15)
-			ents.FindByName( "TwilightTimer" )[1]:Fire("UpperRandomBound", 30)
-			
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("LowerRandomBound", 15)
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("UpperRandomBound", 30)
 			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 120)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 300)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 50)
-			
-			ents.FindByName( "PinkieTimer" )[1]:Fire("LowerRandomBound", 20)
-			ents.FindByName( "PinkieTimer" )[1]:Fire("UpperRandomBound", 40)
-			
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase01", 0.4)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase02", 0.4)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase03", 0.3)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase04", 0.3)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase05", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase06", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase07", 0.6)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase08", 0.6)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase09", 0.4)
-			
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase01", 0.4)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase02", 0.4)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase03", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase04", 0.6)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase05", 0.6)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.4)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0.2)
-			
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase01", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase02", 0.6)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase03", 0.6)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase04", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase05", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.4)
 		elseif GAMEMODE.Vars.night==4 then
 			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 20)
-			
-			ents.FindByName( "TwilightTimer" )[1]:Fire("LowerRandomBound", 10)
-			ents.FindByName( "TwilightTimer" )[1]:Fire("UpperRandomBound", 20)
-			
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("LowerRandomBound", 10)
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("UpperRandomBound", 20)
 			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 60)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 260)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 20)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 40)
 			
-			ents.FindByName( "PinkieTimer" )[1]:Fire("LowerRandomBound", 10)
-			ents.FindByName( "PinkieTimer" )[1]:Fire("UpperRandomBound", 20)
-			
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("LowerRandomBound", 15)
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("UpperRandomBound", 30)
-			
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase01", 0.3)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase02", 0.3)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase03", 0.2)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase04", 0.2)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase05", 0.4)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase06", 0.4)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase07", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase08", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase09", 0.5)
-			
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase01", 0.3)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase02", 0.3)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase03", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase04", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase05", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.5)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0.2)
-			
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase01", 0.4)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase02", 0.6)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase03", 0.6)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase04", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase05", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.6)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.6)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.5)
 		elseif GAMEMODE.Vars.night==5 then
 			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 7)
 			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 10)
-			
-			ents.FindByName( "TwilightTimer" )[1]:Fire("LowerRandomBound", 7)
-			ents.FindByName( "TwilightTimer" )[1]:Fire("UpperRandomBound", 10)
-			
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("LowerRandomBound", 7)
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("UpperRandomBound", 10)
 			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 60)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 160)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 15)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 30)
 			
-			ents.FindByName( "PinkieTimer" )[1]:Fire("LowerRandomBound", 7)
-			ents.FindByName( "PinkieTimer" )[1]:Fire("UpperRandomBound", 10)
-			
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("LowerRandomBound", 5)
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("UpperRandomBound", 15)
-			
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase01", 0.2)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase02", 0.2)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase03", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase04", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase05", 0.3)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase06", 0.3)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase07", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase08", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase09", 0.6)
-			
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase01", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase02", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase03", 0)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase04", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase05", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.6)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0)
-			
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase01", 0.2)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase02", 0.3)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase03", 0.3)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase04", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase05", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.7)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.7)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.6)
 		elseif GAMEMODE.Vars.night==6 then
 			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 5)
 			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 7)
 			
-			ents.FindByName( "TwilightTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "TwilightTimer" )[1]:Fire("UpperRandomBound", 7)
-			
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("UpperRandomBound", 7)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
@@ -339,82 +133,17 @@ function fnapgmStartNightCustom(ply)
 			
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("LowerRandomBound", 5)
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("UpperRandomBound", 7)
-			
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase01", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase02", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase03", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase04", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase05", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase06", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase07", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase08", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase09", 0.6)
-			
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase01", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase02", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase03", 0)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase04", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase05", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.6)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0)
-			
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase01", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase02", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase03", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase04", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase05", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.7)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.7)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.6)
 		else
 			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 5)
 			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 7)
 			
-			ents.FindByName( "TwilightTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "TwilightTimer" )[1]:Fire("UpperRandomBound", 7)
-			
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "FluttershyTimer" )[1]:Fire("UpperRandomBound", 7)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
 			
-			ents.FindByName( "PinkieTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "PinkieTimer" )[1]:Fire("UpperRandomBound", 7)
-			
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("LowerRandomBound", 5)
 			ents.FindByName( "ApplejackTimer" )[1]:Fire("UpperRandomBound", 7)
-			
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase01", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase02", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase03", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase04", 0)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase05", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase06", 0.5)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase07", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase08", 0.7)
-			ents.FindByName( "FluttershyCase" )[1]:SetKeyValue("ProbCase09", 0.6)
-			
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase01", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase02", 0.2)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase03", 0)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase04", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase05", 0.7)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase06", 0.6)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase07", 0)
-			ents.FindByName( "TwilightCase" )[1]:SetKeyValue("ProbCase08", 0)
-			
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase01", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase02", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase03", 0.5)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase04", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase05", 0)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase06", 0.7)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase07", 0.7)
-			ents.FindByName( "PinkieCase" )[1]:SetKeyValue("ProbCase08", 0.6)
 		end
 		
 		timer.Create( "fnafgmTempoStartU", 1.3, 1, function()
@@ -455,12 +184,8 @@ function fnapgmStartNightCustom(ply)
 			fnafgmPowerUpdate()
 			
 			if IsValid(ents.FindByName( "ApplejackTimer" )[1]) then ents.FindByName( "ApplejackTimer" )[1]:Fire("Enable") end
-			if IsValid(ents.FindByName( "FluttershyTimer" )[1]) then ents.FindByName( "FluttershyTimer" )[1]:Fire("Enable") end
-			if IsValid(ents.FindByName( "PinkieTimer" )[1]) then ents.FindByName( "PinkieTimer" )[1]:Fire("Enable") end
 			if IsValid(ents.FindByName( "RainbowTimer" )[1]) then ents.FindByName( "RainbowTimer" )[1]:Fire("Enable") end
 			if IsValid(ents.FindByName( "RarityTimer" )[1]) then ents.FindByName( "RarityTimer" )[1]:Fire("Enable") end
-			if IsValid(ents.FindByName( "TwilightTimer" )[1]) then ents.FindByName( "TwilightTimer" )[1]:Fire("Enable") end
-			if IsValid(ents.FindByName( "NewTwilyTimer" )[1]) then ents.FindByName( "NewTwilyTimer" )[1]:Fire("Enable") end
 			
 			if !GAMEMODE.Vars.mute then
 				
@@ -483,6 +208,23 @@ function fnapgmStartNightCustom(ply)
 				if v:Team()==1 and v:Alive() and v:GetInfoNum("fnafgm_cl_autofnafview", 1)==1 then
 					GAMEMODE:GoFNaFView(v)
 				end
+			end
+			
+			for k, v in pairs(GAMEMODE.Vars.Animatronics) do
+				
+				if GAMEMODE.AnimatronicsCD[k] and GAMEMODE.AnimatronicsCD[k][game.GetMap()] and GAMEMODE.AnimatronicsMaxCD[k] and GAMEMODE.AnimatronicsMaxCD[k][game.GetMap()] then
+					
+					local randtime = math.random(GAMEMODE.AnimatronicsCD[k][game.GetMap()][GAMEMODE.Vars.night] or GAMEMODE.AnimatronicsCD[k][game.GetMap()][0], GAMEMODE.AnimatronicsMaxCD[k][game.GetMap()][GAMEMODE.Vars.night] or GAMEMODE.AnimatronicsMaxCD[k][game.GetMap()][0])
+					if GAMEMODE.AnimatronicsCD[k][game.GetMap()][GAMEMODE.Vars.night]!=-1 then
+						timer.Create( "fnafgmAnimatronicMove"..k, randtime, 0, function() GAMEMODE:AutoMoveAnimatronic(k) end)
+					end
+					
+				else
+					
+					GAMEMODE:Log("Missing or incomplete cooldown info for animatronic "..((GAMEMODE.AnimatronicName[k].." ("..(k or 0)..")") or k or 0).."!")
+					
+				end
+				
 			end
 			
 			timer.Create( "fnafgmTimeThink", GAMEMODE.HourTime, 0, fnafgmTimeThink)
@@ -699,15 +441,38 @@ function fnapgmPowerCalc()
 		end
 		
 		if GAMEMODE.Vars.power<=0 and !GAMEMODE.Vars.poweroff then
+			
 			ents.FindByName( "NoMorePower" )[1]:Fire("use")
+			
 			for k, v in pairs(team.GetPlayers(1)) do
 				if v:Alive() then
 					v:SetPos( Vector( -465, -255, 32 ) )
 				end
 			end
+			
+			for k, v in pairs(GAMEMODE.Vars.Animatronics) do
+				
+				GAMEMODE:SetAnimatronicPos(nil,k,GAMEMODE.APos[game.GetMap()].SS)
+				timer.Remove( "fnafgmAnimatronicMove"..k )
+				
+			end
+			
 			GAMEMODE.Vars.poweroff = true
 			if !game.SinglePlayer() then norespawn = true end
 			GAMEMODE:Log("The power is gone :)")
+			
+			timer.Create( "fnapgmNoMorePower", 10, 1, function()
+				
+				for k, v in pairs(GAMEMODE.Vars.Animatronics) do
+					
+					GAMEMODE:SetAnimatronicPos(nil,k,GAMEMODE.APos[game.GetMap()].Office)
+					
+				end
+				
+				timer.Remove( "fnapgmNoMorePower" )
+				
+			end)
+			
 		end
 		
 		fnafgmPowerUpdate()
@@ -790,12 +555,8 @@ hook.Add( "fnafgmCustomPowerCalc", "fnapgmPowerCalc", fnapgmPowerCalc)
 
 function fnapgmGeneralDeath()
 	if IsValid(ents.FindByName( "ApplejackTimer" )[1]) then ents.FindByName( "ApplejackTimer" )[1]:Fire("Disable") end
-	if IsValid(ents.FindByName( "FluttershyTimer" )[1]) then ents.FindByName( "FluttershyTimer" )[1]:Fire("Disable") end
-	if IsValid(ents.FindByName( "PinkieTimer" )[1]) then ents.FindByName( "PinkieTimer" )[1]:Fire("Disable") end
 	if IsValid(ents.FindByName( "RainbowTimer" )[1]) then ents.FindByName( "RainbowTimer" )[1]:Fire("Disable") end
 	if IsValid(ents.FindByName( "RarityTimer" )[1]) then ents.FindByName( "RarityTimer" )[1]:Fire("Disable") end
-	if IsValid(ents.FindByName( "TwilightTimer" )[1]) then ents.FindByName( "TwilightTimer" )[1]:Fire("Disable") end
-	if IsValid(ents.FindByName( "NewTwilyTimer" )[1]) then ents.FindByName( "NewTwilyTimer" )[1]:Fire("Disable") end
 end
 hook.Add( "fnafgmGeneralDeath", "fnapgmGeneralDeath", fnapgmGeneralDeath)
 
@@ -991,3 +752,182 @@ function fnapgmDigits(n)
 		ents.FindByName( "Timer_#1_SegmentB" )[1]:Fire("Disable")
 	end
 end
+
+
+function fnapgmGoJumpscare(me,self,timet)
+	
+	if (game.GetMap()=="fnap_scc") then
+		
+		if GAMEMODE.Vars.poweroff then return true end
+		
+		if me==GAMEMODE.Animatronic.RainbowDash then
+			self.FoxyWillMove = true
+		end
+		
+		timer.Create( "fnafgmJumpscare"..me, timet, 1, function()
+			if GAMEMODE.Vars.startday and me!=GAMEMODE.Animatronic.RainbowDash then
+				self:Jumpscare()
+			elseif GAMEMODE.Vars.startday then
+				self:SetPos(Vector(-365,-358,64))
+				self.FoxyWillMove = false
+				self.FoxyMove = true
+			end
+			
+			timer.Remove( "fnafgmJumpscare"..me )
+			
+		end)
+		
+	end
+	
+	return true
+	
+end
+hook.Add( "fnafgmCustomGoJumpscare", "fnapgmGoJumpscare", fnapgmGoJumpscare)
+
+
+function fnapgmJumpscare(me,self)
+	
+	if (game.GetMap()=="fnap_scc") then
+		
+		if me==GAMEMODE.Animatronic.Pinkie and !GAMEMODE.Vars.DoorClosed[1] then
+			
+			for k, v in pairs(player.GetAll()) do
+				
+				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+					
+					v:ConCommand( "pp_mat_overlay deathscreens/pinkiedeath" )
+					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:TakeDamage(100, self )
+					
+				end
+				
+			end
+			
+			GAMEMODE:Log("Jumpscared by "..GAMEMODE.AnimatronicName[me])
+			
+		elseif me==GAMEMODE.Animatronic.Fluttershy and !GAMEMODE.Vars.DoorClosed[2] then
+			
+			for k, v in pairs(player.GetAll()) do
+				
+				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+					
+					v:ConCommand( "pp_mat_overlay deathscreens/fluttershydeath" )
+					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:TakeDamage(100, self )
+					
+				end
+				
+			end
+			
+			GAMEMODE:Log("Jumpscared by "..GAMEMODE.AnimatronicName[me])
+			
+		elseif me==GAMEMODE.Animatronic.Twilight and !GAMEMODE.Vars.DoorClosed[2] then
+			
+			for k, v in pairs(player.GetAll()) do
+				
+				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+					
+					v:ConCommand( "pp_mat_overlay deathscreens/twilightdeath" )
+					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:TakeDamage(100, self )
+					
+				end
+				
+			end
+			
+			GAMEMODE:Log("Jumpscared by "..GAMEMODE.AnimatronicName[me])
+			
+		elseif me==GAMEMODE.Animatronic.Rarity and !GAMEMODE.Vars.DoorClosed[1] then
+			
+			for k, v in pairs(player.GetAll()) do
+				
+				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+					
+					v:ConCommand( "pp_mat_overlay deathscreens/raritydeath" )
+					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:TakeDamage(100, self )
+					
+				end
+				
+			end
+			
+			GAMEMODE:Log("Jumpscared by "..GAMEMODE.AnimatronicName[me])
+			
+		elseif me==GAMEMODE.Animatronic.Applejack and !GAMEMODE.Vars.LightUse[3] then
+			
+			for k, v in pairs(player.GetAll()) do
+				
+				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+					
+					v:ConCommand( "pp_mat_overlay deathscreens/applejackdeath" )
+					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:TakeDamage(100, self )
+					
+				end
+				
+			end
+			
+			GAMEMODE:Log("Jumpscared by "..GAMEMODE.AnimatronicName[me])
+			
+			elseif me==GAMEMODE.Animatronic.RainbowDash and ( self.FoxyMoveState=="ok" or GAMEMODE:CheckPlayerSecurityRoom(self) ) then
+				
+				for k, v in pairs(player.GetAll()) do
+					
+					if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+						
+						v:ConCommand( "pp_mat_overlay deathscreens/rainbowdashdeath" )
+						v:ConCommand("play "..GAMEMODE.Sound_xscream)
+						v:TakeDamage(100, self )
+						
+					end
+					
+				end
+				
+				GAMEMODE:Log("Jumpscared by "..GAMEMODE.AnimatronicName[me])
+				
+		elseif me==GAMEMODE.Animatronic.RainbowDash then
+			
+			for k, v in pairs(player.GetAll()) do
+				
+				if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
+					
+					v:ConCommand("play "..GAMEMODE.Sound_foxyknock)
+					
+				end
+				
+			end
+			
+			GAMEMODE.Vars.power = GAMEMODE.Vars.power - GAMEMODE.Vars.foxyknockdoorpena
+			GAMEMODE:Log(GAMEMODE.AnimatronicName[me].." removed "..GAMEMODE.Vars.foxyknockdoorpena.."% of the power")
+			fnafgmPowerUpdate()
+			if GAMEMODE.Vars.foxyknockdoorpena<=12 then GAMEMODE.Vars.foxyknockdoorpena = GAMEMODE.Vars.foxyknockdoorpena + GAMEMODE.Vars.addfoxyknockdoorpena end
+			if GAMEMODE.Vars.addfoxyknockdoorpena==4 then
+				GAMEMODE.Vars.addfoxyknockdoorpena = 6
+			elseif GAMEMODE.Vars.addfoxyknockdoorpena==6 then
+				GAMEMODE.Vars.addfoxyknockdoorpena = 4
+			end
+			
+		end
+		
+		if me==GAMEMODE.Animatronic.RainbowDash then
+			
+			self:SetColor( Color( 255, 255, 255, 0 ) )
+			
+			timer.Create( "fnafgmFoxyReset", 1, 1, function()
+				self:SetPos(GAMEMODE.AnimatronicAPos[me][game.GetMap()][GAMEMODE.APos[game.GetMap()].Trash][1])
+				self:SetAngles(GAMEMODE.AnimatronicAPos[me][game.GetMap()][GAMEMODE.APos[game.GetMap()].Trash][2])
+				GAMEMODE:SetAnimatronicPos(nil,me,GAMEMODE.APos[game.GetMap()].Trash)
+				self:SetColor( Color( 255, 255, 255, 255 ) )
+				timer.Remove( "fnafgmFoxyReset" )
+			end)
+			
+		else
+			GAMEMODE:SetAnimatronicPos(nil,me,GAMEMODE.APos[game.GetMap()].SS)
+		end
+		
+	end
+	
+	return true
+	
+end
+hook.Add( "fnafgmCustomJumpscare", "fnapgmJumpscare", fnapgmJumpscare)

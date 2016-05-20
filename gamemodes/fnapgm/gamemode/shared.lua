@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.28
+GM.Version 	= 1.29
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -141,6 +141,12 @@ GM.Animatronic_Models[GM.Animatronic.Fluttershy] = {}
 GM.Animatronic_Models[GM.Animatronic.Fluttershy].fnap_scc = Model("models/brokenmlpanimatronics/fluttershy.mdl")
 GM.Animatronic_Models[GM.Animatronic.Twilight] = {}
 GM.Animatronic_Models[GM.Animatronic.Twilight].fnap_scc = Model("models/brokenmlpanimatronics/twilight.mdl")
+GM.Animatronic_Models[GM.Animatronic.Rarity] = {}
+GM.Animatronic_Models[GM.Animatronic.Rarity].fnap_scc = Model("models/brokenmlpanimatronics/rarity.mdl")
+GM.Animatronic_Models[GM.Animatronic.Applejack] = {}
+GM.Animatronic_Models[GM.Animatronic.Applejack].fnap_scc = Model("models/brokenmlpanimatronics/appplejack.mdl")
+GM.Animatronic_Models[GM.Animatronic.RainbowDash] = {}
+GM.Animatronic_Models[GM.Animatronic.RainbowDash].fnap_scc = Model("models/brokenmlpanimatronics/rainbow_dash.mdl")
 
 GM.APos = {}
 GM.APos.fnap_scc = {
@@ -185,6 +191,7 @@ GM.AnimatronicAPos = {}
 GM.AnimatronicAPos[GM.Animatronic.Pinkie] = {}
 GM.AnimatronicAPos[GM.Animatronic.Fluttershy] = {}
 GM.AnimatronicAPos[GM.Animatronic.Twilight] = {}
+GM.AnimatronicAPos[GM.Animatronic.Applejack] = {}
 
 GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc = {}
 GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(64.193, 139.1, 90.3044), Angle(0,270,0) }
@@ -217,6 +224,84 @@ GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.StorageD] 
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Generator] = { Vector(-336.451, -342.729, -96.9048), Angle(0,90,0) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-362.534, -85.6415, 64.2119), Angle(0,270,0) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { Vector(-292.778, 43.7329, 31.5654), Angle(0,235,0) }
+GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc = {}
+GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-237.473, -191.82, 75.8022), Angle(0,180,0) }
+
+GM.AnimatronicsCD = {}
+GM.AnimatronicsCD[GM.Animatronic.Pinkie] = {}
+GM.AnimatronicsCD[GM.Animatronic.Pinkie].fnap_scc = {}
+GM.AnimatronicsCD[GM.Animatronic.Pinkie].fnap_scc[0] = 10
+GM.AnimatronicsCD[GM.Animatronic.Pinkie].fnap_scc[1] = -1
+GM.AnimatronicsCD[GM.Animatronic.Pinkie].fnap_scc[2] = -1
+GM.AnimatronicsCD[GM.Animatronic.Pinkie].fnap_scc[3] = 30
+GM.AnimatronicsCD[GM.Animatronic.Pinkie].fnap_scc[4] = 30
+GM.AnimatronicsCD[GM.Animatronic.Pinkie].fnap_scc[5] = 16
+GM.AnimatronicsCD[GM.Animatronic.Pinkie].fnap_scc[6] = 6
+GM.AnimatronicsCD[GM.Animatronic.Fluttershy] = {}
+GM.AnimatronicsCD[GM.Animatronic.Fluttershy].fnap_scc = {}
+GM.AnimatronicsCD[GM.Animatronic.Fluttershy].fnap_scc[0] = 10
+GM.AnimatronicsCD[GM.Animatronic.Fluttershy].fnap_scc[1] = 60
+GM.AnimatronicsCD[GM.Animatronic.Fluttershy].fnap_scc[2] = 40
+GM.AnimatronicsCD[GM.Animatronic.Fluttershy].fnap_scc[3] = 30
+GM.AnimatronicsCD[GM.Animatronic.Fluttershy].fnap_scc[4] = 20
+GM.AnimatronicsCD[GM.Animatronic.Fluttershy].fnap_scc[5] = 16
+GM.AnimatronicsCD[GM.Animatronic.Fluttershy].fnap_scc[6] = 6
+GM.AnimatronicsCD[GM.Animatronic.Twilight] = {}
+GM.AnimatronicsCD[GM.Animatronic.Twilight].fnap_scc = {}
+GM.AnimatronicsCD[GM.Animatronic.Twilight].fnap_scc[0] = 10
+GM.AnimatronicsCD[GM.Animatronic.Twilight].fnap_scc[1] = 60
+GM.AnimatronicsCD[GM.Animatronic.Twilight].fnap_scc[2] = 40
+GM.AnimatronicsCD[GM.Animatronic.Twilight].fnap_scc[3] = 30
+GM.AnimatronicsCD[GM.Animatronic.Twilight].fnap_scc[4] = 20
+GM.AnimatronicsCD[GM.Animatronic.Twilight].fnap_scc[5] = 16
+GM.AnimatronicsCD[GM.Animatronic.Twilight].fnap_scc[6] = 6
+GM.AnimatronicsCD[GM.Animatronic.Applejack] = {}
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc = {}
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[0] = 10
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[1] = -1
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[2] = -1
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[3] = 50
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[4] = 40
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[5] = 30
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[6] = 10
+
+GM.AnimatronicsMaxCD = {}
+GM.AnimatronicsMaxCD[GM.Animatronic.Pinkie] = {}
+GM.AnimatronicsMaxCD[GM.Animatronic.Pinkie].fnap_scc = {}
+GM.AnimatronicsMaxCD[GM.Animatronic.Pinkie].fnap_scc[0] = 10
+GM.AnimatronicsMaxCD[GM.Animatronic.Pinkie].fnap_scc[1] = -1
+GM.AnimatronicsMaxCD[GM.Animatronic.Pinkie].fnap_scc[2] = -1
+GM.AnimatronicsMaxCD[GM.Animatronic.Pinkie].fnap_scc[3] = 90
+GM.AnimatronicsMaxCD[GM.Animatronic.Pinkie].fnap_scc[4] = 60
+GM.AnimatronicsMaxCD[GM.Animatronic.Pinkie].fnap_scc[5] = 30
+GM.AnimatronicsMaxCD[GM.Animatronic.Pinkie].fnap_scc[6] = 10
+GM.AnimatronicsMaxCD[GM.Animatronic.Fluttershy] = {}
+GM.AnimatronicsMaxCD[GM.Animatronic.Fluttershy].fnap_scc = {}
+GM.AnimatronicsMaxCD[GM.Animatronic.Fluttershy].fnap_scc[0] = 10
+GM.AnimatronicsMaxCD[GM.Animatronic.Fluttershy].fnap_scc[1] = 90
+GM.AnimatronicsMaxCD[GM.Animatronic.Fluttershy].fnap_scc[2] = 60
+GM.AnimatronicsMaxCD[GM.Animatronic.Fluttershy].fnap_scc[3] = 45
+GM.AnimatronicsMaxCD[GM.Animatronic.Fluttershy].fnap_scc[4] = 30
+GM.AnimatronicsMaxCD[GM.Animatronic.Fluttershy].fnap_scc[5] = 30
+GM.AnimatronicsMaxCD[GM.Animatronic.Fluttershy].fnap_scc[6] = 10
+GM.AnimatronicsMaxCD[GM.Animatronic.Twilight] = {}
+GM.AnimatronicsMaxCD[GM.Animatronic.Twilight].fnap_scc = {}
+GM.AnimatronicsMaxCD[GM.Animatronic.Twilight].fnap_scc[0] = 10
+GM.AnimatronicsMaxCD[GM.Animatronic.Twilight].fnap_scc[1] = 90
+GM.AnimatronicsMaxCD[GM.Animatronic.Twilight].fnap_scc[2] = 60
+GM.AnimatronicsMaxCD[GM.Animatronic.Twilight].fnap_scc[3] = 45
+GM.AnimatronicsMaxCD[GM.Animatronic.Twilight].fnap_scc[4] = 30
+GM.AnimatronicsMaxCD[GM.Animatronic.Twilight].fnap_scc[5] = 30
+GM.AnimatronicsMaxCD[GM.Animatronic.Twilight].fnap_scc[6] = 10
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack] = {}
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc = {}
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[0] = 30
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[1] = -1
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[2] = -1
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[3] = 90
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[4] = 60
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[5] = 45
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[6] = 30
 
 
 function GM:CheckDerivCreator(pl)
@@ -225,3 +310,35 @@ function GM:CheckDerivCreator(pl)
 	end
 	return false
 end
+
+function fnapgmAnimatronicsCD()
+	
+	if IsValid(AnimatronicsControllerGUI.Pinkie) and IsValid(AnimatronicsControllerGUI.PinkieTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][3]>0 then
+		local val = GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][3]
+		AnimatronicsControllerGUI.PinkieTxt:SetText( val.."s" )
+		AnimatronicsControllerGUI.Pinkie:SetImageColor( Color( 85, 85, 85, 255 ) )
+	elseif IsValid(AnimatronicsControllerGUI.Pinkie) and IsValid(AnimatronicsControllerGUI.PinkieTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][3]==0 then
+		AnimatronicsControllerGUI.PinkieTxt:SetText( "" )
+		AnimatronicsControllerGUI.Pinkie:SetImageColor( Color( 255, 255, 255, 255 ) )
+	end
+	
+	if IsValid(AnimatronicsControllerGUI.Fluttershy) and IsValid(AnimatronicsControllerGUI.FluttershyTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Fluttershy][3]>0 then
+		local val = GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Fluttershy][3]
+		AnimatronicsControllerGUI.FluttershyTxt:SetText( val.."s" )
+		AnimatronicsControllerGUI.Fluttershy:SetImageColor( Color( 85, 85, 85, 255 ) )
+	elseif IsValid(AnimatronicsControllerGUI.Fluttershy) and IsValid(AnimatronicsControllerGUI.FluttershyTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Fluttershy][3]==0 then
+		AnimatronicsControllerGUI.FluttershyTxt:SetText( "" )
+		AnimatronicsControllerGUI.Fluttershy:SetImageColor( Color( 255, 255, 255, 255 ) )
+	end
+	
+	if IsValid(AnimatronicsControllerGUI.Twilight) and IsValid(AnimatronicsControllerGUI.TwilightTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Twilight][3]>0 then
+		local val = GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Twilight][3]
+		AnimatronicsControllerGUI.TwilightTxt:SetText( val.."s" )
+		AnimatronicsControllerGUI.Twilight:SetImageColor( Color( 85, 85, 85, 255 ) )
+	elseif IsValid(AnimatronicsControllerGUI.Twilight) and IsValid(AnimatronicsControllerGUI.TwilightTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Twilight][3]==0 then
+		AnimatronicsControllerGUI.TwilightTxt:SetText( "" )
+		AnimatronicsControllerGUI.Twilight:SetImageColor( Color( 255, 255, 255, 255 ) )
+	end
+	
+end
+hook.Add( "fnafgmCustomAnimatronicsCD", "fnapgmAnimatronicsCD", fnapgmAnimatronicsCD)
