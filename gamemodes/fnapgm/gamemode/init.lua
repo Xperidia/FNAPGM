@@ -162,7 +162,6 @@ function fnapgmStartNightCustom(ply)
 			fnafgmVarsUpdate()
 			fnafgmPowerUpdate()
 			
-			if IsValid(ents.FindByName( "ApplejackTimer" )[1]) then ents.FindByName( "ApplejackTimer" )[1]:Fire("Enable") end
 			if IsValid(ents.FindByName( "RainbowTimer" )[1]) then ents.FindByName( "RainbowTimer" )[1]:Fire("Enable") end
 			if IsValid(ents.FindByName( "RarityTimer" )[1]) then ents.FindByName( "RarityTimer" )[1]:Fire("Enable") end
 			
@@ -733,6 +732,56 @@ function fnapgmDigits(n)
 end
 
 
+function fnapgmRainbowDash(self)
+	
+	if self.FoxyMove then
+		self.FoxyMove = false
+		-- self:SetSequence( self:LookupSequence( "sprint_all" ) )
+		-- self:ResetSequenceInfo()
+		-- self:SetCycle(0)
+		-- self:SetPlaybackRate(1)
+		for k, v in pairs(player.GetAll()) do
+			
+			if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
+				
+				v:ConCommand("play "..GAMEMODE.Sound_foxystep)
+				
+			end
+			
+		end
+		self.loco:SetDesiredSpeed( 600 )
+		self.FoxyMoveState = self:MoveToPos(GAMEMODE.FNaFView[game.GetMap()][1],{maxage=8})
+		self:Jumpscare()
+	end
+	
+	-- if !self.FoxyWillMove and !self.FoxyMove then
+		-- self:SetSequence( self:LookupSequence( "Idle_Unarmed" ) )
+		-- self:ResetSequenceInfo()
+		-- self:SetPlaybackRate(0)
+	-- elseif self.FoxyWillMove then
+		-- self:SetSequence( self:LookupSequence( "idle_angry_melee" ) )
+		-- self:ResetSequenceInfo()
+		-- self:SetPlaybackRate(0)
+	-- end
+	
+	return true
+	
+end
+hook.Add( "fnafgmCustomFoxy", "fnapgmRainbowDash", fnapgmRainbowDash)
+
+
+function fnapgmFixPos(self,me,apos)
+	
+	if me!=GAMEMODE.Animatronic.RainbowDash and GAMEMODE.AnimatronicAPos[me] and GAMEMODE.AnimatronicAPos[me][game.GetMap()] and GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos] then
+		self:SetPos(GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][1])
+	end
+	
+	return true
+	
+end
+hook.Add( "fnafgmFixPos", "fnapgmFixPos", fnapgmFixPos)
+
+
 function fnapgmGoJumpscare(me,self,timet)
 	
 	if (game.GetMap()=="fnap_scc") then
@@ -755,7 +804,8 @@ function fnapgmGoJumpscare(me,self,timet)
 			if GAMEMODE.Vars.startday and me!=GAMEMODE.Animatronic.RainbowDash then
 				self:Jumpscare()
 			elseif GAMEMODE.Vars.startday then
-				self:SetPos(Vector(-365,-358,64))
+				self:SetPos(Vector(355, -311, -91.8968))
+				self:SetAngles(Angle(0, 0, 0))
 				self.FoxyWillMove = false
 				self.FoxyMove = true
 			end

@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.31
+GM.Version 	= 1.32
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -214,7 +214,7 @@ GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.BR] = { 
 GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.NHA] = { Vector(-81.9206, 287.78, 32.031250), Angle(0,180,0) }
 GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.StorageT] = { Vector(-79.3985, 456.384, 32.031250), Angle(0,240,0) }
 GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Cave] = { Vector(214.599, -292.129, -91.8968), Angle(0,243,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-434.534, -78.391, 32), Angle(0,270,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-434.534, -78.391, 32.031250), Angle(0,270,0) }
 GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { Vector(-351.923, 21.8385, 32.031250), Angle(0,254,0) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc = {}
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen] = { Vector(-145.811, -3.71502, 32), Angle(0,180,0) }
@@ -231,7 +231,7 @@ GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = { V
 GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-237.473, -191.82, 75.8022), Angle(0,180,0) }
 GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc = {}
 GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash] = { Vector(459.558, -385.458, -74.9962), Angle(0,115,-90) }
-GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(459.558, -385.458, -74.9962), Angle(0,115,-90) }
+GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(355, -311, -91.8968), Angle(0,115,-90) }
 
 GM.AnimatronicsCD = {}
 GM.AnimatronicsCD[GM.Animatronic.Pinkie] = {}
