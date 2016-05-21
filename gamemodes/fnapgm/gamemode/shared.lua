@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.30
+GM.Version 	= 1.31
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -272,13 +272,13 @@ GM.AnimatronicsCD[GM.Animatronic.Rarity].fnap_scc[5] = 7
 GM.AnimatronicsCD[GM.Animatronic.Rarity].fnap_scc[6] = 5
 GM.AnimatronicsCD[GM.Animatronic.Applejack] = {}
 GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc = {}
-GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[0] = 10
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[0] = 30
 GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[1] = -1
 GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[2] = -1
-GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[3] = 50
-GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[4] = 40
-GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[5] = 30
-GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[6] = 10
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[3] = 190
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[4] = 120
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[5] = 60
+GM.AnimatronicsCD[GM.Animatronic.Applejack].fnap_scc[6] = 30
 GM.AnimatronicsCD[GM.Animatronic.RainbowDash] = {}
 GM.AnimatronicsCD[GM.Animatronic.RainbowDash].fnap_scc = {}
 GM.AnimatronicsCD[GM.Animatronic.RainbowDash].fnap_scc[0] = 30
@@ -328,13 +328,13 @@ GM.AnimatronicsMaxCD[GM.Animatronic.Rarity].fnap_scc[5] = 10
 GM.AnimatronicsMaxCD[GM.Animatronic.Rarity].fnap_scc[6] = 7
 GM.AnimatronicsMaxCD[GM.Animatronic.Applejack] = {}
 GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc = {}
-GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[0] = 30
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[0] = 60
 GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[1] = -1
 GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[2] = -1
-GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[3] = 90
-GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[4] = 60
-GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[5] = 45
-GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[6] = 30
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[3] = 260
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[4] = 190
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[5] = 120
+GM.AnimatronicsMaxCD[GM.Animatronic.Applejack].fnap_scc[6] = 60
 GM.AnimatronicsMaxCD[GM.Animatronic.RainbowDash] = {}
 GM.AnimatronicsMaxCD[GM.Animatronic.RainbowDash].fnap_scc = {}
 GM.AnimatronicsMaxCD[GM.Animatronic.RainbowDash].fnap_scc[0] = 120
@@ -344,6 +344,22 @@ GM.AnimatronicsMaxCD[GM.Animatronic.RainbowDash].fnap_scc[3] = 300
 GM.AnimatronicsMaxCD[GM.Animatronic.RainbowDash].fnap_scc[4] = 260
 GM.AnimatronicsMaxCD[GM.Animatronic.RainbowDash].fnap_scc[5] = 160
 GM.AnimatronicsMaxCD[GM.Animatronic.RainbowDash].fnap_scc[6] = 120
+
+GM.AnimatronicsSkins = {}
+GM.AnimatronicsSkins[GM.Animatronic.Pinkie] = {}
+GM.AnimatronicsSkins[GM.Animatronic.Pinkie].fnap_scc = {}
+GM.AnimatronicsSkins[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Office] = 3
+GM.AnimatronicsSkins[GM.Animatronic.Fluttershy] = {}
+GM.AnimatronicsSkins[GM.Animatronic.Fluttershy].fnap_scc = {}
+GM.AnimatronicsSkins[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Office] = 2
+
+GM.AnimatronicsFlex = {}
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie] = {}
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc = {}
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Office] = { {0,1}, {19,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy] = {}
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc = {}
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Office] = { {0,1} }
 
 
 function GM:CheckDerivCreator(pl)
