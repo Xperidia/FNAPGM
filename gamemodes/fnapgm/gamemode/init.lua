@@ -801,6 +801,17 @@ function fnapgmGoJumpscare(me,self,timet)
 		end
 		
 		timer.Create( "fnafgmJumpscare"..me, timet, 1, function()
+			
+			local sgdead = true
+			for k, v in pairs(player.GetAll()) do
+				if v:Alive() and v:Team()==1 then
+					sgdead = false
+					break
+				end
+			end
+			
+			if sgdead then timer.Remove( "fnafgmJumpscare"..me ) return end
+			
 			if GAMEMODE.Vars.startday and me!=GAMEMODE.Animatronic.RainbowDash then
 				self:Jumpscare()
 			elseif GAMEMODE.Vars.startday then
