@@ -63,62 +63,38 @@ function fnapgmStartNightCustom(ply)
 		end
 		
 		if Halloween or fnafgm_forceseasonalevent:GetInt()==3 then
-			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 7)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
 		elseif GAMEMODE.Vars.night==1 then
 			ents.FindByName( "RainbowTimer" )[1]:Fire("Kill")
-			
-			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 40)
-			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 60)
 		elseif GAMEMODE.Vars.night==2 then
-			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 30)
-			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 50)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 150)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 400)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 50)
 		elseif GAMEMODE.Vars.night==3 then
-			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 15)
-			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 30)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 120)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 300)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 50)
 		elseif GAMEMODE.Vars.night==4 then
-			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 10)
-			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 20)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 60)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 260)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 20)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 40)
 		elseif GAMEMODE.Vars.night==5 then
-			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 7)
-			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 10)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 60)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 160)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 15)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 30)
 		elseif GAMEMODE.Vars.night==6 then
-			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 7)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
 		else
-			ents.FindByName( "RarityTimer" )[1]:Fire("LowerRandomBound", 5)
-			ents.FindByName( "RarityTimer" )[1]:Fire("UpperRandomBound", 7)
-			
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
@@ -1000,7 +976,7 @@ hook.Add( "fnafgmCustomJumpscare", "fnapgmJumpscare", fnapgmJumpscare)
 
 function fnapgmAutoMove(a)
 	
-	if a==GAMEMODE.Animatronic.Rarity and game.GetMap()=="fnap_scc" then
+	if game.GetMap()=="fnap_scc" and a==GAMEMODE.Animatronic.Rarity then
 		
 		local apos
 		

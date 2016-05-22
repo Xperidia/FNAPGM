@@ -710,7 +710,7 @@ function fnapgmController()
 		local Staff = vgui.Create( "DButton" )
 		Staff:SetParent(map)
 		Staff:SetSize( 78.5, 48.5 )
-		Staff:SetPos( 53, 429 )
+		Staff:SetPos( 138, 429 )
 		Staff:SetText( "" )
 		Staff.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
@@ -731,7 +731,7 @@ function fnapgmController()
 		local StaffD = vgui.Create( "DButton" )
 		StaffD:SetParent(map)
 		StaffD:SetSize( 78.5, 48.5 )
-		StaffD:SetPos( 138, 429 )
+		StaffD:SetPos( 53, 429 )
 		StaffD:SetText( "" )
 		StaffD.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
@@ -1187,3 +1187,28 @@ function fnapgmMenu()
 	
 end
 hook.Add( "fnafgmMenuCustom", "fnapgmMenu", fnapgmMenu)
+
+function fnapgmPreventAnimatronicMove(a,apos)
+	
+	if game.GetMap()=="fnap_scc" and a==GAMEMODE.Animatronic.Rarity then
+		
+		if GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.SS and apos==GAMEMODE.APos.fnap_scc.Entrance then
+			return false
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.Entrance and apos==GAMEMODE.APos.fnap_scc.EntranceD then
+			return false
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.EntranceD and apos==GAMEMODE.APos.fnap_scc.DA then
+			return false
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.DA and apos==GAMEMODE.APos.fnap_scc.StaffD then
+			return false
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.StaffD and apos==GAMEMODE.APos.fnap_scc.Staff then
+			return false
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.Staff and apos==GAMEMODE.APos.fnap_scc.Office then
+			return false
+		end
+		
+		return true
+		
+	end
+	
+end
+hook.Add( "fnafgmPreventAnimatronicMove", "fnapgmPreventAnimatronicMove", fnapgmPreventAnimatronicMove)

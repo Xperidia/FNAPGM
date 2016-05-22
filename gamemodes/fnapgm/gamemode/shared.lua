@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.33
+GM.Version 	= 1.34
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -81,8 +81,8 @@ GM.CamsNames = {
 	fnap_scc_13 = "Storage",
 	fnap_scc_14 = "Generator",
 	fnap_scc_16 = "Office",
-	fnap_scc_17 = "Staff",
-	fnap_scc_18 = "Staff Door",
+	fnap_scc_17 = "Staff Door",
+	fnap_scc_18 = "Staff",
 	fnap_scc_19 = "Kitchen Door",
 	fnap_scc_20 = "Entrance Door",
 	fnap_cb_1 = "Stage",
