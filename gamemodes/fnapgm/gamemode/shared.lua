@@ -372,6 +372,11 @@ GM.AnimatronicsSkins[GM.Animatronic.Applejack] = {}
 GM.AnimatronicsSkins[GM.Animatronic.Applejack].fnap_scc = {}
 GM.AnimatronicsSkins[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = 4
 GM.AnimatronicsSkins[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = 4
+GM.AnimatronicsSkins[GM.Animatronic.Rarity] = {}
+GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc = {}
+GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff ] = 1
+GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD ] = 1
+GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Office] = 1
 
 GM.AnimatronicsFlex = {}
 GM.AnimatronicsFlex[GM.Animatronic.Pinkie] = {}
@@ -397,6 +402,16 @@ GM.AnimatronicsFlex[GM.Animatronic.Applejack] = {}
 GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc = {}
 GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = { {0,1}, {1,1}, {18,1}, {49,1} }
 GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = { {20,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Rarity] = {}
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc = {}
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.SS] = { {21,1}, {10,1}, {11,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Entrance] = { {21,1}, {10,1}, {11,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.EntranceD] = { {21,1}, {0,1}, {1,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.DA] = { {21,1}, {0,1}, {1,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD] = { {38,1}, {6,1}, {7,1}, {18,0.5} }
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff] = { {38,1}, {0,1}, {1,1}, {18,0.5} }
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Office] = { {21,1}, {0,1}, {1,1} }
+
 
 GM.AnimatronicsAnim = {}
 GM.AnimatronicsAnim[GM.Animatronic.Applejack] = {}
