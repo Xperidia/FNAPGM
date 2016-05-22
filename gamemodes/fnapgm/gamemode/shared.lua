@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.32
+GM.Version 	= 1.33
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -82,8 +82,9 @@ GM.CamsNames = {
 	fnap_scc_14 = "Generator",
 	fnap_scc_16 = "Office",
 	fnap_scc_17 = "Staff",
-	fnap_scc_18 = "Staff",
-	fnap_scc_19 = "Kitchen",
+	fnap_scc_18 = "Staff Door",
+	fnap_scc_19 = "Kitchen Door",
+	fnap_scc_20 = "Entrance Door",
 	fnap_cb_1 = "Stage",
 	fnap_cb_2 = "Main Hall",
 	fnap_cb_3 = "Backroom",
@@ -167,7 +168,8 @@ GM.APos.fnap_scc = {
 	Office = 16,
 	StaffD = 17,
 	Staff = 18,
-	Kitchen2 = 19
+	Kitchen2 = 19,
+	EntranceD = 20
 }
 GM.APos.fnap_cb = {
 	SS = 1,
@@ -226,6 +228,14 @@ GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.StorageD] 
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Generator] = { Vector(-336.451, -342.729, -96.9048), Angle(0,90,0) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-362.534, -85.6415, 64.2119), Angle(0,270,0) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { Vector(-292.778, 43.7329, 31.5654), Angle(0,235,0) }
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc = {}
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(577.209, -479.944, 55.5574), Angle(0,143,0) }
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Entrance] = { Vector(435.05, -411.066, 34.6907), Angle(0,195,0) }
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.EntranceD] = { Vector(238.816, -381.027, 34.6907), Angle(0,175,0) }
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.DA] = { Vector(44.7517, -392.845, 33.6907), Angle(0,180,0) }
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD] = { Vector(-150.427, -431.847, 33.6907), Angle(0,180,0) }
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff] = { Vector(-194.663, -300.543, 47.3979), Angle(0,180,0) }
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-289.801, -336, 64.6867), Angle(0,180,0) }
 GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc = {}
 GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(744, 584, 32), Angle(0,-135,0) }
 GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-237.473, -191.82, 75.8022), Angle(0,180,0) }
@@ -360,6 +370,7 @@ GM.AnimatronicsSkins[GM.Animatronic.Twilight].fnap_scc = {}
 GM.AnimatronicsSkins[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SS] = 1
 GM.AnimatronicsSkins[GM.Animatronic.Applejack] = {}
 GM.AnimatronicsSkins[GM.Animatronic.Applejack].fnap_scc = {}
+GM.AnimatronicsSkins[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = 4
 GM.AnimatronicsSkins[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = 4
 
 GM.AnimatronicsFlex = {}
@@ -386,6 +397,12 @@ GM.AnimatronicsFlex[GM.Animatronic.Applejack] = {}
 GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc = {}
 GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = { {0,1}, {1,1}, {18,1}, {49,1} }
 GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = { {20,1} }
+
+GM.AnimatronicsAnim = {}
+GM.AnimatronicsAnim[GM.Animatronic.Applejack] = {}
+GM.AnimatronicsAnim[GM.Animatronic.Applejack].fnap_scc = {}
+GM.AnimatronicsAnim[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = "sitting"
+GM.AnimatronicsAnim[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = "office"
 
 
 function GM:CheckDerivCreator(pl)

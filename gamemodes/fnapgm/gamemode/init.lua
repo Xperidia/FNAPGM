@@ -125,6 +125,13 @@ function fnapgmStartNightCustom(ply)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
 		end
 		
+		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Pinkie, GAMEMODE.APos.fnap_scc.SS)
+		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Fluttershy, GAMEMODE.APos.fnap_scc.SS)
+		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Twilight, GAMEMODE.APos.fnap_scc.SS)
+		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Rarity, GAMEMODE.APos.fnap_scc.SS)
+		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Applejack, GAMEMODE.APos.fnap_scc.SS)
+		--GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.RainbowDash, GAMEMODE.APos.fnap_scc.SS)
+		
 		timer.Create( "fnafgmTempoStartU", 1.3, 1, function()
 			
 			fnafgmVarsUpdate()
@@ -734,35 +741,45 @@ end
 
 function fnapgmRainbowDash(self)
 	
-	if self.FoxyMove then
-		self.FoxyMove = false
-		-- self:SetSequence( self:LookupSequence( "sprint_all" ) )
-		-- self:ResetSequenceInfo()
-		-- self:SetCycle(0)
-		-- self:SetPlaybackRate(1)
-		for k, v in pairs(player.GetAll()) do
-			
-			if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
+	if self:GetAType()==GAMEMODE.Animatronic.RainbowDash then
+		
+		if self.FoxyMove then
+			self.FoxyMove = false
+			-- self:SetSequence( self:LookupSequence( "sprint_all" ) )
+			-- self:ResetSequenceInfo()
+			-- self:SetCycle(0)
+			-- self:SetPlaybackRate(1)
+			for k, v in pairs(player.GetAll()) do
 				
-				v:ConCommand("play "..GAMEMODE.Sound_foxystep)
+				if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
+					
+					v:ConCommand("play "..GAMEMODE.Sound_foxystep)
+					
+				end
 				
 			end
-			
+			self.loco:SetDesiredSpeed( 600 )
+			self.FoxyMoveState = self:MoveToPos(GAMEMODE.FNaFView[game.GetMap()][1],{maxage=8})
+			self:Jumpscare()
 		end
-		self.loco:SetDesiredSpeed( 600 )
-		self.FoxyMoveState = self:MoveToPos(GAMEMODE.FNaFView[game.GetMap()][1],{maxage=8})
-		self:Jumpscare()
+		
+		-- if !self.FoxyWillMove and !self.FoxyMove then
+			-- self:SetSequence( self:LookupSequence( "Idle_Unarmed" ) )
+			-- self:ResetSequenceInfo()
+			-- self:SetPlaybackRate(0)
+		-- elseif self.FoxyWillMove then
+			-- self:SetSequence( self:LookupSequence( "idle_angry_melee" ) )
+			-- self:ResetSequenceInfo()
+			-- self:SetPlaybackRate(0)
+		-- end
+		
+		if self.FoxyWillMove or self.FoxyMove then coroutine.wait(0.1) else coroutine.wait(1) end
+		
+	else
+		
+		coroutine.wait(120)
+		
 	end
-	
-	-- if !self.FoxyWillMove and !self.FoxyMove then
-		-- self:SetSequence( self:LookupSequence( "Idle_Unarmed" ) )
-		-- self:ResetSequenceInfo()
-		-- self:SetPlaybackRate(0)
-	-- elseif self.FoxyWillMove then
-		-- self:SetSequence( self:LookupSequence( "idle_angry_melee" ) )
-		-- self:ResetSequenceInfo()
-		-- self:SetPlaybackRate(0)
-	-- end
 	
 	return true
 	
@@ -979,3 +996,32 @@ function fnapgmJumpscare(me,self)
 	
 end
 hook.Add( "fnafgmCustomJumpscare", "fnapgmJumpscare", fnapgmJumpscare)
+
+
+function fnapgmAutoMove(a)
+	
+	if a==GAMEMODE.Animatronic.Rarity and game.GetMap()=="fnap_scc" then
+		
+		local apos
+		
+		if GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.SS then
+			apos = GAMEMODE.APos.fnap_scc.Entrance
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.Entrance then
+			apos = GAMEMODE.APos.fnap_scc.EntranceD
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.EntranceD then
+			apos = GAMEMODE.APos.fnap_scc.DA
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.DA then
+			apos = GAMEMODE.APos.fnap_scc.StaffD
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.StaffD then
+			apos = GAMEMODE.APos.fnap_scc.Staff
+		elseif GAMEMODE.Vars.Animatronics[a][2]==GAMEMODE.APos.fnap_scc.Staff then
+			apos = GAMEMODE.APos.fnap_scc.Office
+		end
+		
+		
+		return apos
+		
+	end
+	
+end
+hook.Add( "fnafgmChangeAutoMove", "fnapgmAutoMove", fnapgmAutoMove)
