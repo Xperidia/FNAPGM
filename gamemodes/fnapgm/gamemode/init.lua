@@ -127,10 +127,10 @@ function fnapgmStartNightCustom(ply)
 		
 		timer.Create( "fnafgmTempoStartM", 1.6, 1, function()
 			
-			for k, v in pairs(team.GetPlayers(1)) do
-				if v:Alive() and !GAMEMODE:CheckPlayerSecurityRoom(v) then
-					v:SetPos( Vector( -465, -255, 32 ) )
-					v:SetEyeAngles(Angle( 0, 0, 0 ))
+			for k, v in pairs(player.GetAll()) do
+				if v:Team()==1 and v:Alive() then
+					v:SetPos( GAMEMODE.FNaFView.fnap_scc[1] )
+					v:SetEyeAngles( GAMEMODE.FNaFView.fnap_scc[2] )
 				end
 			end
 			
@@ -146,7 +146,6 @@ function fnapgmStartNightCustom(ply)
 			fnafgmPowerUpdate()
 			
 			if IsValid(ents.FindByName( "RainbowTimer" )[1]) then ents.FindByName( "RainbowTimer" )[1]:Fire("Enable") end
-			if IsValid(ents.FindByName( "RarityTimer" )[1]) then ents.FindByName( "RarityTimer" )[1]:Fire("Enable") end
 			
 			if !GAMEMODE.Vars.mute then
 				
@@ -166,9 +165,7 @@ function fnapgmStartNightCustom(ply)
 			end
 			
 			for k, v in pairs(team.GetPlayers(1)) do
-				if v:Team()==1 and v:Alive() and v:GetInfoNum("fnafgm_cl_autofnafview", 1)==1 then
-					GAMEMODE:GoFNaFView(v)
-				end
+				GAMEMODE:GoFNaFView(v)
 			end
 			
 			for k, v in pairs(GAMEMODE.Vars.Animatronics) do
@@ -230,8 +227,8 @@ function fnapgmStartNightCustom(ply)
 		
 		timer.Create( "fnafgmTempoStartM", 1.6, 1, function()
 			
-			for k, v in pairs(team.GetPlayers(1)) do
-				if v:Alive() and !GAMEMODE:CheckPlayerSecurityRoom(v) then
+			for k, v in pairs(player.GetAll()) do
+				if v:Team()==1 and v:Alive() then
 					v:SetPos( GAMEMODE.FNaFView.fnap_cb[1] )
 					v:SetEyeAngles( GAMEMODE.FNaFView.fnap_cb[2] )
 				end
@@ -249,9 +246,7 @@ function fnapgmStartNightCustom(ply)
 			fnafgmPowerUpdate()
 			
 			for k, v in pairs(team.GetPlayers(1)) do
-				if v:Team()==1 and v:Alive() and v:GetInfoNum("fnafgm_cl_autofnafview", 1)==1 then
-					GAMEMODE:GoFNaFView(v)
-				end
+				GAMEMODE:GoFNaFView(v)
 			end
 			
 			timer.Create( "fnafgmTimeThink", GAMEMODE.HourTime, 0, fnafgmTimeThink)
@@ -834,7 +829,7 @@ function fnapgmJumpscare(me,self)
 			
 			for k, v in pairs(player.GetAll()) do
 				
-				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/pinkiedeath" )
 					v:ConCommand("play "..GAMEMODE.Sound_xscream)
@@ -850,7 +845,7 @@ function fnapgmJumpscare(me,self)
 			
 			for k, v in pairs(player.GetAll()) do
 				
-				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/fluttershydeath" )
 					v:ConCommand("play "..GAMEMODE.Sound_xscream)
@@ -866,7 +861,7 @@ function fnapgmJumpscare(me,self)
 			
 			for k, v in pairs(player.GetAll()) do
 				
-				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/twilightdeath" )
 					v:ConCommand("play "..GAMEMODE.Sound_xscream)
@@ -882,7 +877,7 @@ function fnapgmJumpscare(me,self)
 			
 			for k, v in pairs(player.GetAll()) do
 				
-				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/raritydeath" )
 					v:ConCommand("play "..GAMEMODE.Sound_xscream)
@@ -898,7 +893,7 @@ function fnapgmJumpscare(me,self)
 			
 			for k, v in pairs(player.GetAll()) do
 				
-				if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/applejackdeath" )
 					v:ConCommand("play "..GAMEMODE.Sound_xscream)
@@ -914,7 +909,7 @@ function fnapgmJumpscare(me,self)
 				
 				for k, v in pairs(player.GetAll()) do
 					
-					if v:Team()==1 and v:Alive() and GAMEMODE:CheckPlayerSecurityRoom(v) then
+					if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 						
 						v:ConCommand( "pp_mat_overlay deathscreens/rainbowdashdeath" )
 						v:ConCommand("play "..GAMEMODE.Sound_xscream)
