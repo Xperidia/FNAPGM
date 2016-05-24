@@ -492,7 +492,7 @@ function fnapgmPowerCalc()
 					
 					v:Flashlight( false )
 					
-					v:ConCommand("play "..GAMEMODE.Sound_lighterror)
+					v:SendLua([[LocalPlayer():EmitSound("fnafgm_lighterror")]])
 					
 				end
 				
@@ -510,9 +510,7 @@ end
 hook.Add( "fnafgmCustomPowerCalc", "fnapgmPowerCalc", fnapgmPowerCalc)
 
 function fnapgmGeneralDeath()
-	if IsValid(ents.FindByName( "ApplejackTimer" )[1]) then ents.FindByName( "ApplejackTimer" )[1]:Fire("Disable") end
 	if IsValid(ents.FindByName( "RainbowTimer" )[1]) then ents.FindByName( "RainbowTimer" )[1]:Fire("Disable") end
-	if IsValid(ents.FindByName( "RarityTimer" )[1]) then ents.FindByName( "RarityTimer" )[1]:Fire("Disable") end
 end
 hook.Add( "fnafgmGeneralDeath", "fnapgmGeneralDeath", fnapgmGeneralDeath)
 
@@ -716,33 +714,10 @@ function fnapgmRainbowDash(self)
 		
 		if self.FoxyMove then
 			self.FoxyMove = false
-			-- self:SetSequence( self:LookupSequence( "sprint_all" ) )
-			-- self:ResetSequenceInfo()
-			-- self:SetCycle(0)
-			-- self:SetPlaybackRate(1)
-			for k, v in pairs(player.GetAll()) do
-				
-				if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
-					
-					v:ConCommand("play "..GAMEMODE.Sound_foxystep)
-					
-				end
-				
-			end
 			self.loco:SetDesiredSpeed( 600 )
 			self.FoxyMoveState = self:MoveToPos(GAMEMODE.FNaFView[game.GetMap()][1],{maxage=8})
 			self:Jumpscare()
 		end
-		
-		-- if !self.FoxyWillMove and !self.FoxyMove then
-			-- self:SetSequence( self:LookupSequence( "Idle_Unarmed" ) )
-			-- self:ResetSequenceInfo()
-			-- self:SetPlaybackRate(0)
-		-- elseif self.FoxyWillMove then
-			-- self:SetSequence( self:LookupSequence( "idle_angry_melee" ) )
-			-- self:ResetSequenceInfo()
-			-- self:SetPlaybackRate(0)
-		-- end
 		
 		if self.FoxyWillMove or self.FoxyMove then coroutine.wait(0.1) else coroutine.wait(1) end
 		
@@ -757,6 +732,62 @@ function fnapgmRainbowDash(self)
 end
 hook.Add( "fnafgmCustomFoxy", "fnapgmRainbowDash", fnapgmRainbowDash)
 
+function fnapgmWindowScare(self,me,apos)
+	
+	if game.GetMap()=="fnap_scc" then
+		
+		if me==GAMEMODE.Animatronic.Pinkie then
+			
+			if apos==GAMEMODE.APos.fnap_scc.Office and GAMEMODE.Vars.LightUse[1] and !self.wsip then
+				self:EmitSound("fnafgm_windowscare")
+				self.wsip = true
+			elseif apos==GAMEMODE.APos.fnap_scc.Office and !GAMEMODE.Vars.LightUse[1] and self.wsip then
+				self.wsip = false
+			elseif apos!=GAMEMODE.APos.fnap_scc.Office and self.wsip then
+				self.wsip = false
+			end
+			
+		elseif me==GAMEMODE.Animatronic.Fluttershy then
+			
+			if apos==GAMEMODE.APos.fnap_scc.Office and GAMEMODE.Vars.LightUse[2] and !self.wsip then
+				self:EmitSound("fnafgm_windowscare")
+				self.wsip = true
+			elseif apos==GAMEMODE.APos.fnap_scc.Office and !GAMEMODE.Vars.LightUse[2] and self.wsip then
+				self.wsip = false
+			elseif apos!=GAMEMODE.APos.fnap_scc.Office and self.wsip then
+				self.wsip = false
+			end
+			
+		elseif me==GAMEMODE.Animatronic.Twilight then
+			
+			if apos==GAMEMODE.APos.fnap_scc.Office and GAMEMODE.Vars.LightUse[2] and !self.wsip then
+				self:EmitSound("fnafgm_windowscare")
+				self.wsip = true
+			elseif apos==GAMEMODE.APos.fnap_scc.Office and !GAMEMODE.Vars.LightUse[2] and self.wsip then
+				self.wsip = false
+			elseif apos!=GAMEMODE.APos.fnap_scc.Office and self.wsip then
+				self.wsip = false
+			end
+			
+		elseif me==GAMEMODE.Animatronic.Rarity then
+			
+			if apos==GAMEMODE.APos.fnap_scc.Office and GAMEMODE.Vars.LightUse[1] and !self.wsip then
+				self:EmitSound("fnafgm_windowscare")
+				self.wsip = true
+			elseif apos==GAMEMODE.APos.fnap_scc.Office and !GAMEMODE.Vars.LightUse[1] and self.wsip then
+				self.wsip = false
+			elseif apos!=GAMEMODE.APos.fnap_scc.Office and self.wsip then
+				self.wsip = false
+			end
+			
+		end
+		
+	end
+	
+	return true
+	
+end
+hook.Add( "fnafgmWindowScare", "fnapgmWindowScare", fnapgmWindowScare)
 
 function fnapgmFixPos(self,me,apos)
 	
@@ -779,7 +810,7 @@ function fnapgmGoJumpscare(me,self,timet)
 		if me==GAMEMODE.Animatronic.Applejack then
 			for k, v in pairs(player.GetAll()) do
 				
-				v:ConCommand("play fnafsounds/applejackscream.wav")
+				v:SendLua([[LocalPlayer():EmitSound("fnapgm_applejackscream")]])
 				
 			end
 		end
@@ -832,7 +863,7 @@ function fnapgmJumpscare(me,self)
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/pinkiedeath" )
-					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
 				end
@@ -848,7 +879,7 @@ function fnapgmJumpscare(me,self)
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/fluttershydeath" )
-					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
 				end
@@ -864,7 +895,7 @@ function fnapgmJumpscare(me,self)
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/twilightdeath" )
-					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
 				end
@@ -880,7 +911,7 @@ function fnapgmJumpscare(me,self)
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/raritydeath" )
-					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
 				end
@@ -896,7 +927,7 @@ function fnapgmJumpscare(me,self)
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
 					v:ConCommand( "pp_mat_overlay deathscreens/applejackdeath" )
-					v:ConCommand("play "..GAMEMODE.Sound_xscream)
+					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
 				end
@@ -912,7 +943,7 @@ function fnapgmJumpscare(me,self)
 					if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 						
 						v:ConCommand( "pp_mat_overlay deathscreens/rainbowdashdeath" )
-						v:ConCommand("play "..GAMEMODE.Sound_xscream)
+						v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 						v:TakeDamage(100, self )
 						
 					end
@@ -927,7 +958,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
 					
-					v:ConCommand("play "..GAMEMODE.Sound_foxyknock)
+					v:SendLua([[LocalPlayer():EmitSound("fnafgm_foxyknock")]])
 					
 				end
 				
@@ -992,7 +1023,24 @@ function fnapgmAutoMove(a)
 		
 		return apos
 		
+	elseif a==GAMEMODE.Animatronic.Pinkie then
+		
+		GAMEMODE.Vars.Animatronics[a][1]:Taunt()
+		
 	end
 	
 end
 hook.Add( "fnafgmChangeAutoMove", "fnapgmAutoMove", fnapgmAutoMove)
+
+concommand.Add( "fnapgm_twitest", function(ply)
+	
+	local ent = ents.Create("fnapgm_twilight")
+	
+	if IsValid(ply) then
+		ent:SetPos(ply:GetPos() or Vector(0,0,0))
+		ent:SetAngles(ply:GetAngles() or Angle(0,0,0))
+	end
+	
+	ent:Spawn()
+	
+end)

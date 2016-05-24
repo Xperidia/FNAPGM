@@ -1,0 +1,12 @@
+//-------------------------------------------------------------------------
+//
+// FNAPGM FGD V1.0 BY XPERIDIA
+//
+//-------------------------------------------------------------------------
+
+@include "base.fgd"
+
+@PointClass base(Targetname, Angles) studio() = fnapgm_twilight : "Prop Twilight"
+[
+	model(studio) : "Model"
+]

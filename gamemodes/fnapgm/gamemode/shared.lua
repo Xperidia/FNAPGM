@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.35
+GM.Version 	= 1.36
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -38,6 +38,14 @@ hook.Add( "Initialize", "fnapgmInit", function()
 	GAMEMODE.Strings.ru.fnap_scc = "Выключите главное питание, чтобы начать ночь" --Translation by http://steamcommunity.com/profiles/76561198135819236
 	GAMEMODE.Strings.uk.fnap_scc = "Вимкніть головне живлення, щоб почати ніч" --Translation by http://steamcommunity.com/profiles/76561198135819236
 	
+	sound.Add( {
+		name = "fnapgm_applejackscream",
+		channel = CHAN_AUTO,
+		volume = 1.0,
+		level = 0,
+		sound = "fnafsounds/applejackscream.wav"
+	} )
+	
 end)
 
 GM.Sound_end = {
@@ -47,6 +55,9 @@ GM.Sound_end = {
 GM.Sound_Calls = {
 	fnap_scc = { "fnapgm/call_1.ogg", "fnapgm/call_2.ogg", "fnapgm/call_3.ogg", "fnapgm/call_4.ogg", "fnapgm/call_5.ogg" }
 }
+
+GM.Sound_Animatronic = {}
+GM.Sound_Animatronic[11] = { Sound("fnapgm/laught1.ogg"), Sound("fnapgm/laught2.ogg"), Sound("fnapgm/laught3.ogg"), Sound("fnapgm/laught4.ogg") }
 
 GM.SecurityRoom = {
 	fnap_scc = { Vector(-510,-372,26), Vector(-334,-125,170), Vector(-510,-258,26), Vector(-195,-125,170) },
@@ -481,6 +492,12 @@ function fnapgmAnimatronicsCD()
 	elseif IsValid(AnimatronicsControllerGUI.RainbowDash) and IsValid(AnimatronicsControllerGUI.RainbowDashTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.RainbowDash] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.RainbowDash][3]==0 then
 		AnimatronicsControllerGUI.RainbowDashTxt:SetText( "" )
 		AnimatronicsControllerGUI.RainbowDash:SetImageColor( Color( 255, 255, 255, 255 ) )
+	end
+	
+	if IsValid(AnimatronicsControllerGUI.PinkieBtn) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][4]>CurTime() then
+		AnimatronicsControllerGUI.PinkieBtn:SetText(math.Truncate(GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][4]-CurTime(),0).."s")
+	elseif IsValid(AnimatronicsControllerGUI.PinkieBtn) then
+		AnimatronicsControllerGUI.PinkieBtn:SetText("TAUNT")
 	end
 	
 end
