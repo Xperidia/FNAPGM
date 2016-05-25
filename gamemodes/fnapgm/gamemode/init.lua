@@ -67,6 +67,7 @@ function fnapgmStartNightCustom(ply)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
+			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		elseif GAMEMODE.Vars.night==1 then
 			ents.FindByName( "RainbowTimer" )[1]:Fire("Kill")
 		elseif GAMEMODE.Vars.night==2 then
@@ -84,21 +85,25 @@ function fnapgmStartNightCustom(ply)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 260)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 20)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 40)
+			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		elseif GAMEMODE.Vars.night==5 then
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 60)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 160)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 15)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 30)
+			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		elseif GAMEMODE.Vars.night==6 then
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
+			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		else
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
+			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		end
 		
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Pinkie, GAMEMODE.APos.fnap_scc.SS)
@@ -106,7 +111,7 @@ function fnapgmStartNightCustom(ply)
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Twilight, GAMEMODE.APos.fnap_scc.SS)
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Rarity, GAMEMODE.APos.fnap_scc.SS)
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Applejack, GAMEMODE.APos.fnap_scc.SS)
-		--GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.RainbowDash, GAMEMODE.APos.fnap_scc.SS)
+		--GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.RainbowDash, GAMEMODE.APos.fnap_scc.Trash)
 		
 		timer.Create( "fnafgmTempoStartU", 1.3, 1, function()
 			
@@ -165,7 +170,7 @@ function fnapgmStartNightCustom(ply)
 			end
 			
 			for k, v in pairs(team.GetPlayers(1)) do
-				GAMEMODE:GoFNaFView(v)
+				GAMEMODE:GoFNaFView(v,true)
 			end
 			
 			for k, v in pairs(GAMEMODE.Vars.Animatronics) do
@@ -246,7 +251,7 @@ function fnapgmStartNightCustom(ply)
 			fnafgmPowerUpdate()
 			
 			for k, v in pairs(team.GetPlayers(1)) do
-				GAMEMODE:GoFNaFView(v)
+				GAMEMODE:GoFNaFView(v,true)
 			end
 			
 			timer.Create( "fnafgmTimeThink", GAMEMODE.HourTime, 0, fnafgmTimeThink)
@@ -421,7 +426,9 @@ function fnapgmPowerCalc()
 				
 				for k, v in pairs(GAMEMODE.Vars.Animatronics) do
 					
-					GAMEMODE:SetAnimatronicPos(nil,k,GAMEMODE.APos[game.GetMap()].Office)
+					if k!=GAMEMODE.Animatronic.Applejack then
+						GAMEMODE:SetAnimatronicPos(nil,k,GAMEMODE.APos[game.GetMap()].Office)
+					end
 					
 				end
 				
@@ -715,7 +722,12 @@ function fnapgmRainbowDash(self)
 		if self.FoxyMove then
 			self.FoxyMove = false
 			self.loco:SetDesiredSpeed( 600 )
-			self.FoxyMoveState = self:MoveToPos(GAMEMODE.FNaFView[game.GetMap()][1],{maxage=8})
+			self.FoxyMoveState = self:MoveToPos(Vector(355, -311, -91.8968),{maxage=1,draw=true})
+			self.FoxyMoveState = self:MoveToPos(Vector(324, -15, 32),{maxage=1,draw=true})
+			self:SetPos(Vector(324, -15, 32))
+			self.FoxyMoveState = self:MoveToPos(Vector(200, -10, 32),{maxage=1,draw=true})
+			self:SetPos(Vector(200, -10, 32))
+			self.FoxyMoveState = self:MoveToPos(GAMEMODE.FNaFView[game.GetMap()][1],{maxage=30,draw=true})
 			self:Jumpscare()
 		end
 		
@@ -731,6 +743,7 @@ function fnapgmRainbowDash(self)
 	
 end
 hook.Add( "fnafgmCustomFoxy", "fnapgmRainbowDash", fnapgmRainbowDash)
+
 
 function fnapgmWindowScare(self,me,apos)
 	
@@ -789,6 +802,7 @@ function fnapgmWindowScare(self,me,apos)
 end
 hook.Add( "fnafgmWindowScare", "fnapgmWindowScare", fnapgmWindowScare)
 
+
 function fnapgmFixPos(self,me,apos)
 	
 	if me!=GAMEMODE.Animatronic.RainbowDash and GAMEMODE.AnimatronicAPos[me] and GAMEMODE.AnimatronicAPos[me][game.GetMap()] and GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos] then
@@ -809,9 +823,15 @@ function fnapgmGoJumpscare(me,self,timet)
 		
 		if me==GAMEMODE.Animatronic.Applejack then
 			for k, v in pairs(player.GetAll()) do
-				
 				v:SendLua([[LocalPlayer():EmitSound("fnapgm_applejackscream")]])
-				
+			end
+		elseif me==GAMEMODE.Animatronic.Rarity then
+			for k, v in pairs(player.GetAll()) do
+				v:SendLua([[LocalPlayer():EmitSound("fnapgm_rarityknock")]])
+			end
+		elseif me!=GAMEMODE.Animatronic.RainbowDash then
+			for k, v in pairs(player.GetAll()) do
+				v:SendLua([[LocalPlayer():EmitSound("fnapgm_officesnd")]])
 			end
 		end
 		
@@ -862,7 +882,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:ConCommand( "pp_mat_overlay deathscreens/pinkiedeath" )
+					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/pinkiedeath")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -878,7 +898,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:ConCommand( "pp_mat_overlay deathscreens/fluttershydeath" )
+					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/fluttershydeath")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -894,7 +914,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:ConCommand( "pp_mat_overlay deathscreens/twilightdeath" )
+					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/twilightdeath")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -910,7 +930,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:ConCommand( "pp_mat_overlay deathscreens/raritydeath" )
+					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/raritydeath")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -926,7 +946,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:ConCommand( "pp_mat_overlay deathscreens/applejackdeath" )
+					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/applejackdeath")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -942,7 +962,7 @@ function fnapgmJumpscare(me,self)
 					
 					if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 						
-						v:ConCommand( "pp_mat_overlay deathscreens/rainbowdashdeath" )
+						v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/rainbowdashdeath")')
 						v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 						v:TakeDamage(100, self )
 						
@@ -1020,7 +1040,6 @@ function fnapgmAutoMove(a)
 			apos = GAMEMODE.APos.fnap_scc.Office
 		end
 		
-		
 		return apos
 		
 	elseif a==GAMEMODE.Animatronic.Pinkie then
@@ -1031,16 +1050,3 @@ function fnapgmAutoMove(a)
 	
 end
 hook.Add( "fnafgmChangeAutoMove", "fnapgmAutoMove", fnapgmAutoMove)
-
-concommand.Add( "fnapgm_twitest", function(ply)
-	
-	local ent = ents.Create("fnapgm_twilight")
-	
-	if IsValid(ply) then
-		ent:SetPos(ply:GetPos() or Vector(0,0,0))
-		ent:SetAngles(ply:GetAngles() or Angle(0,0,0))
-	end
-	
-	ent:Spawn()
-	
-end)

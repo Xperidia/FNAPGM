@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.36
+GM.Version 	= 1.37
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -41,9 +41,23 @@ hook.Add( "Initialize", "fnapgmInit", function()
 	sound.Add( {
 		name = "fnapgm_applejackscream",
 		channel = CHAN_AUTO,
-		volume = 1.0,
+		volume = 0.8,
 		level = 0,
 		sound = "fnafsounds/applejackscream.wav"
+	} )
+	sound.Add( {
+		name = "fnapgm_officesnd",
+		channel = CHAN_AUTO,
+		volume = 0.2,
+		level = 0,
+		sound = "fnafsounds/walkpony.wav"
+	} )
+	sound.Add( {
+		name = "fnapgm_rarityknock",
+		channel = CHAN_AUTO,
+		volume = 0.2,
+		level = 0,
+		sound = "fnafsounds/knockwindow.wav"
 	} )
 	
 end)
@@ -252,7 +266,7 @@ GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = { V
 GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-237.473, -191.82, 75.8022), Angle(0,180,0) }
 GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc = {}
 GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash] = { Vector(459.558, -385.458, -74.9962), Angle(0,115,-90) }
-GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(355, -311, -91.8968), Angle(0,115,-90) }
+GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(459.558, -385.458, -74.9962), Angle(0,115,-90) }
 
 GM.AnimatronicsCD = {}
 GM.AnimatronicsCD[GM.Animatronic.Pinkie] = {}
