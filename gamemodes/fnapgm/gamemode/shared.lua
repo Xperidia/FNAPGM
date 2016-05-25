@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.37
+GM.Version 	= 1.38
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -58,6 +58,13 @@ hook.Add( "Initialize", "fnapgmInit", function()
 		volume = 0.2,
 		level = 0,
 		sound = "fnafsounds/knockwindow.wav"
+	} )
+	sound.Add( {
+		name = "fnapgm_pinkiescare",
+		channel = CHAN_AUTO,
+		volume = 0.8,
+		level = 0,
+		sound = "fnafsounds/pinkieisscary.wav"
 	} )
 	
 end)

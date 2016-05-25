@@ -95,8 +95,8 @@ function fnapgmSecurityTablet()
 		Kitchen:SetText( "" )
 		Kitchen.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 1 )
 			GAMEMODE.Vars.lastcam = 1
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Kitchen.Paint = function( self, w, h )
@@ -112,8 +112,8 @@ function fnapgmSecurityTablet()
 		Stage:SetText( "" )
 		Stage.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 2 )
 			GAMEMODE.Vars.lastcam = 2
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Stage.Paint = function( self, w, h )
@@ -129,8 +129,8 @@ function fnapgmSecurityTablet()
 		Dining_Area:SetText( "" )
 		Dining_Area.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 3 )
 			GAMEMODE.Vars.lastcam = 3
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Dining_Area.Paint = function( self, w, h )
@@ -146,8 +146,8 @@ function fnapgmSecurityTablet()
 		Entrance:SetText( "" )
 		Entrance.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 4 )
 			GAMEMODE.Vars.lastcam = 4
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Entrance.Paint = function( self, w, h )
@@ -163,8 +163,8 @@ function fnapgmSecurityTablet()
 		North_Hall_B:SetText( "" )
 		North_Hall_B.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 5 )
 			GAMEMODE.Vars.lastcam = 5
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		North_Hall_B.Paint = function( self, w, h )
@@ -180,8 +180,8 @@ function fnapgmSecurityTablet()
 		Bathroom:SetText( "" )
 		Bathroom.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 6 )
 			GAMEMODE.Vars.lastcam = 6
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Bathroom.Paint = function( self, w, h )
@@ -197,8 +197,8 @@ function fnapgmSecurityTablet()
 		North_Hall_A:SetText( "" )
 		North_Hall_A.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 7 )
 			GAMEMODE.Vars.lastcam = 7
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		North_Hall_A.Paint = function( self, w, h )
@@ -214,8 +214,8 @@ function fnapgmSecurityTablet()
 		Pinkie_Bedroom:SetText( "" )
 		Pinkie_Bedroom.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 8 )
 			GAMEMODE.Vars.lastcam = 8
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Pinkie_Bedroom.Paint = function( self, w, h )
@@ -231,8 +231,8 @@ function fnapgmSecurityTablet()
 		Storage:SetText( "" )
 		Storage.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 9 )
 			GAMEMODE.Vars.lastcam = 9
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Storage.Paint = function( self, w, h )
@@ -248,8 +248,8 @@ function fnapgmSecurityTablet()
 		Supply_Room:SetText( "" )
 		Supply_Room.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 10 )
 			GAMEMODE.Vars.lastcam = 10
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Supply_Room.Paint = function( self, w, h )
@@ -265,8 +265,8 @@ function fnapgmSecurityTablet()
 		Trash:SetText( "" )
 		Trash.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 11 )
 			GAMEMODE.Vars.lastcam = 11
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Trash.Paint = function( self, w, h )
@@ -282,8 +282,8 @@ function fnapgmSecurityTablet()
 		Cave:SetText( "" )
 		Cave.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 12 )
 			GAMEMODE.Vars.lastcam = 12
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Cave.Paint = function( self, w, h )
@@ -299,8 +299,8 @@ function fnapgmSecurityTablet()
 		Storage:SetText( "" )
 		Storage.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 13 )
 			GAMEMODE.Vars.lastcam = 13
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Storage.Paint = function( self, w, h )
@@ -316,8 +316,8 @@ function fnapgmSecurityTablet()
 		Generator:SetText( "" )
 		Generator.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 14 )
 			GAMEMODE.Vars.lastcam = 14
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Generator.Paint = function( self, w, h )
@@ -333,8 +333,8 @@ function fnapgmSecurityTablet()
 		Unknown:SetText( "" )
 		Unknown.DoClick = function( button )
 			LocalPlayer():EmitSound("fnafgm_camselect")
-			fnafgmSetView( 15 )
 			GAMEMODE.Vars.lastcam = 15
+			fnafgmSetView( GAMEMODE.Vars.lastcam )
 			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Unknown.Paint = function( self, w, h )
@@ -652,8 +652,8 @@ function fnapgmController()
 		Kitchen.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(1)
 				GAMEMODE.Vars.lastcam = 1
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(1)
@@ -673,8 +673,8 @@ function fnapgmController()
 		KitchenD.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(19)
 				GAMEMODE.Vars.lastcam = 19
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(19)
@@ -694,8 +694,8 @@ function fnapgmController()
 		Office.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(16)
 				GAMEMODE.Vars.lastcam = 16
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(16)
@@ -715,8 +715,8 @@ function fnapgmController()
 		Stage.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(2)
 				GAMEMODE.Vars.lastcam = 2
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(2)
@@ -736,8 +736,8 @@ function fnapgmController()
 		Staff.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(17)
 				GAMEMODE.Vars.lastcam = 17
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(17)
@@ -757,8 +757,8 @@ function fnapgmController()
 		StaffD.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(18)
 				GAMEMODE.Vars.lastcam = 18
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(18)
@@ -778,8 +778,8 @@ function fnapgmController()
 		Dining_Area.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(3)
 				GAMEMODE.Vars.lastcam = 3
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(3)
@@ -799,8 +799,8 @@ function fnapgmController()
 		Entrance.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(4)
 				GAMEMODE.Vars.lastcam = 4
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(4)
@@ -820,8 +820,8 @@ function fnapgmController()
 		EntranceD.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(20)
 				GAMEMODE.Vars.lastcam = 20
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(20)
@@ -841,8 +841,8 @@ function fnapgmController()
 		North_Hall_B.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(5)
 				GAMEMODE.Vars.lastcam = 5
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(5)
@@ -862,8 +862,8 @@ function fnapgmController()
 		Bathroom.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(6)
 				GAMEMODE.Vars.lastcam = 6
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(6)
@@ -883,8 +883,8 @@ function fnapgmController()
 		North_Hall_A.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(7)
 				GAMEMODE.Vars.lastcam = 7
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(7)
@@ -904,8 +904,8 @@ function fnapgmController()
 		Pinkie_Bedroom.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(8)
 				GAMEMODE.Vars.lastcam = 8
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(8)
@@ -925,8 +925,8 @@ function fnapgmController()
 		Storage.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(9)
 				GAMEMODE.Vars.lastcam = 9
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(9)
@@ -946,8 +946,8 @@ function fnapgmController()
 		Supply_Room.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(10)
 				GAMEMODE.Vars.lastcam = 10
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(10)
@@ -967,8 +967,8 @@ function fnapgmController()
 		Trash.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(11)
 				GAMEMODE.Vars.lastcam = 11
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(11)
@@ -988,8 +988,8 @@ function fnapgmController()
 		Cave.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(12)
 				GAMEMODE.Vars.lastcam = 12
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(12)
@@ -1009,8 +1009,8 @@ function fnapgmController()
 		Storage.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(13)
 				GAMEMODE.Vars.lastcam = 13
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(13)
@@ -1030,8 +1030,8 @@ function fnapgmController()
 		Generator.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(14)
 				GAMEMODE.Vars.lastcam = 14
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(14)
@@ -1051,8 +1051,8 @@ function fnapgmController()
 		Unknown.OnMousePressed = function( button, key )
 			if key==MOUSE_LEFT then
 				LocalPlayer():EmitSound("fnafgm_camselect")
-				fnafgmSetView(15)
 				GAMEMODE.Vars.lastcam = 15
+				fnafgmSetView(GAMEMODE.Vars.lastcam)
 				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 			elseif key==MOUSE_RIGHT then
 				AnimatronicsControllerGUI:MoveMenu(15)

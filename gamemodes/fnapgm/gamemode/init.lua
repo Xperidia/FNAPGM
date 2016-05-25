@@ -196,6 +196,54 @@ function fnapgmStartNightCustom(ply)
 			
 		end)
 		
+		if timer.Exists( "fnapgmPinkieScare" ) then
+			
+			timer.Adjust( "fnapgmPinkieScare", math.random(280, 370), 1, function()
+				
+				if GAMEMODE.Vars.startday then
+					
+					for k, v in pairs(player.GetAll()) do
+						
+						if v:Team()!=TEAM_UNASSIGNED and v:Alive() then
+							
+							v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/pinkieisscary",2)')
+							v:SendLua([[LocalPlayer():EmitSound("fnapgm_pinkiescare")]])
+							
+						end
+						
+					end
+					
+				end
+				
+				timer.Remove( "fnapgmPinkieScare" )
+				
+			end)
+			
+		else
+			
+			timer.Create( "fnapgmPinkieScare", math.random(280, 370), 1, function()
+				
+				if GAMEMODE.Vars.startday then
+					
+					for k, v in pairs(player.GetAll()) do
+						
+						if v:Team()!=TEAM_UNASSIGNED and v:Alive() then
+							
+							v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/pinkieisscary",2)')
+							v:SendLua([[LocalPlayer():EmitSound("fnapgm_pinkiescare")]])
+							
+						end
+						
+					end
+					
+				end
+				
+				timer.Remove( "fnapgmPinkieScare" )
+				
+			end)
+			
+		end
+		
 	elseif (game.GetMap()=="fnap_cb") then
 		
 		GAMEMODE:SetNightTemplate(false)
@@ -882,7 +930,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/pinkiedeath")')
+					v:SendLua('GAMEMODE:JumpscareOverlay("fnapgm/screamers/fnap_scc_'..me..'")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -898,7 +946,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/fluttershydeath")')
+					v:SendLua('GAMEMODE:JumpscareOverlay("fnapgm/screamers/fnap_scc_'..me..'")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -914,7 +962,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/twilightdeath")')
+					v:SendLua('GAMEMODE:JumpscareOverlay("fnapgm/screamers/fnap_scc_'..me..'")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -930,7 +978,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/raritydeath")')
+					v:SendLua('GAMEMODE:JumpscareOverlay("fnapgm/screamers/fnap_scc_'..me..'")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -946,7 +994,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 					
-					v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/applejackdeath")')
+					v:SendLua('GAMEMODE:JumpscareOverlay("fnapgm/screamers/fnap_scc_'..me..'")')
 					v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 					v:TakeDamage(100, self )
 					
@@ -962,7 +1010,7 @@ function fnapgmJumpscare(me,self)
 					
 					if v:Team()==1 and v:Alive() and v.IsOnSecurityRoom then
 						
-						v:SendLua('GAMEMODE:JumpscareOverlay("deathscreens/rainbowdashdeath")')
+						v:SendLua('GAMEMODE:JumpscareOverlay("fnapgm/screamers/fnap_scc_'..me..'")')
 						v:SendLua([[LocalPlayer():EmitSound("fnafgm_scream")]])
 						v:TakeDamage(100, self )
 						
