@@ -1,0 +1,14 @@
+"UnlitGeneric"
+{
+	"$basetexture" "fnapgm\screamers\fnap_scc_13"
+
+	"Proxies" 
+	{ 
+		"AnimatedTexture" 
+		{
+			"animatedTextureVar" "$basetexture" 
+			"animatedTextureFrameNumVar" "$frame" 
+			"animatedTextureFrameRate" "60"
+		 } 
+	} 
+}
