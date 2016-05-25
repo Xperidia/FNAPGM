@@ -3,7 +3,7 @@ DeriveGamemode( "fnafgm" )
 --[[ Base config ]]--
 
 GM.Name 	= "Five Nights at Pinkie's"
-GM.ShortName = "FNAPGM"
+GM.ShortName	= "FNAPGM"
 GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
@@ -25,9 +25,9 @@ end
 
 if !fnafgmishere then
 	if SERVER then
-		PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!")
-		hook.Add( "PlayerSpawn", "fnafgmnotdetected", function() PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!") end )
-		Error( "FNAFGM is not detected!\n" )
+		PrintMessage(HUD_PRINTTALK, "FNAFGM не обнаружен!")
+		hook.Add( "PlayerSpawn", "fnafgmnotdetected", function() PrintMessage(HUD_PRINTTALK, "FNAFGM не обнаружен!") end )
+		Error( "FNAFGM не обнаружен!\n" )
 	end
 end
 
@@ -91,41 +91,41 @@ GM.FNaFView = {
 GM.Models_dead = {}
 
 GM.CamsNames = {
-	fnap_scc_1 = "Kitchen",
-	fnap_scc_2 = "Stage",
-	fnap_scc_3 = "Dining Area",
-	fnap_scc_4 = "Entrance",
-	fnap_scc_5 = "North Hall B",
-	fnap_scc_6 = "Bath-Rooms",
-	fnap_scc_7 = "North Hall A",
-	fnap_scc_8 = "Pinkie's Bedroom",
-	fnap_scc_9 = "Storage",
-	fnap_scc_10 = "Supply Room",
-	fnap_scc_11 = "Trash",
-	fnap_scc_12 = "Cave",
-	fnap_scc_13 = "Storage",
-	fnap_scc_14 = "Generator",
-	fnap_scc_16 = "Office",
-	fnap_scc_17 = "Staff Door",
-	fnap_scc_18 = "Staff",
-	fnap_scc_19 = "Kitchen Door",
-	fnap_scc_20 = "Entrance Door",
-	fnap_cb_1 = "Stage",
-	fnap_cb_2 = "Main Hall",
-	fnap_cb_3 = "Backroom",
-	fnap_cb_4 = "Storage",
-	fnap_cb_5 = "Kitchen",
-	fnap_cb_6 = "Supply Room",
-	fnap_cb_7 = "Stairs",
-	fnap_cb_8 = "Rarity's Bedroom",
-	fnap_cb_9 = "Left Vent",
-	fnap_cb_10 = "Right Vent",
-	fnap_cb_11 = "Office"
+	fnap_scc_1 = "Кухня",
+	fnap_scc_2 = "Сцена",
+	fnap_scc_3 = "Обеденная зонаa",
+	fnap_scc_4 = "Вход",
+	fnap_scc_5 = "Северный зал B",
+	fnap_scc_6 = "Туалеты",
+	fnap_scc_7 = "Северный зал A",
+	fnap_scc_8 = "Спальня Пинки Пай",
+	fnap_scc_9 = "Хранилище",
+	fnap_scc_10 = "Хранилище запчастей",
+	fnap_scc_11 = "Мусорка",
+	fnap_scc_12 = "Подвал",
+	fnap_scc_13 = "Хранилище",
+	fnap_scc_14 = "Генератор",
+	fnap_scc_16 = "Офис",
+	fnap_scc_17 = "Дверь персонала",
+	fnap_scc_18 = "Персонал",
+	fnap_scc_19 = "Дверь кухни",
+	fnap_scc_20 = "Входная дверь",
+	fnap_cb_1 = "Сцена",
+	fnap_cb_2 = "Главный зал",
+	fnap_cb_3 = "Секретный отдел",
+	fnap_cb_4 = "Хранилище",
+	fnap_cb_5 = "Кухня",
+	fnap_cb_6 = "Хранилище запчастей",
+	fnap_cb_7 = "Лестница",
+	fnap_cb_8 = "Спальня Рарити",
+	fnap_cb_9 = "Левое вентиляционное отверстие",
+	fnap_cb_10 = "Правое вентиляционное отверстие",
+	fnap_cb_11 = "Офис"
 }
 
 GM.MapList = {
-	fnap_scc = "Sugar Cube Corner",
-	fnap_cb = "Carousel Boutique"
+	fnap_scc = "Сахарный уголок",
+	fnap_cb = "Бутик Карусель "
 }
 
 GM.MapListLinks = {
@@ -147,17 +147,17 @@ GM.Animatronic.Discord = 20
 GM.Animatronic.Spike = 21
 
 GM.AnimatronicName = {}
-GM.AnimatronicName[11] = "Pinkie Pie"
-GM.AnimatronicName[12] = "Fluttershy"
-GM.AnimatronicName[13] = "Twilight"
-GM.AnimatronicName[14] = "Rarity"
-GM.AnimatronicName[15] = "Applejack"
-GM.AnimatronicName[16] = "Rainbow Dash"
-GM.AnimatronicName[17] = "Toy Pinkie Pie"
-GM.AnimatronicName[18] = "Toy Fluttershy"
-GM.AnimatronicName[19] = "Toy Twilight"
-GM.AnimatronicName[20] = "Discord"
-GM.AnimatronicName[21] = "Spike"
+GM.AnimatronicName[11] = "Пинки Пай"
+GM.AnimatronicName[12] = "Флаттершай"
+GM.AnimatronicName[13] = "Твайлайт"
+GM.AnimatronicName[14] = "Рарити"
+GM.AnimatronicName[15] = "Эплджек"
+GM.AnimatronicName[16] = "Радуга Дэш"
+GM.AnimatronicName[17] = "Игрушечная Пинки Пай"
+GM.AnimatronicName[18] = "Игрушечная Флаттершай"
+GM.AnimatronicName[19] = "Игрушечная Твайлайт"
+GM.AnimatronicName[20] = "Дискорд"
+GM.AnimatronicName[21] = "Спайк"
 
 GM.Animatronic_Models = {}
 GM.Animatronic_Models[GM.Animatronic.Pinkie] = {}
