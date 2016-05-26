@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.38
+GM.Version 	= 1.39
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then

@@ -415,6 +415,10 @@ function fnapgmPowerCalc()
 			
 		end
 		
+		if fnafgm_disablepower:GetBool() then
+			GAMEMODE.Vars.powerusage = 0
+		end
+		
 		if GAMEMODE.Vars.powerusage==0 then
 			
 			GAMEMODE.Vars.powerdrain = 0
@@ -520,6 +524,10 @@ function fnapgmPowerCalc()
 				
 			end
 			
+		end
+		
+		if fnafgm_disablepower:GetBool() then
+			GAMEMODE.Vars.powerusage = 0
 		end
 		
 		if GAMEMODE.Vars.powerusage==0 or !GAMEMODE.Vars.powerchecktime then
@@ -871,15 +879,21 @@ function fnapgmGoJumpscare(me,self,timet)
 		
 		if me==GAMEMODE.Animatronic.Applejack then
 			for k, v in pairs(player.GetAll()) do
-				v:SendLua([[LocalPlayer():EmitSound("fnapgm_applejackscream")]])
+				if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
+					v:SendLua([[LocalPlayer():EmitSound("fnapgm_applejackscream")]])
+				end
 			end
 		elseif me==GAMEMODE.Animatronic.Rarity then
 			for k, v in pairs(player.GetAll()) do
-				v:SendLua([[LocalPlayer():EmitSound("fnapgm_rarityknock")]])
+				if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
+					v:SendLua([[LocalPlayer():EmitSound("fnapgm_rarityknock")]])
+				end
 			end
 		elseif me!=GAMEMODE.Animatronic.RainbowDash then
 			for k, v in pairs(player.GetAll()) do
-				v:SendLua([[LocalPlayer():EmitSound("fnapgm_officesnd")]])
+				if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
+					v:SendLua([[LocalPlayer():EmitSound("fnapgm_officesnd")]])
+				end
 			end
 		end
 		
@@ -1032,17 +1046,21 @@ function fnapgmJumpscare(me,self)
 				
 			end
 			
-			GAMEMODE.Vars.power = GAMEMODE.Vars.power - GAMEMODE.Vars.foxyknockdoorpena
-			GAMEMODE:Log(GAMEMODE.AnimatronicName[me].." removed "..GAMEMODE.Vars.foxyknockdoorpena.."% of the power")
-			fnafgmPowerUpdate()
-			if GAMEMODE.Vars.foxyknockdoorpena<=12 then GAMEMODE.Vars.foxyknockdoorpena = GAMEMODE.Vars.foxyknockdoorpena + GAMEMODE.Vars.addfoxyknockdoorpena end
-			if GAMEMODE.Vars.addfoxyknockdoorpena==4 then
-				GAMEMODE.Vars.addfoxyknockdoorpena = 6
-			elseif GAMEMODE.Vars.addfoxyknockdoorpena==6 then
-				GAMEMODE.Vars.addfoxyknockdoorpena = 4
+			if !fnafgm_disablepower:GetBool() then
+				
+				GAMEMODE.Vars.power = GAMEMODE.Vars.power - GAMEMODE.Vars.foxyknockdoorpena
+				GAMEMODE:Log(GAMEMODE.AnimatronicName[me].." removed "..GAMEMODE.Vars.foxyknockdoorpena.."% of the power")
+				fnafgmPowerUpdate()
+				if GAMEMODE.Vars.foxyknockdoorpena<=12 then GAMEMODE.Vars.foxyknockdoorpena = GAMEMODE.Vars.foxyknockdoorpena + GAMEMODE.Vars.addfoxyknockdoorpena end
+				if GAMEMODE.Vars.addfoxyknockdoorpena==4 then
+					GAMEMODE.Vars.addfoxyknockdoorpena = 6
+				elseif GAMEMODE.Vars.addfoxyknockdoorpena==6 then
+					GAMEMODE.Vars.addfoxyknockdoorpena = 4
+				end
+				
+				end
+				
 			end
-			
-		end
 		
 		if me==GAMEMODE.Animatronic.RainbowDash then
 			
