@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.39
+GM.Version 	= 1.40
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -65,6 +65,13 @@ hook.Add( "Initialize", "fnapgmInit", function()
 		volume = 0.8,
 		level = 0,
 		sound = "fnafsounds/pinkieisscary.wav"
+	} )
+	sound.Add( {
+		name = "fnapgm_runrainbowdash",
+		channel = CHAN_AUTO,
+		volume = 0.8,
+		level = 0,
+		sound = "fnafsounds/runrainbowdash.wav"
 	} )
 	
 end)
@@ -523,3 +530,76 @@ function fnapgmAnimatronicsCD()
 	
 end
 hook.Add( "fnafgmCustomAnimatronicsCD", "fnapgmAnimatronicsCD", fnapgmAnimatronicsCD)
+
+function fnapgmAnimatronicMove(self,me,apos)
+	
+	if apos!=nil and self.OldAPos != apos then
+		
+		self.OldAPos = apos
+		
+		if me!=GAMEMODE.Animatronic.RainbowDash then
+			
+			self:SetColor( Color( 255, 255, 255, 0 ) )
+			
+			if GAMEMODE.AnimatronicAPos[me] and GAMEMODE.AnimatronicAPos[me][game.GetMap()] and GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos] then
+				self:SetPos(GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][1])
+				self:SetAngles(GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][2])
+			end
+			
+			self:SetColor( Color( 255, 255, 255, 255 ) )
+			
+		end
+		
+	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Office and self.FoxyWillMove then
+		
+		if self:GetColor()!=Color( 255, 255, 255, 255 ) then self:SetColor( Color( 255, 255, 255, 255 ) ) end
+		
+	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Office and self.FoxyMove2 then
+		
+		if self:GetColor()!=Color( 255, 255, 255, 255 ) then self:SetColor( Color( 255, 255, 255, 255 ) ) end
+		
+		if !self.ltime or self.ltime<1 then
+			self.ltime = (self.ltime or 0) + FrameTime()
+		elseif !self.ltime or self.ltime>=1 then
+			self.ltime = 0
+			self.sta = (self.sta or 0) + 1
+		end
+		
+		if !self.sta or self.sta==0 then
+			self:SetPos( LerpVector( self.ltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][1], Vector(417.923, -388.438, -95.7159) ) )
+			self:SetAngles( LerpAngle( self.ltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][2], Angle(0,120,0) ) )
+		elseif self.sta==1 then
+			self:SetPos( LerpVector( self.ltime, Vector(417.923, -388.438, -95.7159), Vector(323, -186.201813, -89.016739) ) )
+			self:SetAngles( LerpAngle( self.ltime, Angle(0,120,0), Angle(0,90,0) ) )
+		elseif self.sta==2 then
+			self:SetPos( LerpVector( self.ltime, Vector(323, -186.201813, -89.016739), Vector(323, -70.793152, 32) ) )
+			self:SetAngles( Angle(-40,90,0) )
+		elseif self.sta==3 then
+			self:SetPos( LerpVector( self.ltime, Vector(323, -70.793152, 32), Vector(283.779999, -15.925056, 32) ) )
+			self:SetAngles(LerpAngle( self.ltime, Angle(0,90,0), Angle(0,-180,0) ) )
+		elseif self.sta==4 then
+			self:SetPos( LerpVector( self.ltime, Vector(283.779999, -15.925056, 32), Vector(-137.194016, -8.655641, 32) ) )
+			self:SetAngles( Angle(0,-180,0) )
+		elseif self.sta==5 then
+			self:SetPos( LerpVector( self.ltime, Vector(-137.194016, -8.655641, 32), Vector(-385.440521, -42.308228, 32) ) )
+			self:SetAngles(LerpAngle( self.ltime, Angle(0,-180,0), Angle(0,-150,0) ) )
+		elseif self.sta==6 then
+			self:SetPos( LerpVector( self.ltime, Vector(-385.440521, -42.308228, 32), Vector(-431.247833, -95, 32) ) )
+			self:SetAngles(LerpAngle( self.ltime, Angle(0,-150,0), Angle(0,-90,0) ) )
+		elseif self.sta==7 then
+			self:Jumpscare()
+			self.FoxyMove2 = false
+		end
+		
+	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Trash then
+		
+		if self:GetColor()!=Color( 255, 255, 255, 0 ) then self:SetColor( Color( 255, 255, 255, 0 ) ) end
+		
+		if !self.sta or self.sta>0 then self.sta=0 end
+		
+	end
+	
+	return true
+	
+end
+hook.Add( "fnafgmAnimatronicMove", "fnapgmAnimatronicMove", fnapgmAnimatronicMove)

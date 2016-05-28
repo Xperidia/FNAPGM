@@ -67,7 +67,6 @@ function fnapgmStartNightCustom(ply)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
-			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		elseif GAMEMODE.Vars.night==1 then
 			ents.FindByName( "RainbowTimer" )[1]:Fire("Kill")
 		elseif GAMEMODE.Vars.night==2 then
@@ -85,25 +84,21 @@ function fnapgmStartNightCustom(ply)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 260)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 20)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 40)
-			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		elseif GAMEMODE.Vars.night==5 then
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 60)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 160)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 15)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 30)
-			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		elseif GAMEMODE.Vars.night==6 then
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
-			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		else
 			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
 			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
 			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
-			ents.FindByName( "PinkieIsScaryTimer" )[1]:Fire("Enable")
 		end
 		
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Pinkie, GAMEMODE.APos.fnap_scc.SS)
@@ -111,7 +106,7 @@ function fnapgmStartNightCustom(ply)
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Twilight, GAMEMODE.APos.fnap_scc.SS)
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Rarity, GAMEMODE.APos.fnap_scc.SS)
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Applejack, GAMEMODE.APos.fnap_scc.SS)
-		--GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.RainbowDash, GAMEMODE.APos.fnap_scc.Trash)
+		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.RainbowDash, GAMEMODE.APos.fnap_scc.Trash)
 		
 		timer.Create( "fnafgmTempoStartU", 1.3, 1, function()
 			
@@ -777,14 +772,16 @@ function fnapgmRainbowDash(self)
 		
 		if self.FoxyMove then
 			self.FoxyMove = false
-			self.loco:SetDesiredSpeed( 600 )
-			self.FoxyMoveState = self:MoveToPos(Vector(355, -311, -91.8968),{maxage=1,draw=true})
-			self.FoxyMoveState = self:MoveToPos(Vector(324, -15, 32),{maxage=1,draw=true})
-			self:SetPos(Vector(324, -15, 32))
-			self.FoxyMoveState = self:MoveToPos(Vector(200, -10, 32),{maxage=1,draw=true})
-			self:SetPos(Vector(200, -10, 32))
-			self.FoxyMoveState = self:MoveToPos(GAMEMODE.FNaFView[game.GetMap()][1],{maxage=30,draw=true})
-			self:Jumpscare()
+			self.FoxyMove2 = true
+			for k, v in pairs(player.GetAll()) do
+				
+				if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
+					
+					v:SendLua([[LocalPlayer():EmitSound("fnapgm_runrainbowdash")]])
+					
+				end
+				
+			end
 		end
 		
 		if self.FoxyWillMove or self.FoxyMove then coroutine.wait(0.1) else coroutine.wait(1) end
@@ -916,7 +913,7 @@ function fnapgmGoJumpscare(me,self,timet)
 			if GAMEMODE.Vars.startday and me!=GAMEMODE.Animatronic.RainbowDash then
 				self:Jumpscare()
 			elseif GAMEMODE.Vars.startday then
-				self:SetPos(Vector(355, -311, -91.8968))
+				self:SetPos(Vector(417.923, -388.438, -95.7159))
 				self:SetAngles(Angle(0, 0, 0))
 				self.FoxyWillMove = false
 				self.FoxyMove = true
@@ -1018,7 +1015,7 @@ function fnapgmJumpscare(me,self)
 			
 			GAMEMODE:Log("Jumpscared by "..GAMEMODE.AnimatronicName[me])
 			
-			elseif me==GAMEMODE.Animatronic.RainbowDash and ( self.FoxyMoveState=="ok" or GAMEMODE:CheckPlayerSecurityRoom(self) ) then
+			elseif me==GAMEMODE.Animatronic.RainbowDash and !GAMEMODE.Vars.DoorClosed[2] then
 				
 				for k, v in pairs(player.GetAll()) do
 					
@@ -1064,13 +1061,10 @@ function fnapgmJumpscare(me,self)
 		
 		if me==GAMEMODE.Animatronic.RainbowDash then
 			
-			self:SetColor( Color( 255, 255, 255, 0 ) )
-			
 			timer.Create( "fnafgmFoxyReset", 1, 1, function()
 				self:SetPos(GAMEMODE.AnimatronicAPos[me][game.GetMap()][GAMEMODE.APos[game.GetMap()].Trash][1])
 				self:SetAngles(GAMEMODE.AnimatronicAPos[me][game.GetMap()][GAMEMODE.APos[game.GetMap()].Trash][2])
 				GAMEMODE:SetAnimatronicPos(nil,me,GAMEMODE.APos[game.GetMap()].Trash)
-				self:SetColor( Color( 255, 255, 255, 255 ) )
 				timer.Remove( "fnafgmFoxyReset" )
 			end)
 			
