@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.40
+GM.Version 	= 1.41
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -32,6 +32,8 @@ if !fnafgmishere then
 end
 
 hook.Add( "Initialize", "fnapgmInit", function()
+	
+	table.Empty(GAMEMODE.Models_dead)
 	
 	GAMEMODE.Strings.en.fnap_scc = "Turn off the main power to start the night"
 	GAMEMODE.Strings.fr.fnap_scc = "Coupez le courant pour démarrer la nuit"
@@ -72,6 +74,13 @@ hook.Add( "Initialize", "fnapgmInit", function()
 		volume = 0.8,
 		level = 0,
 		sound = "fnafsounds/runrainbowdash.wav"
+	} )
+	sound.Add( {
+		name = "fnapgm_rainbowknock",
+		channel = CHAN_AUTO,
+		volume = 0.8,
+		level = 0,
+		sound = "physics/metal/metal_barrel_impact_hard1.wav"
 	} )
 	
 end)
@@ -120,8 +129,8 @@ GM.CamsNames = {
 	fnap_scc_13 = "Storage",
 	fnap_scc_14 = "Generator",
 	fnap_scc_16 = "Office",
-	fnap_scc_17 = "Staff Door",
-	fnap_scc_18 = "Staff",
+	fnap_scc_17 = "Staff",
+	fnap_scc_18 = "Staff Door",
 	fnap_scc_19 = "Kitchen Door",
 	fnap_scc_20 = "Entrance Door",
 	fnap_cb_1 = "Stage",
@@ -262,11 +271,11 @@ GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen] =
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(229.355, 566.11, 87), Angle(0,234,87) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.NHA] = { Vector(226.063, 307.311, 32), Angle(0,320,0) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.BR] = { Vector(423.922, 29.9327, 32), Angle(0,90,0) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SR] = { Vector(217.167, 417.786, 36.1032), Angle(0,270,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SR] = { Vector(217.167, 417.786, 32), Angle(0,270,0) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.StorageD] = { Vector(-54.393, -92.0667, -96.1156), Angle(0,64,0) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Generator] = { Vector(-336.451, -342.729, -96.9048), Angle(0,90,0) }
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-362.534, -85.6415, 64.2119), Angle(0,270,0) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { Vector(-292.778, 43.7329, 31.5654), Angle(0,235,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { Vector(-292.778, 43.7329, 32), Angle(0,235,0) }
 GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc = {}
 GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(577.209, -479.944, 55.5574), Angle(0,143,0) }
 GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Entrance] = { Vector(435.05, -411.066, 34.6907), Angle(0,195,0) }
@@ -279,8 +288,8 @@ GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc = {}
 GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(744, 584, 32), Angle(0,-135,0) }
 GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-237.473, -191.82, 75.8022), Angle(0,180,0) }
 GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc = {}
-GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash] = { Vector(459.558, -385.458, -74.9962), Angle(0,115,-90) }
-GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(459.558, -385.458, -74.9962), Angle(0,115,-90) }
+GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash] = { Vector(441.369, -397.072, -99.6947), Angle(0, 138.75, 0) }
+GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(441.369, -397.072, -99.6947), Angle(0, 138.75, 0) }
 
 GM.AnimatronicsCD = {}
 GM.AnimatronicsCD[GM.Animatronic.Pinkie] = {}
@@ -413,9 +422,13 @@ GM.AnimatronicsSkins[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = 4
 GM.AnimatronicsSkins[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = 4
 GM.AnimatronicsSkins[GM.Animatronic.Rarity] = {}
 GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc = {}
-GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff ] = 1
-GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD ] = 1
+GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff] = 1
+GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD] = 1
 GM.AnimatronicsSkins[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Office] = 1
+GM.AnimatronicsSkins[GM.Animatronic.RainbowDash] = {}
+GM.AnimatronicsSkins[GM.Animatronic.RainbowDash].fnap_scc = {}
+GM.AnimatronicsSkins[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash] = 1
+GM.AnimatronicsSkins[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = 1
 
 GM.AnimatronicsFlex = {}
 GM.AnimatronicsFlex[GM.Animatronic.Pinkie] = {}
@@ -450,13 +463,29 @@ GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.DA] = { {21
 GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD] = { {38,1}, {6,1}, {7,1}, {18,0.5} }
 GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff] = { {38,1}, {0,1}, {1,1}, {18,0.5} }
 GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Office] = { {21,1}, {0,1}, {1,1} }
+GM.AnimatronicsFlex[GM.Animatronic.RainbowDash] = {}
+GM.AnimatronicsFlex[GM.Animatronic.RainbowDash].fnap_scc = {}
+GM.AnimatronicsFlex[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = { {1,1}, {2,1} }
 
 
 GM.AnimatronicsAnim = {}
+GM.AnimatronicsAnim[GM.Animatronic.Twilight] = {}
+GM.AnimatronicsAnim[GM.Animatronic.Twilight].fnap_scc = {}
+GM.AnimatronicsAnim[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SS] = "ss"
+GM.AnimatronicsAnim[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.BR] = "br"
+GM.AnimatronicsAnim[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SR] = "sr"
+GM.AnimatronicsAnim[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.StorageD] = "storaged"
+GM.AnimatronicsAnim[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Generator] = "generator"
+GM.AnimatronicsAnim[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Office] = "office"
+GM.AnimatronicsAnim[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen2] = "kitchen2"
 GM.AnimatronicsAnim[GM.Animatronic.Applejack] = {}
 GM.AnimatronicsAnim[GM.Animatronic.Applejack].fnap_scc = {}
 GM.AnimatronicsAnim[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = "sitting"
 GM.AnimatronicsAnim[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = "office"
+GM.AnimatronicsAnim[GM.Animatronic.RainbowDash] = {}
+GM.AnimatronicsAnim[GM.Animatronic.RainbowDash].fnap_scc = {}
+GM.AnimatronicsAnim[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash] = "trashstand"
+GM.AnimatronicsAnim[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = "gallop"
 
 
 function GM:CheckDerivCreator(pl)
@@ -550,45 +579,84 @@ function fnapgmAnimatronicMove(self,me,apos)
 			
 		end
 		
+	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Office and self.FoxyWillMove2 then
+		
+		if !self.preltime or self.preltime<1 then
+			self.preltime = (self.preltime or 0) + FrameTime()
+		elseif !self.preltime or self.preltime>=1 then
+			self.preltime = 0
+			self.presta = true
+		end
+		
+		if !self.presta then
+			self:SetPos( LerpVector( self.preltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][1], Vector(417.923, -388.438, -95.7159) ) )
+			self:SetAngles( LerpAngle( self.preltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][2], Angle(0,120,0) ) )
+		end
+		
+		if self:GetSequence() != self:LookupSequence( GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Office] ) then
+			self:SetSequence( self:LookupSequence( GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Office] ) )
+			self:ResetSequenceInfo()
+			self:SetCycle(0)
+			self:SetPlaybackRate(0)
+		end
+		
 	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Office and self.FoxyWillMove then
 		
 		if self:GetColor()!=Color( 255, 255, 255, 255 ) then self:SetColor( Color( 255, 255, 255, 255 ) ) end
+		
+		if self:GetSequence() != self:LookupSequence( GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Trash] ) then
+			self:SetSequence( self:LookupSequence( GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Trash] ) )
+			self:ResetSequenceInfo()
+			self:SetCycle(0)
+		end
 		
 	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Office and self.FoxyMove2 then
 		
 		if self:GetColor()!=Color( 255, 255, 255, 255 ) then self:SetColor( Color( 255, 255, 255, 255 ) ) end
 		
 		if !self.ltime or self.ltime<1 then
-			self.ltime = (self.ltime or 0) + FrameTime()
+			local multip = 1
+			if self.sta==3 then
+				multip = 0.6
+			elseif self.sta==3 or self.sta==5 then
+				multip = 1.4
+			end
+			self.ltime = (self.ltime or 0) + FrameTime()*multip
 		elseif !self.ltime or self.ltime>=1 then
 			self.ltime = 0
 			self.sta = (self.sta or 0) + 1
 		end
 		
 		if !self.sta or self.sta==0 then
-			self:SetPos( LerpVector( self.ltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][1], Vector(417.923, -388.438, -95.7159) ) )
-			self:SetAngles( LerpAngle( self.ltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][2], Angle(0,120,0) ) )
-		elseif self.sta==1 then
 			self:SetPos( LerpVector( self.ltime, Vector(417.923, -388.438, -95.7159), Vector(323, -186.201813, -89.016739) ) )
 			self:SetAngles( LerpAngle( self.ltime, Angle(0,120,0), Angle(0,90,0) ) )
-		elseif self.sta==2 then
+			self:SetPlaybackRate(1)
+		elseif self.sta==1 then
 			self:SetPos( LerpVector( self.ltime, Vector(323, -186.201813, -89.016739), Vector(323, -70.793152, 32) ) )
 			self:SetAngles( Angle(-40,90,0) )
-		elseif self.sta==3 then
+			self:SetPlaybackRate(1)
+		elseif self.sta==2 then
 			self:SetPos( LerpVector( self.ltime, Vector(323, -70.793152, 32), Vector(283.779999, -15.925056, 32) ) )
-			self:SetAngles(LerpAngle( self.ltime, Angle(0,90,0), Angle(0,-180,0) ) )
-		elseif self.sta==4 then
+			self:SetAngles( LerpAngle( self.ltime, Angle(0,90,0), Angle(0,-180,0) ) )
+			self:SetPlaybackRate(1)
+		elseif self.sta==3 then
 			self:SetPos( LerpVector( self.ltime, Vector(283.779999, -15.925056, 32), Vector(-137.194016, -8.655641, 32) ) )
 			self:SetAngles( Angle(0,-180,0) )
-		elseif self.sta==5 then
+			self:SetPlaybackRate(1)
+		elseif self.sta==4 then
 			self:SetPos( LerpVector( self.ltime, Vector(-137.194016, -8.655641, 32), Vector(-385.440521, -42.308228, 32) ) )
-			self:SetAngles(LerpAngle( self.ltime, Angle(0,-180,0), Angle(0,-150,0) ) )
-		elseif self.sta==6 then
+			self:SetAngles( LerpAngle( self.ltime, Angle(0,-180,0), Angle(0,-150,0) ) )
+			self:SetPlaybackRate(1)
+			if self:GetSkin()!=2 then self:SetSkin(2) end
+			self:SetFlexWeight( 0, Lerp( self.ltime, 0, 1 ) )
+		elseif self.sta==5 then
 			self:SetPos( LerpVector( self.ltime, Vector(-385.440521, -42.308228, 32), Vector(-431.247833, -95, 32) ) )
-			self:SetAngles(LerpAngle( self.ltime, Angle(0,-150,0), Angle(0,-90,0) ) )
-		elseif self.sta==7 then
+			self:SetAngles( LerpAngle( self.ltime, Angle(0,-150,0), Angle(0,-90,0) ) )
+			self:SetPlaybackRate(1)
+		elseif self.sta==6 then
 			self:Jumpscare()
 			self.FoxyMove2 = false
+			self:SetPlaybackRate(0.1)
 		end
 		
 	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Trash then
@@ -596,6 +664,10 @@ function fnapgmAnimatronicMove(self,me,apos)
 		if self:GetColor()!=Color( 255, 255, 255, 0 ) then self:SetColor( Color( 255, 255, 255, 0 ) ) end
 		
 		if !self.sta or self.sta>0 then self.sta=0 end
+		
+	elseif me==GAMEMODE.Animatronic.Twilight and ( apos==GAMEMODE.APos[game.GetMap()].Office or apos==GAMEMODE.APos[game.GetMap()].Kitchen or apos==GAMEMODE.APos[game.GetMap()].Kitchen2 ) then
+		
+		self:SetSkin( math.random( 0, 1 ) )
 		
 	end
 	

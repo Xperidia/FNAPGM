@@ -62,45 +62,6 @@ function fnapgmStartNightCustom(ply)
 			v:Fire("addoutput", "OnPressed fnafgm_link,MuteCall,,0,-1")
 		end
 		
-		if Halloween or fnafgm_forceseasonalevent:GetInt()==3 then
-			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
-			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
-		elseif GAMEMODE.Vars.night==1 then
-			ents.FindByName( "RainbowTimer" )[1]:Fire("Kill")
-		elseif GAMEMODE.Vars.night==2 then
-			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 150)
-			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 400)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 30)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 50)
-		elseif GAMEMODE.Vars.night==3 then
-			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 120)
-			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 300)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 30)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 50)
-		elseif GAMEMODE.Vars.night==4 then
-			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 60)
-			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 260)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 20)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 40)
-		elseif GAMEMODE.Vars.night==5 then
-			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 60)
-			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 160)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 15)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 30)
-		elseif GAMEMODE.Vars.night==6 then
-			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
-			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
-		else
-			ents.FindByName( "RainbowTimer" )[1]:Fire("LowerRandomBound", 30)
-			ents.FindByName( "RainbowTimer" )[1]:Fire("UpperRandomBound", 120)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("LowerRandomBound", 10)
-			ents.FindByName( "RainbowTimer2" )[1]:Fire("UpperRandomBound", 20)
-		end
-		
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Pinkie, GAMEMODE.APos.fnap_scc.SS)
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Fluttershy, GAMEMODE.APos.fnap_scc.SS)
 		GAMEMODE:CreateAnimatronic(GAMEMODE.Animatronic.Twilight, GAMEMODE.APos.fnap_scc.SS)
@@ -460,7 +421,9 @@ function fnapgmPowerCalc()
 			
 			for k, v in pairs(GAMEMODE.Vars.Animatronics) do
 				
-				GAMEMODE:SetAnimatronicPos(nil,k,GAMEMODE.APos[game.GetMap()].SS)
+				if k!=GAMEMODE.Animatronic.RainbowDash then
+					GAMEMODE:SetAnimatronicPos(nil,k,GAMEMODE.APos[game.GetMap()].SS)
+				end
 				timer.Remove( "fnafgmAnimatronicMove"..k )
 				
 			end
@@ -473,7 +436,7 @@ function fnapgmPowerCalc()
 				
 				for k, v in pairs(GAMEMODE.Vars.Animatronics) do
 					
-					if k!=GAMEMODE.Animatronic.Applejack then
+					if k!=GAMEMODE.Animatronic.Applejack and k!=GAMEMODE.Animatronic.RainbowDash then
 						GAMEMODE:SetAnimatronicPos(nil,k,GAMEMODE.APos[game.GetMap()].Office)
 					end
 					
@@ -896,6 +859,17 @@ function fnapgmGoJumpscare(me,self,timet)
 		
 		if me==GAMEMODE.Animatronic.RainbowDash then
 			self.FoxyWillMove = true
+			if IsValid(ents.FindByName( "RDDoor" )[1]) then ents.FindByName( "RDDoor" )[1]:Fire("Open") end
+			local flight = ents.FindByName( "FluoLight" )[1]
+			if IsValid(flight) then
+				flight:Fire("TurnOff")
+				flight:Fire("TurnOn",NULL,2)
+			end
+			local tlight = ents.FindByName( "TimerLightDoor3" )[1]
+			if IsValid(tlight) then
+				tlight:Fire("Disable")
+				tlight:Fire("Enable",NULL,2)
+			end
 		end
 		
 		timer.Create( "fnafgmJumpscare"..me, timet, 1, function()
@@ -913,10 +887,37 @@ function fnapgmGoJumpscare(me,self,timet)
 			if GAMEMODE.Vars.startday and me!=GAMEMODE.Animatronic.RainbowDash then
 				self:Jumpscare()
 			elseif GAMEMODE.Vars.startday then
-				self:SetPos(Vector(417.923, -388.438, -95.7159))
-				self:SetAngles(Angle(0, 0, 0))
-				self.FoxyWillMove = false
-				self.FoxyMove = true
+				
+				self.FoxyWillMove2 = true
+				
+				local flight = ents.FindByName( "FluoLight" )[1]
+				if IsValid(flight) then
+					flight:Fire("TurnOff")
+					flight:Fire("TurnOn",NULL,2)
+				end
+				local tlight = ents.FindByName( "TimerLightDoor3" )[1]
+				if IsValid(tlight) then
+					tlight:Fire("Disable")
+					tlight:Fire("Enable",NULL,2)
+				end
+				
+				timer.Create( "fnapgmRDmove", timet, 1, function()
+					
+					if IsValid(ents.FindByName( "RDDoor" )[1]) then ents.FindByName( "RDDoor" )[1]:Fire("Close",NULL,0.2) end
+					local DoorRD = ents.FindByName( "DoorRD" )[1]
+					if IsValid(DoorRD) then
+						DoorRD:Fire("Open",NULL,0.8)
+						DoorRD:Fire("Close",NULL,3)
+					end
+					
+					self.FoxyWillMove = false
+					self.FoxyWillMove2 = false
+					self.FoxyMove = true
+					
+					timer.Remove( "fnapgmRDmove" )
+					
+				end)
+				
 			end
 			
 			timer.Remove( "fnafgmJumpscare"..me )
@@ -1037,7 +1038,7 @@ function fnapgmJumpscare(me,self)
 				
 				if v:Team()!=TEAM_CONNECTING and v:Team()!=TEAM_UNASSIGNED then
 					
-					v:SendLua([[LocalPlayer():EmitSound("fnafgm_foxyknock")]])
+					v:SendLua([[LocalPlayer():EmitSound("fnapgm_rainbowknock")]])
 					
 				end
 				
