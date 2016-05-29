@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.41
+GM.Version 	= 1.42
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -591,6 +591,8 @@ function fnapgmAnimatronicMove(self,me,apos)
 		if !self.presta then
 			self:SetPos( LerpVector( self.preltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][1], Vector(417.923, -388.438, -95.7159) ) )
 			self:SetAngles( LerpAngle( self.preltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][2], Angle(0,120,0) ) )
+		else
+			self:SetPos( Vector(417.923, -388.438, -95.7159) )
 		end
 		
 		if self:GetSequence() != self:LookupSequence( GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Office] ) then
@@ -664,6 +666,7 @@ function fnapgmAnimatronicMove(self,me,apos)
 		if self:GetColor()!=Color( 255, 255, 255, 0 ) then self:SetColor( Color( 255, 255, 255, 0 ) ) end
 		
 		if !self.sta or self.sta>0 then self.sta=0 end
+		if self.presta then self.presta=false end
 		
 	elseif me==GAMEMODE.Animatronic.Twilight and ( apos==GAMEMODE.APos[game.GetMap()].Office or apos==GAMEMODE.APos[game.GetMap()].Kitchen or apos==GAMEMODE.APos[game.GetMap()].Kitchen2 ) then
 		

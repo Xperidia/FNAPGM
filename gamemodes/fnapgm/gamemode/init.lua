@@ -319,7 +319,7 @@ function fnapgmPowerCalc()
 			for k, v in pairs(team.GetPlayers(1)) do
 				
 				if GAMEMODE.Vars.tabused[v] and GAMEMODE.Vars.tabused[v]==true then
-						
+					
 					tabactualuse = true
 					
 				end
@@ -413,8 +413,8 @@ function fnapgmPowerCalc()
 			
 			ents.FindByName( "NoMorePower" )[1]:Fire("use")
 			
-			for k, v in pairs(team.GetPlayers(1)) do
-				if v:Alive() then
+			for k, v in pairs(player.GetAll()) do
+				if v:Team()==1 and v:Alive() then
 					v:SetPos( Vector( -465, -255, 32 ) )
 				end
 			end
@@ -870,6 +870,7 @@ function fnapgmGoJumpscare(me,self,timet)
 				tlight:Fire("Disable")
 				tlight:Fire("Enable",NULL,2)
 			end
+			timet = timet * 2
 		end
 		
 		timer.Create( "fnafgmJumpscare"..me, timet, 1, function()
