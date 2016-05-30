@@ -308,7 +308,7 @@ function fnapgmPowerCalc()
 		
 		GAMEMODE.Vars.powerusage = GAMEMODE.Power_Usage_Base
 		
-		if GAMEMODE.Vars.poweroff then
+		if GAMEMODE.Vars.poweroff or fnafgm_disablepower:GetBool() then
 			
 			GAMEMODE.Vars.powerusage = 0
 			
@@ -348,19 +348,6 @@ function fnapgmPowerCalc()
 				
 				GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
 				
-			else
-				
-				for k, v in pairs(ents.FindByClass( "fnafgm_camera" )) do
-					
-					if v:GetLightState() then
-						
-						GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
-						break
-						
-					end
-					
-				end
-				
 			end
 			
 			if GAMEMODE.Vars.AprilFool or fnafgm_forceseasonalevent:GetInt()==2 then -- Troll use
@@ -369,10 +356,6 @@ function fnapgmPowerCalc()
 				
 			end
 			
-		end
-		
-		if fnafgm_disablepower:GetBool() then
-			GAMEMODE.Vars.powerusage = 0
 		end
 		
 		if GAMEMODE.Vars.powerusage==0 then
@@ -454,7 +437,7 @@ function fnapgmPowerCalc()
 		
 		GAMEMODE.Vars.powerusage = 0
 		
-		if !GAMEMODE.Vars.poweroff then
+		if !GAMEMODE.Vars.poweroff and !fnafgm_disablepower:GetBool() then
 			
 			if GAMEMODE.Vars.LightUse[1] or GAMEMODE.Vars.LightUse[2] or GAMEMODE.Vars.LightUse[3] then
 				
@@ -464,9 +447,10 @@ function fnapgmPowerCalc()
 			
 			for k, v in pairs(ents.FindByClass( "fnafgm_camera" )) do
 				
-				if v:GetLightState() then
+				if v.GetLightState and v:GetLightState() then
 					
-					GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage+1
+					GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage + 1
+					break
 					
 				end
 				
@@ -477,15 +461,12 @@ function fnapgmPowerCalc()
 				if v:FlashlightIsOn() then
 					
 					GAMEMODE.Vars.powerusage = GAMEMODE.Vars.powerusage + 1
+					break
 					
 				end
 				
 			end
 			
-		end
-		
-		if fnafgm_disablepower:GetBool() then
-			GAMEMODE.Vars.powerusage = 0
 		end
 		
 		if GAMEMODE.Vars.powerusage==0 or !GAMEMODE.Vars.powerchecktime then
