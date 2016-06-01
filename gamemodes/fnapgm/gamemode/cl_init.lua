@@ -1,23 +1,23 @@
 include( 'shared.lua' )
 DeriveGamemode( "fnafgm" )
 
-function fnapgmSecurityTabletInit()
+function fnapgmSecurityTabletInit(control)
 	
 	if game.GetMap()=="fnap_scc" then
 		if !GAMEMODE.Vars.lastcam then
 			GAMEMODE.Vars.lastcam = 2
 		end
-		LocalPlayer():EmitSound("fnafgm_campop")
+		if !control then LocalPlayer():EmitSound("fnafgm_campop") end
 	elseif game.GetMap()=="fnap_cb" then
 		if !GAMEMODE.Vars.lastcam then
 			GAMEMODE.Vars.lastcam = 1
 		end
-		LocalPlayer():EmitSound("fnafgm_campop2")
+		if !control then LocalPlayer():EmitSound("fnafgm_campop2") end
 	else
 		if !GAMEMODE.Vars.lastcam then
 			GAMEMODE.Vars.lastcam = 1
 		end
-		LocalPlayer():EmitSound("fnafgm_campop")
+		if !control then LocalPlayer():EmitSound("fnafgm_campop") end
 	end
 	
 	return true
@@ -25,309 +25,112 @@ function fnapgmSecurityTabletInit()
 end
 hook.Add( "fnafgmSecurityTabletCustomInit", "fnapgmSecurityTabletInit", fnapgmSecurityTabletInit)
 
-function fnapgmControllerInit()
-	
-	if game.GetMap()=="fnap_scc" then
-		if !GAMEMODE.Vars.lastcam then
-			GAMEMODE.Vars.lastcam = 2
-		end
-	else
-		if !GAMEMODE.Vars.lastcam then
-			GAMEMODE.Vars.lastcam = 1
-		end
-	end
-	
-	return true
-	
-end
-hook.Add( "fnafgmControllerCustomInit", "fnapgmControllerInit", fnapgmControllerInit)
-
-function fnapgmSecurityTablet()
+function fnapgmSecurityTablet(control)
 	
 	if game.GetMap()=="fnap_scc" then
 		
-		local CamsNames = vgui.Create( "DLabel" )
-		CamsNames:SetParent(Monitor)
-		CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		CamsNames:SetTextColor( Color( 255, 255, 255, 255 ) )
-		CamsNames:SetFont("FNAFGMTIME")
-		CamsNames:SetPos( ScrW()-64-512, ScrH()-64-512 )
-		CamsNames:SetSize( 512, 64 )
-		
-		if !GAMEMODE.Vars.mute then
-			local MUTET = vgui.Create( "DImage" )
-			MUTET:SetParent(Monitor)
-			MUTET:SetImage( "fnafgm/mute" )
-			MUTET:SetSize( 128, 32 )
-			MUTET:SetPos( 64, 64 )
+		if !control then
 			
-			local MUTEbT = vgui.Create( "DButton" )
-			MUTEbT:SetParent(MUTET)
-			MUTEbT:SetSize( 121, 31 )
-			MUTEbT:SetPos( 0, 0 )
-			MUTEbT:SetText( "" )
-			MUTEbT.DoClick = function( button )
-				fnafgmMuteCall()
-				MUTET:Remove()
-				MUTEbT:Remove()
+			CloseT = vgui.Create( "DButton" )
+			CloseT:SetParent(GAMEMODE.Vars.Monitor)
+			CloseT:SetSize( 512, 80 )
+			CloseT:SetPos( ScrW()/2-256, ScrH()-80-50 )
+			CloseT:SetText( "" )
+			CloseT.DoClick = function( button )
+				if IsValid(FNaFView) then waitt = CurTime()+1 end
+				GAMEMODE.Vars.Monitor:Close()
+				LocalPlayer():EmitSound("fnafgm_camdown")
+				if IsValid(OpenT) then OpenT:Show() end
+				if IsValid(lightroom) then lightroom:Show() end
 			end
-			MUTEbT.Paint = function( self, w, h )
+			CloseT.OnCursorEntered = function()
+				if IsValid(FNaFView) then
+					if !waitt then waitt=0 end
+					if waitt<CurTime() then
+						waitt = CurTime()+0.5
+						GAMEMODE.Vars.Monitor:Close()
+						LocalPlayer():EmitSound("fnafgm_camdown")
+						if IsValid(OpenT) then OpenT:Show() end
+						if IsValid(lightroom) then lightroom:Show() end
+					end
+				end
+			end
+			CloseT.Paint = function( self, w, h )
+				
+				draw.RoundedBox( 0, 1, 1, w-2, h-2, Color( 255, 255, 255, 32 ) )
+				
+				surface.SetDrawColor( 255, 255, 255, 128 )
+				
+				draw.NoTexture()
+				
+				surface.DrawLine( w/2-64, h/2-16, w/2, h/2 )
+				surface.DrawLine( w/2, h/2, w/2+64, h/2-16 )
+				
+				surface.DrawLine( w/2-64, h/2-16+16, w/2, h/2+16 )
+				surface.DrawLine( w/2, h/2+16, w/2+64, h/2-16+16 )
+				
+				surface.DrawOutlinedRect( 0, 0, w, h )
 				
 			end
+			
+			if !GAMEMODE.Vars.mute then
+				local MUTET = vgui.Create( "DImage" )
+				MUTET:SetParent(GAMEMODE.Vars.Monitor)
+				MUTET:SetImage( "fnafgm/mute" )
+				MUTET:SetSize( 128, 32 )
+				MUTET:SetPos( 64, 64 )
+				
+				local MUTEbT = vgui.Create( "DButton" )
+				MUTEbT:SetParent(MUTET)
+				MUTEbT:SetSize( 121, 31 )
+				MUTEbT:SetPos( 0, 0 )
+				MUTEbT:SetText( "" )
+				MUTEbT.DoClick = function( button )
+					fnafgmMuteCall()
+					MUTET:Remove()
+					MUTEbT:Remove()
+				end
+				MUTEbT.Paint = function( self, w, h )
+					
+				end
+			end
+			
+			GAMEMODE.Vars.Monitor.Map:SetImage( "fnapgm/maps/fnap_scc_1" )
+			
+		else
+			GAMEMODE.Vars.Monitor.Map:SetImage( "fnapgm/maps/fnap_scc_1_sgvsa" )
 		end
 		
-		local map = vgui.Create( "DImage" )
-		map:SetParent(Monitor)
-		map:SetImage( "fnapgm/maps/fnap_scc_1" )
-		map:SetPos( ScrW()-64-512, ScrH()-64-512 )
-		map:SetSize( 512, 512 )
+		GAMEMODE.Vars.Monitor.Map2:SetImage( "fnapgm/maps/fnap_scc_2" )
 		
-		local map2 = vgui.Create( "DImage" )
-		map2:SetParent(Monitor)
-		map2:SetImage( "fnapgm/maps/fnap_scc_2" )
-		map2:SetPos( 64, ScrH()-64-512 )
-		map2:SetSize( 512, 512 )
-		
-		local Kitchen = vgui.Create( "DButton" )
-		Kitchen:SetParent(map)
-		Kitchen:SetSize( 78.5, 48.5 )
-		Kitchen:SetPos( 91, 224 )
-		Kitchen:SetText( "" )
-		Kitchen.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 1
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
+		if !control then
+			GAMEMODE.Vars.Monitor:CreateButton(1,GAMEMODE.Vars.Monitor.Map,91,224,78.5,48.5,2.5)
+		else
+			GAMEMODE.Vars.Monitor:CreateButton(1,GAMEMODE.Vars.Monitor.Map,116.5, 224,78.5,48.5,2.5)
 		end
-		Kitchen.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==1 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Stage = vgui.Create( "DButton" )
-		Stage:SetParent(map)
-		Stage:SetSize( 78.5, 48.5 )
-		Stage:SetPos( 206, 229.5 )
-		Stage:SetText( "" )
-		Stage.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 2
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Stage.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==2 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-
-		local Dining_Area = vgui.Create( "DButton" )
-		Dining_Area:SetParent(map)
-		Dining_Area:SetSize( 78.5, 48.5 )
-		Dining_Area:SetPos( 206, 334 )
-		Dining_Area:SetText( "" )
-		Dining_Area.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 3
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Dining_Area.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==3 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Entrance = vgui.Create( "DButton" )
-		Entrance:SetParent(map)
-		Entrance:SetSize( 78.5, 48.5 )
-		Entrance:SetPos( 312, 387 )
-		Entrance:SetText( "" )
-		Entrance.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 4
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Entrance.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==4 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-
-		local North_Hall_B = vgui.Create( "DButton" )
-		North_Hall_B:SetParent(map)
-		North_Hall_B:SetSize( 78.5, 48.5 )
-		North_Hall_B:SetPos( 354, 281.5 )
-		North_Hall_B:SetText( "" )
-		North_Hall_B.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 5
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		North_Hall_B.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==5 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Bathroom = vgui.Create( "DButton" )
-		Bathroom:SetParent(map)
-		Bathroom:SetSize( 78.5, 48.5 )
-		Bathroom:SetPos( 354, 151 )
-		Bathroom:SetText( "" )
-		Bathroom.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 6
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Bathroom.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==6 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local North_Hall_A = vgui.Create( "DButton" )
-		North_Hall_A:SetParent(map)
-		North_Hall_A:SetSize( 78.5, 48.5 )
-		North_Hall_A:SetPos( 20.5, 162.5 )
-		North_Hall_A:SetText( "" )
-		North_Hall_A.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 7
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		North_Hall_A.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==7 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Pinkie_Bedroom = vgui.Create( "DButton" )
-		Pinkie_Bedroom:SetParent(map)
-		Pinkie_Bedroom:SetSize( 78.5, 48.5 )
-		Pinkie_Bedroom:SetPos( 91, 92.5 )
-		Pinkie_Bedroom:SetText( "" )
-		Pinkie_Bedroom.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 8
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Pinkie_Bedroom.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==8 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Storage = vgui.Create( "DButton" )
-		Storage:SetParent(map)
-		Storage:SetSize( 78.5, 48.5 )
-		Storage:SetPos( 192.5, 92.5 )
-		Storage:SetText( "" )
-		Storage.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 9
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Storage.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==9 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Supply_Room = vgui.Create( "DButton" )
-		Supply_Room:SetParent(map)
-		Supply_Room:SetSize( 78.5, 48.5 )
-		Supply_Room:SetPos( 293, 92 )
-		Supply_Room:SetText( "" )
-		Supply_Room.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 10
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Supply_Room.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==10 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Trash = vgui.Create( "DButton" )
-		Trash:SetParent(map2)
-		Trash:SetSize( 78.5, 48.5 )
-		Trash:SetPos( 380, 325.5 )
-		Trash:SetText( "" )
-		Trash.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 11
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Trash.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==11 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Cave = vgui.Create( "DButton" )
-		Cave:SetParent(map2)
-		Cave:SetSize( 78.5, 48.5 )
-		Cave:SetPos( 315.5, 268.5 )
-		Cave:SetText( "" )
-		Cave.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 12
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Cave.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==12 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Storage = vgui.Create( "DButton" )
-		Storage:SetParent(map2)
-		Storage:SetSize( 78.5, 48.5 )
-		Storage:SetPos( 222, 140 )
-		Storage:SetText( "" )
-		Storage.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 13
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Storage.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==13 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Generator = vgui.Create( "DButton" )
-		Generator:SetParent(map2)
-		Generator:SetSize( 78.5, 48.5 )
-		Generator:SetPos( 57, 225.5 )
-		Generator:SetText( "" )
-		Generator.DoClick = function( button )
-			LocalPlayer():EmitSound("fnafgm_camselect")
-			GAMEMODE.Vars.lastcam = 14
-			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		end
-		Generator.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==14 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
+		GAMEMODE.Vars.Monitor:CreateButton(2,GAMEMODE.Vars.Monitor.Map,206,229.5,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(3,GAMEMODE.Vars.Monitor.Map,206,334,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(4,GAMEMODE.Vars.Monitor.Map,312,387,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(5,GAMEMODE.Vars.Monitor.Map,354,281.5,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(6,GAMEMODE.Vars.Monitor.Map,354,151,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(7,GAMEMODE.Vars.Monitor.Map,20.5,162.5,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(8,GAMEMODE.Vars.Monitor.Map,91,92.5,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(9,GAMEMODE.Vars.Monitor.Map,192.5,92.5,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(10,GAMEMODE.Vars.Monitor.Map,293,92,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(11,GAMEMODE.Vars.Monitor.Map2,380,325.5,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(12,GAMEMODE.Vars.Monitor.Map2,315.5,268.5,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(13,GAMEMODE.Vars.Monitor.Map2,222,140,78.5,48.5,2.5)
+		GAMEMODE.Vars.Monitor:CreateButton(14,GAMEMODE.Vars.Monitor.Map2,57,225.5,78.5,48.5,2.5)
+		if control then
+			GAMEMODE.Vars.Monitor:CreateButton(16,GAMEMODE.Vars.Monitor.Map,22,315,78.5,48.5,2.5)
+			GAMEMODE.Vars.Monitor:CreateButton(17,GAMEMODE.Vars.Monitor.Map,138,429,78.5,48.5,2.5)
+			GAMEMODE.Vars.Monitor:CreateButton(18,GAMEMODE.Vars.Monitor.Map,53,429,78.5,48.5,2.5)
+			GAMEMODE.Vars.Monitor:CreateButton(19,GAMEMODE.Vars.Monitor.Map,22,224,78.5,48.5,2.5)
+			GAMEMODE.Vars.Monitor:CreateButton(20,GAMEMODE.Vars.Monitor.Map,223,429,78.5,48.5,2.5)
 		end
 		
 		local Unknown = vgui.Create( "DButton" )
-		Unknown:SetParent(map2)
+		Unknown:SetParent(GAMEMODE.Vars.Monitor.Map2)
 		Unknown:SetSize( 4, 4 )
 		Unknown:SetPos( 237, 298 )
 		Unknown:SetText( "" )
@@ -335,67 +138,16 @@ function fnapgmSecurityTablet()
 			LocalPlayer():EmitSound("fnafgm_camselect")
 			GAMEMODE.Vars.lastcam = 15
 			fnafgmSetView( GAMEMODE.Vars.lastcam )
-			CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
+			GAMEMODE.Vars.Monitor.CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
 		end
 		Unknown.Paint = function( self, w, h )
 			
 		end
 		
-		
-		CloseT = vgui.Create( "DButton" )
-		CloseT:SetParent(Monitor)
-		CloseT:SetSize( 512, 80 )
-		CloseT:SetPos( ScrW()/2-256, ScrH()-80-50 )
-		CloseT:SetText( "" )
-		CloseT.DoClick = function( button )
-			if IsValid(FNaFView) then waitt = CurTime()+1 end
-			Monitor:Close()
-			LocalPlayer():EmitSound("fnafgm_camdown")
-			if IsValid(OpenT) then OpenT:Show() end
-			if IsValid(lightroom) then lightroom:Show() end
-		end
-		CloseT.OnCursorEntered = function()
-			if IsValid(FNaFView) then
-				if !waitt then waitt=0 end
-				if waitt<CurTime() then
-					waitt = CurTime()+0.5
-					Monitor:Close()
-					LocalPlayer():EmitSound("fnafgm_camdown")
-					if IsValid(OpenT) then OpenT:Show() end
-					if IsValid(lightroom) then lightroom:Show() end
-				end
-			end
-		end
-		CloseT.Paint = function( self, w, h )
-			
-			draw.RoundedBox( 0, 1, 1, w-2, h-2, Color( 255, 255, 255, 32 ) )
-			
-			surface.SetDrawColor( 255, 255, 255, 128 )
-			
-			draw.NoTexture()
-			
-			surface.DrawLine( w/2-64, h/2-16, w/2, h/2 )
-			surface.DrawLine( w/2, h/2, w/2+64, h/2-16 )
-			
-			surface.DrawLine( w/2-64, h/2-16+16, w/2, h/2+16 )
-			surface.DrawLine( w/2, h/2+16, w/2+64, h/2-16+16 )
-			
-			surface.DrawOutlinedRect( 0, 0, w, h )
-			
-		end
-		
 	else
 		
-		local CamsNames = vgui.Create( "DLabel" )
-		CamsNames:SetParent(Monitor)
-		CamsNames:SetText( "CAM"..GAMEMODE.Vars.lastcam )
-		CamsNames:SetTextColor( Color( 255, 255, 255, 255 ) )
-		CamsNames:SetFont("FNAFGMTIME")
-		CamsNames:SetPos( 70, 60 )
-		CamsNames:SetSize( 200, 64 )
-		
 		local CAM = vgui.Create( "DNumberWang" )
-		CAM:SetParent(Monitor)
+		CAM:SetParent(GAMEMODE.Vars.Monitor)
 		CAM:SetPos( ScrW()/2-16, ScrH()-80-50-80 )
 		CAM:SetMinMax(1,table.Count(ents.FindByClass( "fnafgm_camera" )))
 		CAM:SetSize( 34, 28 )
@@ -404,11 +156,11 @@ function fnapgmSecurityTablet()
 			LocalPlayer():EmitSound("fnafgm_camselect")
 			fnafgmSetView( math.Round( val:GetValue() ) )
 			GAMEMODE.Vars.lastcam = val:GetValue()
-			CamsNames:SetText( "CAM"..val:GetValue() )
+			GAMEMODE.Vars.Monitor.CamsNames:SetText( "CAM"..val:GetValue() )
 		end
 		
 		CloseT = vgui.Create( "DButton" )
-		CloseT:SetParent(Monitor)
+		CloseT:SetParent(GAMEMODE.Vars.Monitor)
 		CloseT:SetSize( 512, 80 )
 		CloseT:SetPos( ScrW()/2-256, ScrH()-80-50 )
 		CloseT:SetText( "" )
@@ -416,7 +168,7 @@ function fnapgmSecurityTablet()
 		CloseT:SetFont("FNAFGMID")
 		CloseT.DoClick = function( button )
 			if IsValid(FNaFView) then waitt = CurTime()+1 end
-			Monitor:Close()
+			GAMEMODE.Vars.Monitor:Close()
 			LocalPlayer():EmitSound("fnafgm_camdown")
 			if IsValid(OpenT) then OpenT:Show() end
 		end
@@ -425,7 +177,7 @@ function fnapgmSecurityTablet()
 				if !waitt then waitt=0 end
 				if waitt<CurTime() then
 					waitt = CurTime()+0.5
-					Monitor:Close()
+					GAMEMODE.Vars.Monitor:Close()
 					LocalPlayer():EmitSound("fnafgm_camdown")
 					if IsValid(OpenT) then OpenT:Show() end
 				end
@@ -455,619 +207,6 @@ function fnapgmSecurityTablet()
 	
 end
 hook.Add( "fnafgmSecurityTabletCustom", "fnapgmSecurityTablet", fnapgmSecurityTablet)
-
-function fnapgmController()
-	
-	if game.GetMap()=="fnap_scc" then
-		
-		local CamsNames = vgui.Create( "DLabel" )
-		CamsNames:SetParent(AnimatronicsControllerGUI)
-		CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-		CamsNames:SetTextColor( Color( 255, 255, 255, 255 ) )
-		CamsNames:SetFont("FNAFGMTIME")
-		CamsNames:SetPos( ScrW()-64-512, ScrH()-64-512 )
-		CamsNames:SetSize( 512, 64 )
-		
-		if !GAMEMODE.Vars.mute then
-			local MUTET = vgui.Create( "DImage" )
-			MUTET:SetParent(AnimatronicsControllerGUI)
-			MUTET:SetImage( "fnafgm/mute" )
-			MUTET:SetSize( 128, 32 )
-			MUTET:SetPos( 64, 64 )
-			
-			local MUTEbT = vgui.Create( "DButton" )
-			MUTEbT:SetParent(MUTET)
-			MUTEbT:SetSize( 121, 31 )
-			MUTEbT:SetPos( 0, 0 )
-			MUTEbT:SetText( "" )
-			MUTEbT.DoClick = function( button )
-				fnafgmMuteCall()
-				MUTET:Remove()
-				MUTEbT:Remove()
-			end
-			MUTEbT.Paint = function( self, w, h )
-				
-			end
-		end
-		
-		local map = vgui.Create( "DImage" )
-		map:SetParent(AnimatronicsControllerGUI)
-		map:SetImage( "fnapgm/maps/fnap_scc_1_sgvsa" )
-		map:SetPos( ScrW()-64-512, ScrH()-64-512 )
-		map:SetSize( 512, 512 )
-		
-		local map2 = vgui.Create( "DImage" )
-		map2:SetParent(AnimatronicsControllerGUI)
-		map2:SetImage( "fnapgm/maps/fnap_scc_2" )
-		map2:SetPos( 64, ScrH()-64-512 )
-		map2:SetSize( 512, 512 )
-		
-		AnimatronicsControllerGUI.Pinkie = vgui.Create( "DImage" )
-		AnimatronicsControllerGUI.Pinkie:SetParent(AnimatronicsControllerGUI)
-		AnimatronicsControllerGUI.Pinkie:SetImage( "fnapgm/animatronicsico/11.png" )
-		AnimatronicsControllerGUI.Pinkie:SetPos( 42, 64 )
-		AnimatronicsControllerGUI.Pinkie:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.Pinkie:SetImageColor( Color( 85, 85, 85, 255 ) )
-		AnimatronicsControllerGUI.Pinkie.Paint = function( self, w, h )
-			self:PaintAt( 0, 0, self:GetWide(), self:GetTall() )
-			surface.SetDrawColor( 255, 255, 255, 255 )
-			surface.DrawOutlinedRect( 0, 0, w, h )
-		end
-		
-		AnimatronicsControllerGUI.PinkieTxt = vgui.Create( "DLabel" )
-		AnimatronicsControllerGUI.PinkieTxt:SetParent(AnimatronicsControllerGUI.Pinkie)
-		AnimatronicsControllerGUI.PinkieTxt:SetText( "" )
-		AnimatronicsControllerGUI.PinkieTxt:SetTextColor( Color( 255, 255, 255, 255 ) )
-		AnimatronicsControllerGUI.PinkieTxt:SetFont("FNAFGMTIME")
-		AnimatronicsControllerGUI.PinkieTxt:SetPos( 0, 0 )
-		AnimatronicsControllerGUI.PinkieTxt:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.PinkieTxt:SetContentAlignment( 2 )
-		
-		AnimatronicsControllerGUI.PinkieBtn = vgui.Create( "DButton" )
-		AnimatronicsControllerGUI.PinkieBtn:SetParent(AnimatronicsControllerGUI.Pinkie)
-		AnimatronicsControllerGUI.PinkieBtn:SetPos( 0, 0 )
-		AnimatronicsControllerGUI.PinkieBtn:SetSize( 128, 32 )
-		AnimatronicsControllerGUI.PinkieBtn:SetText("TAUNT")
-		AnimatronicsControllerGUI.PinkieBtn:SetFont("FNAFGMNIGHT")
-		AnimatronicsControllerGUI.PinkieBtn:SetTextColor( Color( 255, 255, 255, 255 ) )
-		AnimatronicsControllerGUI.PinkieBtn.DoClick = function( button )
-			GAMEMODE:AnimatronicTaunt(11)
-		end
-		AnimatronicsControllerGUI.PinkieBtn.Paint = function( self, w, h )
-			draw.RoundedBox( 0, 0, 0, w, h, Color( 0, 0, 0, 220 ) )
-			surface.SetDrawColor( 255, 255, 255, 255 )
-			surface.DrawOutlinedRect( 0, 0, w, h )
-		end
-		
-		AnimatronicsControllerGUI.Fluttershy = vgui.Create( "DImage" )
-		AnimatronicsControllerGUI.Fluttershy:SetParent(AnimatronicsControllerGUI)
-		AnimatronicsControllerGUI.Fluttershy:SetImage( "fnapgm/animatronicsico/12.png" )
-		AnimatronicsControllerGUI.Fluttershy:SetPos( 170, 64 )
-		AnimatronicsControllerGUI.Fluttershy:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.Fluttershy:SetImageColor( Color( 85, 85, 85, 255 ) )
-		AnimatronicsControllerGUI.Fluttershy.Paint = function( self, w, h )
-			self:PaintAt( 0, 0, self:GetWide(), self:GetTall() )
-			surface.SetDrawColor( 255, 255, 255, 255 )
-			surface.DrawOutlinedRect( 0, 0, w, h )
-		end
-		
-		AnimatronicsControllerGUI.FluttershyTxt = vgui.Create( "DLabel" )
-		AnimatronicsControllerGUI.FluttershyTxt:SetParent(AnimatronicsControllerGUI.Fluttershy)
-		AnimatronicsControllerGUI.FluttershyTxt:SetText( "" )
-		AnimatronicsControllerGUI.FluttershyTxt:SetTextColor( Color( 255, 255, 255, 255 ) )
-		AnimatronicsControllerGUI.FluttershyTxt:SetFont("FNAFGMTIME")
-		AnimatronicsControllerGUI.FluttershyTxt:SetPos( 0, 0 )
-		AnimatronicsControllerGUI.FluttershyTxt:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.FluttershyTxt:SetContentAlignment( 2 )
-		
-		AnimatronicsControllerGUI.Twilight = vgui.Create( "DImage" )
-		AnimatronicsControllerGUI.Twilight:SetParent(AnimatronicsControllerGUI)
-		AnimatronicsControllerGUI.Twilight:SetImage( "fnapgm/animatronicsico/13.png" )
-		AnimatronicsControllerGUI.Twilight:SetPos( 298, 64 )
-		AnimatronicsControllerGUI.Twilight:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.Twilight:SetImageColor( Color( 85, 85, 85, 255 ) )
-		AnimatronicsControllerGUI.Twilight.Paint = function( self, w, h )
-			self:PaintAt( 0, 0, self:GetWide(), self:GetTall() )
-			surface.SetDrawColor( 255, 255, 255, 255 )
-			surface.DrawOutlinedRect( 0, 0, w, h )
-		end
-		
-		AnimatronicsControllerGUI.TwilightTxt = vgui.Create( "DLabel" )
-		AnimatronicsControllerGUI.TwilightTxt:SetParent(AnimatronicsControllerGUI.Twilight)
-		AnimatronicsControllerGUI.TwilightTxt:SetText( "" )
-		AnimatronicsControllerGUI.TwilightTxt:SetTextColor( Color( 255, 255, 255, 255 ) )
-		AnimatronicsControllerGUI.TwilightTxt:SetFont("FNAFGMTIME")
-		AnimatronicsControllerGUI.TwilightTxt:SetPos( 0, 0 )
-		AnimatronicsControllerGUI.TwilightTxt:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.TwilightTxt:SetContentAlignment( 2 )
-		
-		AnimatronicsControllerGUI.Rarity = vgui.Create( "DImage" )
-		AnimatronicsControllerGUI.Rarity:SetParent(AnimatronicsControllerGUI)
-		AnimatronicsControllerGUI.Rarity:SetImage( "fnapgm/animatronicsico/14.png" )
-		AnimatronicsControllerGUI.Rarity:SetPos( 426, 64 )
-		AnimatronicsControllerGUI.Rarity:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.Rarity:SetImageColor( Color( 85, 85, 85, 255 ) )
-		AnimatronicsControllerGUI.Rarity.Paint = function( self, w, h )
-			self:PaintAt( 0, 0, self:GetWide(), self:GetTall() )
-			surface.SetDrawColor( 255, 255, 255, 255 )
-			surface.DrawOutlinedRect( 0, 0, w, h )
-		end
-		
-		AnimatronicsControllerGUI.RarityTxt = vgui.Create( "DLabel" )
-		AnimatronicsControllerGUI.RarityTxt:SetParent(AnimatronicsControllerGUI.Rarity)
-		AnimatronicsControllerGUI.RarityTxt:SetText( "" )
-		AnimatronicsControllerGUI.RarityTxt:SetTextColor( Color( 255, 255, 255, 255 ) )
-		AnimatronicsControllerGUI.RarityTxt:SetFont("FNAFGMTIME")
-		AnimatronicsControllerGUI.RarityTxt:SetPos( 0, 0 )
-		AnimatronicsControllerGUI.RarityTxt:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.RarityTxt:SetContentAlignment( 2 )
-		
-		AnimatronicsControllerGUI.Applejack = vgui.Create( "DImage" )
-		AnimatronicsControllerGUI.Applejack:SetParent(AnimatronicsControllerGUI)
-		AnimatronicsControllerGUI.Applejack:SetImage( "fnapgm/animatronicsico/15.png" )
-		AnimatronicsControllerGUI.Applejack:SetPos( 554, 64 )
-		AnimatronicsControllerGUI.Applejack:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.Applejack:SetImageColor( Color( 85, 85, 85, 255 ) )
-		AnimatronicsControllerGUI.Applejack.Paint = function( self, w, h )
-			self:PaintAt( 0, 0, self:GetWide(), self:GetTall() )
-			surface.SetDrawColor( 255, 255, 255, 255 )
-			surface.DrawOutlinedRect( 0, 0, w, h )
-		end
-		
-		AnimatronicsControllerGUI.ApplejackTxt = vgui.Create( "DLabel" )
-		AnimatronicsControllerGUI.ApplejackTxt:SetParent(AnimatronicsControllerGUI.Applejack)
-		AnimatronicsControllerGUI.ApplejackTxt:SetText( "" )
-		AnimatronicsControllerGUI.ApplejackTxt:SetTextColor( Color( 255, 255, 255, 255 ) )
-		AnimatronicsControllerGUI.ApplejackTxt:SetFont("FNAFGMTIME")
-		AnimatronicsControllerGUI.ApplejackTxt:SetPos( 0, 0 )
-		AnimatronicsControllerGUI.ApplejackTxt:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.ApplejackTxt:SetContentAlignment( 2 )
-		
-		AnimatronicsControllerGUI.RainbowDash = vgui.Create( "DImage" )
-		AnimatronicsControllerGUI.RainbowDash:SetParent(AnimatronicsControllerGUI)
-		AnimatronicsControllerGUI.RainbowDash:SetImage( "fnapgm/animatronicsico/16.png" )
-		AnimatronicsControllerGUI.RainbowDash:SetPos( 682, 64 )
-		AnimatronicsControllerGUI.RainbowDash:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.RainbowDash:SetImageColor( Color( 85, 85, 85, 255 ) )
-		AnimatronicsControllerGUI.RainbowDash.Paint = function( self, w, h )
-			self:PaintAt( 0, 0, self:GetWide(), self:GetTall() )
-			surface.SetDrawColor( 255, 255, 255, 255 )
-			surface.DrawOutlinedRect( 0, 0, w, h )
-		end
-		
-		AnimatronicsControllerGUI.RainbowDashTxt = vgui.Create( "DLabel" )
-		AnimatronicsControllerGUI.RainbowDashTxt:SetParent(AnimatronicsControllerGUI.RainbowDash)
-		AnimatronicsControllerGUI.RainbowDashTxt:SetText( "" )
-		AnimatronicsControllerGUI.RainbowDashTxt:SetTextColor( Color( 255, 255, 255, 255 ) )
-		AnimatronicsControllerGUI.RainbowDashTxt:SetFont("FNAFGMTIME")
-		AnimatronicsControllerGUI.RainbowDashTxt:SetPos( 0, 0 )
-		AnimatronicsControllerGUI.RainbowDashTxt:SetSize( 128, 128 )
-		AnimatronicsControllerGUI.RainbowDashTxt:SetContentAlignment( 2 )
-		
-		local Kitchen = vgui.Create( "DButton" )
-		Kitchen:SetParent(map)
-		Kitchen:SetSize( 78.5, 48.5 )
-		Kitchen:SetPos( 116.5, 224 )
-		Kitchen:SetText( "" )
-		Kitchen.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 1
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(1)
-			end
-		end
-		Kitchen.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==1 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local KitchenD = vgui.Create( "DButton" )
-		KitchenD:SetParent(map)
-		KitchenD:SetSize( 78.5, 48.5 )
-		KitchenD:SetPos( 22, 224 )
-		KitchenD:SetText( "" )
-		KitchenD.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 19
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(19)
-			end
-		end
-		KitchenD.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==19 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Office = vgui.Create( "DButton" )
-		Office:SetParent(map)
-		Office:SetSize( 78.5, 48.5 )
-		Office:SetPos( 22, 315 )
-		Office:SetText( "" )
-		Office.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 16
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(16)
-			end
-		end
-		Office.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==16 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Stage = vgui.Create( "DButton" )
-		Stage:SetParent(map)
-		Stage:SetSize( 78.5, 48.5 )
-		Stage:SetPos( 206, 229.5 )
-		Stage:SetText( "" )
-		Stage.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 2
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(2)
-			end
-		end
-		Stage.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==2 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-
-		local Staff = vgui.Create( "DButton" )
-		Staff:SetParent(map)
-		Staff:SetSize( 78.5, 48.5 )
-		Staff:SetPos( 138, 429 )
-		Staff:SetText( "" )
-		Staff.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 17
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(17)
-			end
-		end
-		Staff.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==17 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-
-		local StaffD = vgui.Create( "DButton" )
-		StaffD:SetParent(map)
-		StaffD:SetSize( 78.5, 48.5 )
-		StaffD:SetPos( 53, 429 )
-		StaffD:SetText( "" )
-		StaffD.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 18
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(18)
-			end
-		end
-		StaffD.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==18 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-
-		local Dining_Area = vgui.Create( "DButton" )
-		Dining_Area:SetParent(map)
-		Dining_Area:SetSize( 78.5, 48.5 )
-		Dining_Area:SetPos( 206, 334 )
-		Dining_Area:SetText( "" )
-		Dining_Area.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 3
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(3)
-			end
-		end
-		Dining_Area.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==3 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Entrance = vgui.Create( "DButton" )
-		Entrance:SetParent(map)
-		Entrance:SetSize( 78.5, 48.5 )
-		Entrance:SetPos( 312, 387 )
-		Entrance:SetText( "" )
-		Entrance.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 4
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(4)
-			end
-		end
-		Entrance.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==4 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local EntranceD = vgui.Create( "DButton" )
-		EntranceD:SetParent(map)
-		EntranceD:SetSize( 78.5, 48.5 )
-		EntranceD:SetPos( 223, 429 )
-		EntranceD:SetText( "" )
-		EntranceD.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 20
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(20)
-			end
-		end
-		EntranceD.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==20 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-
-		local North_Hall_B = vgui.Create( "DButton" )
-		North_Hall_B:SetParent(map)
-		North_Hall_B:SetSize( 78.5, 48.5 )
-		North_Hall_B:SetPos( 354, 281.5 )
-		North_Hall_B:SetText( "" )
-		North_Hall_B.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 5
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(5)
-			end
-		end
-		North_Hall_B.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==5 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Bathroom = vgui.Create( "DButton" )
-		Bathroom:SetParent(map)
-		Bathroom:SetSize( 78.5, 48.5 )
-		Bathroom:SetPos( 354, 151 )
-		Bathroom:SetText( "" )
-		Bathroom.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 6
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(6)
-			end
-		end
-		Bathroom.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==6 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local North_Hall_A = vgui.Create( "DButton" )
-		North_Hall_A:SetParent(map)
-		North_Hall_A:SetSize( 78.5, 48.5 )
-		North_Hall_A:SetPos( 20.5, 162.5 )
-		North_Hall_A:SetText( "" )
-		North_Hall_A.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 7
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(7)
-			end
-		end
-		North_Hall_A.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==7 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Pinkie_Bedroom = vgui.Create( "DButton" )
-		Pinkie_Bedroom:SetParent(map)
-		Pinkie_Bedroom:SetSize( 78.5, 48.5 )
-		Pinkie_Bedroom:SetPos( 91, 92.5 )
-		Pinkie_Bedroom:SetText( "" )
-		Pinkie_Bedroom.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 8
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(8)
-			end
-		end
-		Pinkie_Bedroom.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==8 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Storage = vgui.Create( "DButton" )
-		Storage:SetParent(map)
-		Storage:SetSize( 78.5, 48.5 )
-		Storage:SetPos( 192.5, 92.5 )
-		Storage:SetText( "" )
-		Storage.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 9
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(9)
-			end
-		end
-		Storage.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==9 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Supply_Room = vgui.Create( "DButton" )
-		Supply_Room:SetParent(map)
-		Supply_Room:SetSize( 78.5, 48.5 )
-		Supply_Room:SetPos( 293, 92 )
-		Supply_Room:SetText( "" )
-		Supply_Room.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 10
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(10)
-			end
-		end
-		Supply_Room.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==10 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Trash = vgui.Create( "DButton" )
-		Trash:SetParent(map2)
-		Trash:SetSize( 78.5, 48.5 )
-		Trash:SetPos( 380, 325.5 )
-		Trash:SetText( "" )
-		Trash.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 11
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(11)
-			end
-		end
-		Trash.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==11 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Cave = vgui.Create( "DButton" )
-		Cave:SetParent(map2)
-		Cave:SetSize( 78.5, 48.5 )
-		Cave:SetPos( 315.5, 268.5 )
-		Cave:SetText( "" )
-		Cave.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 12
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(12)
-			end
-		end
-		Cave.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==12 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Storage = vgui.Create( "DButton" )
-		Storage:SetParent(map2)
-		Storage:SetSize( 78.5, 48.5 )
-		Storage:SetPos( 222, 140 )
-		Storage:SetText( "" )
-		Storage.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 13
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(13)
-			end
-		end
-		Storage.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==13 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Generator = vgui.Create( "DButton" )
-		Generator:SetParent(map2)
-		Generator:SetSize( 78.5, 48.5 )
-		Generator:SetPos( 57, 225.5 )
-		Generator:SetText( "" )
-		Generator.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 14
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(14)
-			end
-		end
-		Generator.Paint = function( self, w, h )
-			if GAMEMODE.Vars.lastcam==14 then
-				draw.RoundedBox( 0, 2.5, 2.5, w-5, h-5, Color( 136, 168, 0, 128 ) )
-			end
-		end
-		
-		local Unknown = vgui.Create( "DButton" )
-		Unknown:SetParent(map2)
-		Unknown:SetSize( 4, 4 )
-		Unknown:SetPos( 237, 298 )
-		Unknown:SetText( "" )
-		Unknown.OnMousePressed = function( button, key )
-			if key==MOUSE_LEFT then
-				LocalPlayer():EmitSound("fnafgm_camselect")
-				GAMEMODE.Vars.lastcam = 15
-				fnafgmSetView(GAMEMODE.Vars.lastcam)
-				CamsNames:SetText( GAMEMODE.CamsNames["fnap_scc_"..GAMEMODE.Vars.lastcam] or "" )
-			elseif key==MOUSE_RIGHT then
-				AnimatronicsControllerGUI:MoveMenu(15)
-			end
-		end
-		Unknown.Paint = function( self, w, h )
-			
-		end
-		
-	end
-	
-	return true
-	
-end
-hook.Add( "fnafgmControllerCustom", "fnapgmController", fnapgmController)
 
 function fnapgmFNaFViewHUD()
 	
@@ -1102,7 +241,7 @@ function fnapgmFNaFViewHUD()
 		OpenT:SetText( "" )
 		OpenT.DoClick = function( button )
 			waitt = CurTime()+1
-			fnafgmSecurityTablet()
+			GAMEMODE:Monitor()
 			OpenT:Hide()
 			lightroom:Hide()
 		end
@@ -1110,7 +249,7 @@ function fnapgmFNaFViewHUD()
 			if !waitt then waitt=0 end
 			if waitt<CurTime() then
 				waitt = CurTime()+0.5
-				fnafgmSecurityTablet()
+				GAMEMODE:Monitor()
 				OpenT:Hide()
 				lightroom:Hide()
 			end
@@ -1142,7 +281,7 @@ function fnapgmFNaFViewHUD()
 		OpenT:SetText( "" )
 		OpenT.DoClick = function( button )
 			waitt = CurTime()+1
-			fnafgmSecurityTablet() 
+			GAMEMODE:Monitor()
 			LocalPlayer():EmitSound("fnafgm_campop")
 			OpenT:Hide()
 			--SafeE:Hide()
@@ -1151,7 +290,7 @@ function fnapgmFNaFViewHUD()
 			if !waitt then waitt=0 end
 			if waitt<CurTime() then
 				waitt = CurTime()+0.5
-				fnafgmSecurityTablet() 
+				GAMEMODE:Monitor()
 				LocalPlayer():EmitSound("fnafgm_campop")
 				OpenT:Hide()
 				--SafeE:Hide()

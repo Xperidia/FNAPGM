@@ -8,7 +8,7 @@ GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
 GM.Website 	= "http://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.43
+GM.Version 	= 1.44
 GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
@@ -35,10 +35,10 @@ hook.Add( "Initialize", "fnapgmInit", function()
 	
 	table.Empty(GAMEMODE.Models_dead)
 	
-	GAMEMODE.Strings.en.fnap_scc = "Turn off the main power to start the night"
-	GAMEMODE.Strings.fr.fnap_scc = "Coupez le courant pour démarrer la nuit"
-	GAMEMODE.Strings.ru.fnap_scc = "Выключите главное питание, чтобы начать ночь" --Translation by http://steamcommunity.com/profiles/76561198135819236
-	GAMEMODE.Strings.uk.fnap_scc = "Вимкніть головне живлення, щоб почати ніч" --Translation by http://steamcommunity.com/profiles/76561198135819236
+	-- GAMEMODE.Strings.en.fnap_scc = "Turn off the main power to start the night" --This is not used anymore!
+	-- GAMEMODE.Strings.fr.fnap_scc = "Coupez le courant pour démarrer la nuit"
+	-- GAMEMODE.Strings.ru.fnap_scc = "Выключите главное питание, чтобы начать ночь" --Translation by http://steamcommunity.com/profiles/76561198135819236
+	-- GAMEMODE.Strings.uk.fnap_scc = "Вимкніть головне живлення, щоб почати ніч" --Translation by http://steamcommunity.com/profiles/76561198135819236
 	
 	sound.Add( {
 		name = "fnapgm_applejackscream",
@@ -495,70 +495,6 @@ function GM:CheckDerivCreator(pl)
 	return false
 end
 
-function fnapgmAnimatronicsCD()
-	
-	if IsValid(AnimatronicsControllerGUI.Pinkie) and IsValid(AnimatronicsControllerGUI.PinkieTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][3]>0 then
-		local val = GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][3]
-		AnimatronicsControllerGUI.PinkieTxt:SetText( val.."s" )
-		AnimatronicsControllerGUI.Pinkie:SetImageColor( Color( 85, 85, 85, 255 ) )
-	elseif IsValid(AnimatronicsControllerGUI.Pinkie) and IsValid(AnimatronicsControllerGUI.PinkieTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][3]==0 then
-		AnimatronicsControllerGUI.PinkieTxt:SetText( "" )
-		AnimatronicsControllerGUI.Pinkie:SetImageColor( Color( 255, 255, 255, 255 ) )
-	end
-	
-	if IsValid(AnimatronicsControllerGUI.Fluttershy) and IsValid(AnimatronicsControllerGUI.FluttershyTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Fluttershy] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Fluttershy][3]>0 then
-		local val = GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Fluttershy][3]
-		AnimatronicsControllerGUI.FluttershyTxt:SetText( val.."s" )
-		AnimatronicsControllerGUI.Fluttershy:SetImageColor( Color( 85, 85, 85, 255 ) )
-	elseif IsValid(AnimatronicsControllerGUI.Fluttershy) and IsValid(AnimatronicsControllerGUI.FluttershyTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Fluttershy] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Fluttershy][3]==0 then
-		AnimatronicsControllerGUI.FluttershyTxt:SetText( "" )
-		AnimatronicsControllerGUI.Fluttershy:SetImageColor( Color( 255, 255, 255, 255 ) )
-	end
-	
-	if IsValid(AnimatronicsControllerGUI.Twilight) and IsValid(AnimatronicsControllerGUI.TwilightTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Twilight] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Twilight][3]>0 then
-		local val = GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Twilight][3]
-		AnimatronicsControllerGUI.TwilightTxt:SetText( val.."s" )
-		AnimatronicsControllerGUI.Twilight:SetImageColor( Color( 85, 85, 85, 255 ) )
-	elseif IsValid(AnimatronicsControllerGUI.Twilight) and IsValid(AnimatronicsControllerGUI.TwilightTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Twilight] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Twilight][3]==0 then
-		AnimatronicsControllerGUI.TwilightTxt:SetText( "" )
-		AnimatronicsControllerGUI.Twilight:SetImageColor( Color( 255, 255, 255, 255 ) )
-	end
-	
-	if IsValid(AnimatronicsControllerGUI.Rarity) and IsValid(AnimatronicsControllerGUI.RarityTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Rarity] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Rarity][3]>0 then
-		local val = GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Rarity][3]
-		AnimatronicsControllerGUI.RarityTxt:SetText( val.."s" )
-		AnimatronicsControllerGUI.Rarity:SetImageColor( Color( 85, 85, 85, 255 ) )
-	elseif IsValid(AnimatronicsControllerGUI.Rarity) and IsValid(AnimatronicsControllerGUI.RarityTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Rarity] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Rarity][3]==0 then
-		AnimatronicsControllerGUI.RarityTxt:SetText( "" )
-		AnimatronicsControllerGUI.Rarity:SetImageColor( Color( 255, 255, 255, 255 ) )
-	end
-	
-	if IsValid(AnimatronicsControllerGUI.Applejack) and IsValid(AnimatronicsControllerGUI.ApplejackTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Applejack] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Applejack][3]>0 then
-		local val = GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Applejack][3]
-		AnimatronicsControllerGUI.ApplejackTxt:SetText( val.."s" )
-		AnimatronicsControllerGUI.Applejack:SetImageColor( Color( 85, 85, 85, 255 ) )
-	elseif IsValid(AnimatronicsControllerGUI.Applejack) and IsValid(AnimatronicsControllerGUI.ApplejackTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Applejack] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Applejack][3]==0 then
-		AnimatronicsControllerGUI.ApplejackTxt:SetText( "" )
-		AnimatronicsControllerGUI.Applejack:SetImageColor( Color( 255, 255, 255, 255 ) )
-	end
-	
-	if IsValid(AnimatronicsControllerGUI.RainbowDash) and IsValid(AnimatronicsControllerGUI.RainbowDashTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.RainbowDash] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.RainbowDash][3]>0 then
-		local val = GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.RainbowDash][3]
-		AnimatronicsControllerGUI.RainbowDashTxt:SetText( val.."s" )
-		AnimatronicsControllerGUI.RainbowDash:SetImageColor( Color( 85, 85, 85, 255 ) )
-	elseif IsValid(AnimatronicsControllerGUI.RainbowDash) and IsValid(AnimatronicsControllerGUI.RainbowDashTxt) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.RainbowDash] and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.RainbowDash][3]==0 then
-		AnimatronicsControllerGUI.RainbowDashTxt:SetText( "" )
-		AnimatronicsControllerGUI.RainbowDash:SetImageColor( Color( 255, 255, 255, 255 ) )
-	end
-	
-	if IsValid(AnimatronicsControllerGUI.PinkieBtn) and GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][4]>CurTime() then
-		AnimatronicsControllerGUI.PinkieBtn:SetText(math.Truncate(GAMEMODE.Vars.Animatronics[GAMEMODE.Animatronic.Pinkie][4]-CurTime(),0).."s")
-	elseif IsValid(AnimatronicsControllerGUI.PinkieBtn) then
-		AnimatronicsControllerGUI.PinkieBtn:SetText("TAUNT")
-	end
-	
-end
-hook.Add( "fnafgmCustomAnimatronicsCD", "fnapgmAnimatronicsCD", fnapgmAnimatronicsCD)
 
 function fnapgmAnimatronicMove(self,me,apos)
 	
