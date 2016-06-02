@@ -31,10 +31,13 @@ function fnapgmSecurityTablet(control)
 		
 		if !control then
 			
+			local closebtnsizew = (512 * ( ScrH() / 480 ))/2
+			local closebtnsizeh = (80 * ( ScrH() / 480 ))/2
+			
 			CloseT = vgui.Create( "DButton" )
 			CloseT:SetParent(GAMEMODE.Vars.Monitor)
-			CloseT:SetSize( 512, 80 )
-			CloseT:SetPos( ScrW()/2-256, ScrH()-80-50 )
+			CloseT:SetSize( closebtnsizew, closebtnsizeh )
+			CloseT:SetPos( ScrW()/2-closebtnsizew/2, ScrH()-closebtnsizeh-50 )
 			CloseT:SetText( "" )
 			CloseT.DoClick = function( button )
 				if IsValid(FNaFView) then waitt = CurTime()+1 end
@@ -159,10 +162,13 @@ function fnapgmSecurityTablet(control)
 			GAMEMODE.Vars.Monitor.CamsNames:SetText( "CAM"..val:GetValue() )
 		end
 		
+		local closebtnsizew = (512 * ( ScrH() / 480 ))/2
+		local closebtnsizeh = (80 * ( ScrH() / 480 ))/2
+		
 		CloseT = vgui.Create( "DButton" )
 		CloseT:SetParent(GAMEMODE.Vars.Monitor)
-		CloseT:SetSize( 512, 80 )
-		CloseT:SetPos( ScrW()/2-256, ScrH()-80-50 )
+		CloseT:SetSize( closebtnsizew, closebtnsizeh )
+		CloseT:SetPos( ScrW()/2-closebtnsizew/2, ScrH()-closebtnsizeh-50 )
 		CloseT:SetText( "" )
 		CloseT:SetTextColor( Color( 255, 255, 255, 255 ) )
 		CloseT:SetFont("FNAFGMID")
@@ -234,10 +240,13 @@ function fnapgmFNaFViewHUD()
 			
 		end
 		
+		local closebtnsizew = (512 * ( ScrH() / 480 ))/2
+		local closebtnsizeh = (80 * ( ScrH() / 480 ))/2
+		
 		OpenT = vgui.Create( "DButton" )
 		OpenT:SetParent(FNaFView)
-		OpenT:SetSize( 512, 80 )
-		OpenT:SetPos( ScrW()/2-256, ScrH()-80-50 )
+		OpenT:SetSize( closebtnsizew, closebtnsizeh )
+		OpenT:SetPos( ScrW()/2-closebtnsizew/2, ScrH()-closebtnsizeh-50 )
 		OpenT:SetText( "" )
 		OpenT.DoClick = function( button )
 			waitt = CurTime()+1
