@@ -15,30 +15,17 @@ if game.GetMap()=="fnap_cb" then
 	GM.FT = 2
 end
 
-for _, gamemodec in pairs(engine.GetGamemodes()) do
-	
-	if gamemodec.name=="fnafgm" then
-		fnafgmishere=true
-	end
-	
-end
-
-if !fnafgmishere then
-	if SERVER then
-		PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!")
-		hook.Add( "PlayerSpawn", "fnafgmnotdetected", function() PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!") end )
-		Error( "FNAFGM is not detected!\n" )
-	end
-end
-
 hook.Add( "Initialize", "fnapgmInit", function()
 	
 	table.Empty(GAMEMODE.Models_dead)
 	
-	-- GAMEMODE.Strings.en.fnap_scc = "Turn off the main power to start the night" --This is not used anymore!
-	-- GAMEMODE.Strings.fr.fnap_scc = "Coupez le courant pour démarrer la nuit"
-	-- GAMEMODE.Strings.ru.fnap_scc = "Выключите главное питание, чтобы начать ночь" --Translation by http://steamcommunity.com/profiles/76561198135819236
-	-- GAMEMODE.Strings.uk.fnap_scc = "Вимкніть головне живлення, щоб почати ніч" --Translation by http://steamcommunity.com/profiles/76561198135819236
+	if !GAMEMODE.IsFNAFGMDerived then
+		if SERVER then
+			PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!")
+			hook.Add( "PlayerSpawn", "fnafgmnotdetected", function() PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!") end )
+			Error( "FNAFGM is not detected!\n" )
+		end
+	end
 	
 	sound.Add( {
 		name = "fnapgm_applejackscream",
