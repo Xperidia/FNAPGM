@@ -6,10 +6,10 @@ GM.Name 	= "Five Nights at Pinkie's"
 GM.ShortName = "FNAPGM"
 GM.Author 	= "Xperidia"
 GM.Email 	= "contact@Xperidia.com"
-GM.Website 	= "http://go.Xperidia.com/FNAPGM"
+GM.Website 	= "https://go.Xperidia.com/FNAPGM"
 
-GM.Version 	= 1.44
-GM.CustomVersionChecker = "http://xperidia.com/fnapgmversion.txt"
+GM.Version 	= 1.45
+GM.CustomVersionChecker = "https://xperidia.com/fnapgmversion.txt"
 
 if game.GetMap()=="fnap_cb" then
 	GM.FT = 2
@@ -139,7 +139,7 @@ GM.MapList = {
 }
 
 GM.MapListLinks = {
-	fnap_scc = "http://go.Xperidia.com/FNAP_SCC"
+	fnap_scc = "https://go.Xperidia.com/FNAP_SCC"
 	--fnap_cb = ""
 }
 
