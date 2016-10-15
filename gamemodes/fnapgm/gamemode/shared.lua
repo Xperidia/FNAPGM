@@ -5,8 +5,7 @@ DeriveGamemode( "fnafgm" )
 GM.Name 	= "Five Nights at Pinkie's"
 GM.ShortName = "FNAPGM"
 GM.Author 	= "Xperidia"
-GM.Email 	= "contact@Xperidia.com"
-GM.Website 	= "https://go.Xperidia.com/FNAPGM"
+GM.Website 	= "xperi.link/FNAPGM"
 
 GM.Version 	= 1.45
 GM.CustomVersionChecker = "https://xperidia.com/fnapgmversion.txt"
@@ -139,7 +138,7 @@ GM.MapList = {
 }
 
 GM.MapListLinks = {
-	fnap_scc = "https://go.Xperidia.com/FNAP_SCC"
+	fnap_scc = "https://xperi.link/FNAP_SCC"
 	--fnap_cb = ""
 }
 

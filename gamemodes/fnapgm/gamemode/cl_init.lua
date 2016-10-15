@@ -32,7 +32,7 @@ function fnapgmSecurityTablet(control)
 		if !control then
 			
 			local closebtnsizew = (512 * ( ScrH() / 480 ))/2
-			local closebtnsizeh = (80 * ( ScrH() / 480 ))/2
+			local closebtnsizeh = (60 * ( ScrH() / 480 ))/2
 			
 			CloseT = vgui.Create( "DButton" )
 			CloseT:SetParent(GAMEMODE.Vars.Monitor)
@@ -163,7 +163,7 @@ function fnapgmSecurityTablet(control)
 		end
 		
 		local closebtnsizew = (512 * ( ScrH() / 480 ))/2
-		local closebtnsizeh = (80 * ( ScrH() / 480 ))/2
+		local closebtnsizeh = (60 * ( ScrH() / 480 ))/2
 		
 		CloseT = vgui.Create( "DButton" )
 		CloseT:SetParent(GAMEMODE.Vars.Monitor)
@@ -241,7 +241,7 @@ function fnapgmFNaFViewHUD()
 		end
 		
 		local closebtnsizew = (512 * ( ScrH() / 480 ))/2
-		local closebtnsizeh = (80 * ( ScrH() / 480 ))/2
+		local closebtnsizeh = (60 * ( ScrH() / 480 ))/2
 		
 		OpenT = vgui.Create( "DButton" )
 		OpenT:SetParent(FNaFView)
