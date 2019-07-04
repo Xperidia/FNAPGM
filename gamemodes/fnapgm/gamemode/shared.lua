@@ -1,4 +1,11 @@
-DeriveGamemode( "fnafgm" )
+--[[---------------------------------------------------------
+
+	Five Nights at Pinkie's Gamemode for Garry's Mod
+			by VictorienXP@Xperidia (2015)
+
+-----------------------------------------------------------]]
+
+DeriveGamemode("fnafgm")
 
 --[[ Base config ]]--
 
@@ -7,25 +14,22 @@ GM.ShortName = "FNAPGM"
 GM.Author 	= "Xperidia"
 GM.Website 	= "xperi.link/FNAPGM"
 
-GM.Version 	= 1.45
-GM.CustomVersionChecker = "https://xperidia.com/fnapgmversion.txt"
+GM.Version 	= 1.46
 
-if game.GetMap()=="fnap_cb" then
+if game.GetMap() == "fnap_cb" then
 	GM.FT = 2
 end
 
-hook.Add( "Initialize", "fnapgmInit", function()
-	
+hook.Add("Initialize", "fnapgmInit", function()
+
 	table.Empty(GAMEMODE.Models_dead)
-	
-	if !GAMEMODE.IsFNAFGMDerived then
-		if SERVER then
-			PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!")
-			hook.Add( "PlayerSpawn", "fnafgmnotdetected", function() PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!") end )
-			Error( "FNAFGM is not detected!\n" )
-		end
+
+	if !GAMEMODE.IsFNAFGMDerived and SERVER then
+		PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!")
+		hook.Add("PlayerSpawn", "fnafgmnotdetected", function() PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!") end)
+		Error("FNAFGM is not detected!\n")
 	end
-	
+
 	sound.Add( {
 		name = "fnapgm_applejackscream",
 		channel = CHAN_AUTO,
@@ -68,7 +72,7 @@ hook.Add( "Initialize", "fnapgmInit", function()
 		level = 0,
 		sound = "physics/metal/metal_barrel_impact_hard1.wav"
 	} )
-	
+
 end)
 
 GM.Sound_end = {
@@ -139,7 +143,6 @@ GM.MapList = {
 
 GM.MapListLinks = {
 	fnap_scc = "https://xperi.link/FNAP_SCC"
-	--fnap_cb = ""
 }
 
 GM.Animatronic = {}
@@ -474,129 +477,129 @@ GM.AnimatronicsAnim[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash]
 GM.AnimatronicsAnim[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = "gallop"
 
 
-function GM:CheckDerivCreator(pl)
-	if (pl:SteamID()=="STEAM_0:1:33606814" or pl:SteamID()=="STEAM_0:0:59390945") then
+function GM:CheckDerivCreator(ply)
+	if (ply:SteamID() == "STEAM_0:1:33606814" or ply:SteamID() == "STEAM_0:0:59390945") then
 		return true
 	end
 	return false
 end
 
 
-function fnapgmAnimatronicMove(self,me,apos)
-	
-	if apos!=nil and self.OldAPos != apos then
-		
+function fnapgmAnimatronicMove(self, me, apos)
+
+	if apos != nil and self.OldAPos != apos then
+
 		self.OldAPos = apos
-		
-		if me!=GAMEMODE.Animatronic.RainbowDash then
-			
-			self:SetColor( Color( 255, 255, 255, 0 ) )
-			
+
+		if me != GAMEMODE.Animatronic.RainbowDash then
+
+			self:SetColor(Color(255, 255, 255, 0))
+
 			if GAMEMODE.AnimatronicAPos[me] and GAMEMODE.AnimatronicAPos[me][game.GetMap()] and GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos] then
 				self:SetPos(GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][1])
 				self:SetAngles(GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][2])
 			end
-			
-			self:SetColor( Color( 255, 255, 255, 255 ) )
-			
+
+			self:SetColor(Color(255, 255, 255, 255))
+
 		end
-		
-	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Office and self.FoxyWillMove2 then
-		
-		if !self.preltime or self.preltime<1 then
+
+	elseif me == GAMEMODE.Animatronic.RainbowDash and apos == GAMEMODE.APos[game.GetMap()].Office and self.FoxyWillMove2 then
+
+		if !self.preltime or self.preltime < 1 then
 			self.preltime = (self.preltime or 0) + FrameTime()
-		elseif !self.preltime or self.preltime>=1 then
+		elseif !self.preltime or self.preltime >= 1 then
 			self.preltime = 0
 			self.presta = true
 		end
-		
+
 		if !self.presta then
-			self:SetPos( LerpVector( self.preltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][1], Vector(417.923, -388.438, -95.7159) ) )
-			self:SetAngles( LerpAngle( self.preltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][2], Angle(0,120,0) ) )
+			self:SetPos(LerpVector(self.preltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][1], Vector(417.923, -388.438, -95.7159)))
+			self:SetAngles(LerpAngle(self.preltime, GAMEMODE.AnimatronicAPos[me][game.GetMap()][apos][2], Angle(0, 120, 0)))
 		else
-			self:SetPos( Vector(417.923, -388.438, -95.7159) )
+			self:SetPos(Vector(417.923, -388.438, -95.7159))
 		end
-		
-		if self:GetSequence() != self:LookupSequence( GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Office] ) then
-			self:SetSequence( self:LookupSequence( GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Office] ) )
+
+		if self:GetSequence() != self:LookupSequence(GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Office]) then
+			self:SetSequence(self:LookupSequence(GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Office]))
 			self:ResetSequenceInfo()
 			self:SetCycle(0)
 			self:SetPlaybackRate(0)
 		end
-		
-	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Office and self.FoxyWillMove then
-		
-		if self:GetColor()!=Color( 255, 255, 255, 255 ) then self:SetColor( Color( 255, 255, 255, 255 ) ) end
-		
-		if self:GetSequence() != self:LookupSequence( GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Trash] ) then
-			self:SetSequence( self:LookupSequence( GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Trash] ) )
+
+	elseif me == GAMEMODE.Animatronic.RainbowDash and apos == GAMEMODE.APos[game.GetMap()].Office and self.FoxyWillMove then
+
+		if self:GetColor() != Color(255, 255, 255, 255) then self:SetColor(Color(255, 255, 255, 255)) end
+
+		if self:GetSequence() != self:LookupSequence(GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Trash]) then
+			self:SetSequence(self:LookupSequence(GAMEMODE.AnimatronicsAnim[me][game.GetMap()][GAMEMODE.APos.fnap_scc.Trash]))
 			self:ResetSequenceInfo()
 			self:SetCycle(0)
 		end
-		
-	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Office and self.FoxyMove2 then
-		
-		if self:GetColor()!=Color( 255, 255, 255, 255 ) then self:SetColor( Color( 255, 255, 255, 255 ) ) end
-		
-		if !self.ltime or self.ltime<1 then
+
+	elseif me == GAMEMODE.Animatronic.RainbowDash and apos == GAMEMODE.APos[game.GetMap()].Office and self.FoxyMove2 then
+
+		if self:GetColor() != Color(255, 255, 255, 255) then self:SetColor(Color(255, 255, 255, 255)) end
+
+		if !self.ltime or self.ltime < 1 then
 			local multip = 1
-			if self.sta==3 then
+			if self.sta == 3 then
 				multip = 0.6
-			elseif self.sta==3 or self.sta==5 then
+			elseif self.sta == 3 or self.sta == 5 then
 				multip = 1.4
 			end
-			self.ltime = (self.ltime or 0) + FrameTime()*multip
-		elseif !self.ltime or self.ltime>=1 then
+			self.ltime = (self.ltime or 0) + FrameTime() * multip
+		elseif !self.ltime or self.ltime >= 1 then
 			self.ltime = 0
 			self.sta = (self.sta or 0) + 1
 		end
-		
-		if !self.sta or self.sta==0 then
-			self:SetPos( LerpVector( self.ltime, Vector(417.923, -388.438, -95.7159), Vector(323, -186.201813, -89.016739) ) )
-			self:SetAngles( LerpAngle( self.ltime, Angle(0,120,0), Angle(0,90,0) ) )
+
+		if !self.sta or self.sta == 0 then
+			self:SetPos(LerpVector(self.ltime, Vector(417.923, -388.438, -95.7159), Vector(323, -186.201813, -89.016739)))
+			self:SetAngles(LerpAngle(self.ltime, Angle(0, 120, 0), Angle(0, 90, 0)))
 			self:SetPlaybackRate(1)
-		elseif self.sta==1 then
-			self:SetPos( LerpVector( self.ltime, Vector(323, -186.201813, -89.016739), Vector(323, -70.793152, 32) ) )
-			self:SetAngles( Angle(-40,90,0) )
+		elseif self.sta == 1 then
+			self:SetPos(LerpVector(self.ltime, Vector(323, -186.201813, -89.016739), Vector(323, -70.793152, 32)))
+			self:SetAngles(Angle(-40, 90, 0))
 			self:SetPlaybackRate(1)
-		elseif self.sta==2 then
-			self:SetPos( LerpVector( self.ltime, Vector(323, -70.793152, 32), Vector(283.779999, -15.925056, 32) ) )
-			self:SetAngles( LerpAngle( self.ltime, Angle(0,90,0), Angle(0,-180,0) ) )
+		elseif self.sta == 2 then
+			self:SetPos(LerpVector(self.ltime, Vector(323, -70.793152, 32), Vector(283.779999, -15.925056, 32)))
+			self:SetAngles(LerpAngle(self.ltime, Angle(0, 90, 0), Angle(0, -180, 0)))
 			self:SetPlaybackRate(1)
-		elseif self.sta==3 then
-			self:SetPos( LerpVector( self.ltime, Vector(283.779999, -15.925056, 32), Vector(-137.194016, -8.655641, 32) ) )
-			self:SetAngles( Angle(0,-180,0) )
+		elseif self.sta == 3 then
+			self:SetPos(LerpVector(self.ltime, Vector(283.779999, -15.925056, 32), Vector(-137.194016, -8.655641, 32)))
+			self:SetAngles(Angle(0, -180, 0))
 			self:SetPlaybackRate(1)
-		elseif self.sta==4 then
-			self:SetPos( LerpVector( self.ltime, Vector(-137.194016, -8.655641, 32), Vector(-385.440521, -42.308228, 32) ) )
-			self:SetAngles( LerpAngle( self.ltime, Angle(0,-180,0), Angle(0,-150,0) ) )
+		elseif self.sta == 4 then
+			self:SetPos(LerpVector(self.ltime, Vector(-137.194016, -8.655641, 32), Vector(-385.440521, -42.308228, 32)))
+			self:SetAngles(LerpAngle(self.ltime, Angle(0, -180, 0), Angle(0, -150, 0)))
 			self:SetPlaybackRate(1)
-			if self:GetSkin()!=2 then self:SetSkin(2) end
-			self:SetFlexWeight( 0, Lerp( self.ltime, 0, 1 ) )
-		elseif self.sta==5 then
-			self:SetPos( LerpVector( self.ltime, Vector(-385.440521, -42.308228, 32), Vector(-431.247833, -95, 32) ) )
-			self:SetAngles( LerpAngle( self.ltime, Angle(0,-150,0), Angle(0,-90,0) ) )
+			if self:GetSkin() != 2 then self:SetSkin(2) end
+			self:SetFlexWeight(0, Lerp(self.ltime, 0, 1))
+		elseif self.sta == 5 then
+			self:SetPos(LerpVector(self.ltime, Vector(-385.440521, -42.308228, 32), Vector(-431.247833, -95, 32)))
+			self:SetAngles(LerpAngle(self.ltime, Angle(0, -150, 0), Angle(0, -90, 0)))
 			self:SetPlaybackRate(1)
-		elseif self.sta==6 then
+		elseif self.sta == 6 then
 			self:Jumpscare()
 			self.FoxyMove2 = false
 			self:SetPlaybackRate(0.1)
 		end
-		
-	elseif me==GAMEMODE.Animatronic.RainbowDash and apos==GAMEMODE.APos[game.GetMap()].Trash then
-		
-		if self:GetColor()!=Color( 255, 255, 255, 0 ) then self:SetColor( Color( 255, 255, 255, 0 ) ) end
-		
-		if !self.sta or self.sta>0 then self.sta=0 end
-		if self.presta then self.presta=false end
-		
-	elseif me==GAMEMODE.Animatronic.Twilight and ( apos==GAMEMODE.APos[game.GetMap()].Office or apos==GAMEMODE.APos[game.GetMap()].Kitchen or apos==GAMEMODE.APos[game.GetMap()].Kitchen2 ) then
-		
-		self:SetSkin( math.random( 0, 1 ) )
-		
+
+	elseif me == GAMEMODE.Animatronic.RainbowDash and apos == GAMEMODE.APos[game.GetMap()].Trash then
+
+		if self:GetColor() != Color(255, 255, 255, 0) then self:SetColor(Color(255, 255, 255, 0)) end
+
+		if !self.sta or self.sta > 0 then self.sta = 0 end
+		if self.presta then self.presta = false end
+
+	elseif me == GAMEMODE.Animatronic.Twilight and (apos == GAMEMODE.APos[game.GetMap()].Office or apos == GAMEMODE.APos[game.GetMap()].Kitchen or apos == GAMEMODE.APos[game.GetMap()].Kitchen2) then
+
+		self:SetSkin(math.random(0, 1))
+
 	end
-	
+
 	return true
-	
+
 end
-hook.Add( "fnafgmAnimatronicMove", "fnapgmAnimatronicMove", fnapgmAnimatronicMove)
+hook.Add("fnafgmAnimatronicMove", "fnapgmAnimatronicMove", fnapgmAnimatronicMove)
