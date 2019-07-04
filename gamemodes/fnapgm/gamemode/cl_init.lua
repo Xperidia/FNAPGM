@@ -351,11 +351,11 @@ function fnapgmMenu()
 
 	bugreportbtn = vgui.Create("DButton")
 	bugreportbtn:SetParent(fnafgmMenuF.links)
-	bugreportbtn:SetText("Support")
+	bugreportbtn:SetText("GitHub")
 	bugreportbtn:SetPos(155, 185)
 	bugreportbtn:SetSize(140, 20)
 	bugreportbtn.DoClick = function()
-		gui.OpenURL("https://xperi.link/XP-DSupport")
+		gui.OpenURL("https://github.com/Xperidia/FNAPGM")
 		fnafgmMenuF:Close()
 	end
 
