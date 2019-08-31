@@ -12,7 +12,7 @@ DeriveGamemode("fnafgm")
 GM.Name 	= "Five Nights at Pinkie's"
 GM.ShortName = "FNAPGM"
 GM.Author 	= "Xperidia"
-GM.Website 	= "xperi.link/FNAPGM"
+GM.Website 	= "steamcommunity.com/sharedfiles/filedetails/?id=542710334"
 
 GM.Version 	= 1.46
 
@@ -142,7 +142,7 @@ GM.MapList = {
 }
 
 GM.MapListLinks = {
-	fnap_scc = "https://xperi.link/FNAP_SCC"
+	fnap_scc = "https://steamcommunity.com/sharedfiles/filedetails/?id=542724054"
 }
 
 GM.Animatronic = {}
