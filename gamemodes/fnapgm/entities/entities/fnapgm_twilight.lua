@@ -31,7 +31,7 @@ function ENT:Think()
 
 	if !SERVER then return end
 
-	if GAMEMODE.Vars.startday then
+	if GAMEMODE.Vars and GAMEMODE.Vars.startday then
 
 		if !self.WaitTime then self.WaitTime = CurTime() + math.random(120, 340) end
 
