@@ -24,12 +24,6 @@ hook.Add("Initialize", "fnapgmInit", function()
 
 	table.Empty(GAMEMODE.Models_dead)
 
-	if !GAMEMODE.IsFNAFGMDerived and SERVER then
-		PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!")
-		hook.Add("PlayerSpawn", "fnafgmnotdetected", function() PrintMessage(HUD_PRINTTALK, "FNAFGM is not detected!") end)
-		Error("FNAFGM is not detected!\n")
-	end
-
 	sound.Add( {
 		name = "fnapgm_applejackscream",
 		channel = CHAN_AUTO,
@@ -603,3 +597,36 @@ function fnapgmAnimatronicMove(self, me, apos)
 
 end
 hook.Add("fnafgmAnimatronicMove", "fnapgmAnimatronicMove", fnapgmAnimatronicMove)
+
+if !(GM or GAMEMODE).IsFNAFGMDerived then
+
+	local no_fnafgm_msg_error	=	"FNAFGM is not loaded!\n"
+	local no_fnafgm_msg			=	no_fnafgm_msg_error ..
+									"Please make sure that you are subscribed to it.\n" ..
+									"FNAPGM will not work without FNAFGM."
+
+	hook.Add("PlayerSpawn", "fnafgm_not_loaded_warning", function()
+
+		if !GAMEMODE.IsFNAFGMDerived then
+
+			PrintMessage(HUD_PRINTTALK, no_fnafgm_msg)
+
+			ErrorNoHalt(no_fnafgm_msg_error)
+
+		end
+
+	end)
+
+	hook.Add("HUDPaint", "fnafgm_not_loaded_warning_hud", function()
+
+		if !GAMEMODE.IsFNAFGMDerived then
+
+			draw.DrawText(no_fnafgm_msg, "DermaLarge", ScrW() * .5, ScrH() * .5 + 8, Color(255, 0, 0, 255), TEXT_ALIGN_CENTER)
+
+		end
+
+	end)
+
+	ErrorNoHalt(no_fnafgm_msg_error)
+
+end
