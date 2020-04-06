@@ -20,7 +20,9 @@ function ENT:Initialize()
 
 	self:SetHealth(2147483647)
 
-	self:SetEyeTarget(GAMEMODE.ASSEye[game.GetMap()])
+	if GAMEMODE.IsFNAFGMDerived and GAMEMODE.ASSEye[game.GetMap()] then
+		self:SetEyeTarget(GAMEMODE.ASSEye[game.GetMap()])
+	end
 
 end
 
@@ -34,7 +36,7 @@ function ENT:Think()
 
 	if !SERVER then return end
 
-	if GAMEMODE.Vars and GAMEMODE.Vars.startday then
+	if GAMEMODE.IsFNAFGMDerived and GAMEMODE.Vars and GAMEMODE.Vars.startday then
 
 		if !self.WaitTime then self.WaitTime = CurTime() + math.random(120, 340) end
 
