@@ -1,7 +1,7 @@
 --[[---------------------------------------------------------
 
 	Five Nights at Pinkie's Gamemode for Garry's Mod
-			by VictorienXP@Xperidia (2015)
+			by VictorienXP@Xperidia (2015-2020)
 
 -----------------------------------------------------------]]
 
@@ -10,6 +10,9 @@ AddCSLuaFile()
 ENT.Base = "base_nextbot"
 ENT.PrintName = "Prop Twilight"
 ENT.Author = "Xperidia"
+ENT.DisableDuplicator = true
+ENT.DoNotDuplicate = true
+ENT.PhysgunDisabled = true
 
 function ENT:Initialize()
 
@@ -54,4 +57,8 @@ function ENT:Think()
 
 	end
 
+end
+
+function ENT:OnInjured(info)
+	info:SetDamage(0)
 end
