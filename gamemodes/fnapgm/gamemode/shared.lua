@@ -6,6 +6,7 @@
 -----------------------------------------------------------]]
 
 DeriveGamemode("fnafgm")
+DEFINE_BASECLASS("gamemode_fnafgm")
 
 --[[ Base config ]]--
 
@@ -598,7 +599,7 @@ function fnapgmAnimatronicMove(self, me, apos)
 end
 hook.Add("fnafgmAnimatronicMove", "fnapgmAnimatronicMove", fnapgmAnimatronicMove)
 
-if !(GM or GAMEMODE).IsFNAFGMDerived then
+if !(GM or GAMEMODE).IsFNAFGMDerived and !BaseClass.IsFNAFGMDerived then
 
 	local no_fnafgm_msg_error	=	"FNAFGM is not loaded!\n"
 	local no_fnafgm_msg			=	no_fnafgm_msg_error ..
