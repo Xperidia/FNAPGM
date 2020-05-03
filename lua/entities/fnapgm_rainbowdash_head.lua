@@ -65,7 +65,7 @@ end
 
 function ENT:Draw(flags)
 
-	if !self:GetShouldNotDraw() then
+	if not self:GetShouldNotDraw() then
 
 		self:DrawModel()
 
@@ -87,7 +87,7 @@ function ENT:Think()
 
 	for _, cam in pairs(ents.FindByClass("fnafgm_camera")) do
 
-		if !last_eye_target or cam:GetPos():Distance(self:GetPos()) < last_eye_target:Distance(self:GetPos()) then
+		if not last_eye_target or cam:GetPos():Distance(self:GetPos()) < last_eye_target:Distance(self:GetPos()) then
 
 			last_eye_target = cam:GetPos()
 
@@ -111,12 +111,12 @@ end
 
 function ENT:CanTool(ply, trace, mode)
 
-	return !GAMEMODE.IsFNAFGMDerived
+	return not GAMEMODE.IsFNAFGMDerived
 
 end
 
 function ENT:CanProperty(ply, property)
 
-	return !GAMEMODE.IsFNAFGMDerived
+	return not GAMEMODE.IsFNAFGMDerived
 
 end
