@@ -37,11 +37,11 @@ function ENT:AcceptInput(name, activator, caller, data)
 
 	if name == "Enable" then
 
-		self.do_not_draw = false
+		self:SetShouldNotDraw(false)
 
 	elseif name == "Disable" then
 
-		self.do_not_draw = true
+		self:SetShouldNotDraw(true)
 
 	end
 
@@ -57,16 +57,18 @@ function ENT:KeyValue(k, v)
 
 	elseif k == "StartDisabled" then
 
-		self.do_not_draw = tobool(v)
+		self:SetShouldNotDraw(tobool(v))
 
 	end
 
 end
 
-function ENT:Draw()
+function ENT:Draw(flags)
 
-	if not self.do_not_draw then
+	if !self:GetShouldNotDraw() then
+
 		self:DrawModel()
+
 	end
 
 end
@@ -79,7 +81,7 @@ end
 
 function ENT:Think()
 
-	if self.do_not_draw then return end
+	if self:GetShouldNotDraw() then return end
 
 	local last_eye_target
 
@@ -98,6 +100,12 @@ function ENT:Think()
 		self:SetEyeTarget(last_eye_target)
 
 	end
+
+end
+
+function ENT:SetupDataTables()
+
+	self:NetworkVar("Bool", 0, "ShouldNotDraw", {KeyName = "StartDisabled"})
 
 end
 
