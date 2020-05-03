@@ -1,12 +1,11 @@
 //-------------------------------------------------------------------------
 //
-// FNAPGM FGD V1.0 BY XPERIDIA
+// FNAPGM FGD V1.1 BY XPERIDIA
 //
 //-------------------------------------------------------------------------
 
 @include "base.fgd"
 
-@PointClass base(Targetname, Angles) studio() = fnapgm_twilight : "Prop Twilight"
+@PointClass base(Targetname, Angles) studio("models/wubsy/vn_mecha_freddytwilight.mdl") = fnapgm_twilight : "Prop Twilight"
 [
-	model(studio) : "Model"
 ]
