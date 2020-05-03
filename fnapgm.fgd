@@ -1,11 +1,15 @@
 //-------------------------------------------------------------------------
 //
-// FNAPGM FGD V1.1 BY XPERIDIA
+// FNAPGM FGD V2.0 BY XPERIDIA
 //
 //-------------------------------------------------------------------------
 
 @include "base.fgd"
 
 @PointClass base(Targetname, Angles) studio("models/wubsy/vn_mecha_freddytwilight.mdl") = fnapgm_twilight : "Prop Twilight"
+[
+]
+
+@PointClass base(Targetname, Angles, EnableDisable) studio("models/pony_heads/rainbowdash_head.mdl") = fnapgm_rainbowdash_head : "Prop Rainbow Dash Head"
 [
 ]
