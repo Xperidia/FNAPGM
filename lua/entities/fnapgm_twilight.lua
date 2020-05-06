@@ -14,9 +14,12 @@ ENT.DisableDuplicator = true
 ENT.DoNotDuplicate = true
 ENT.PhysgunDisabled = true
 
+local ent_model = Model("models/wubsy/vn_mecha_freddytwilight.mdl")
+local fall_sound = Sound("physics/metal/metal_barrel_impact_hard1.wav")
+
 function ENT:Initialize()
 
-	self:SetModel("models/wubsy/vn_mecha_freddytwilight.mdl")
+	self:SetModel(ent_model)
 
 	self:SetHealth(2147483647)
 
@@ -51,7 +54,7 @@ function ENT:Think()
 
 		if self.WaitTime + 0.5 < CurTime() and !self.Done2 then
 
-			self:EmitSound("physics/metal/metal_barrel_impact_hard1.wav",0)
+			self:EmitSound(fall_sound, 0)
 
 			self.Done2 = true
 
