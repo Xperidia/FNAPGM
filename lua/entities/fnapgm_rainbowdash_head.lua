@@ -14,9 +14,11 @@ ENT.DisableDuplicator = true
 ENT.DoNotDuplicate = true
 ENT.PhysgunDisabled = true
 
+local ent_model = Model("models/pony_heads/rainbowdash_head.mdl")
+
 function ENT:Initialize()
 
-	self:SetModel("models/pony_heads/rainbowdash_head.mdl")
+	self:SetModel(ent_model)
 
 	self:SetHealth(2147483647)
 
