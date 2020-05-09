@@ -28,7 +28,7 @@ If applicable, add screenshots or videos to help explain your problem.
 
 **Technical information (please complete the following information):**
  - OS: [e.g. Windows, Mac, Linux]
- - Map: [e.g. freddysnoevent]
+ - Map: [e.g. fnap_scc or fnap_cb]
  - Mode: [e.g. singleplayer, listen server (in game server) or dedicated server]
 
 **fnafgm_debug_info**
