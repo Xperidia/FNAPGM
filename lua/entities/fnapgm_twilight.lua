@@ -23,6 +23,10 @@ function ENT:Initialize()
 
 	self:SetHealth(2147483647)
 
+	if SERVER then
+		self:SetBloodColor(BLOOD_COLOR_MECH)
+	end
+
 	if GAMEMODE.IsFNAFGMDerived and GAMEMODE.ASSEye[game.GetMap()] then
 		self:SetEyeTarget(GAMEMODE.ASSEye[game.GetMap()])
 	end
@@ -30,33 +34,50 @@ function ENT:Initialize()
 end
 
 function ENT:RunBehaviour()
-
 	self.loco:SetDesiredSpeed(0)
+end
+
+function ENT:Use(activator, caller, useType, value)
+	self:Fall()
+end
+
+function ENT:AcceptInput(name, activator, caller, data)
+
+	if name == "Fall" then
+
+		self:Fall(activator or caller)
+
+		return true
+
+	end
+
+	return false
+
+end
+
+function ENT:KeyValue(k, v)
+
+	if string.Left(k, 2) == "On" then
+
+		self:StoreOutput(k, v)
+
+	end
 
 end
 
 function ENT:Think()
 
-	if !SERVER then return end
+	if not SERVER then return end
 
 	if GAMEMODE.IsFNAFGMDerived and GAMEMODE.Vars and GAMEMODE.Vars.startday then
 
-		if !self.WaitTime then self.WaitTime = CurTime() + math.random(120, 340) end
+		if not self.WaitTime then self.WaitTime = CurTime() + math.random(120, 340) end
 
-		if self.WaitTime < CurTime() and !self.Done then
+		if self.WaitTime < CurTime() and not self.Done then
 
-			self:SetSequence(self:LookupSequence("falling"))
-			self:SetPlaybackRate(1)
+			self:Fall()
 
 			self.Done = true
-
-		end
-
-		if self.WaitTime + 0.5 < CurTime() and !self.Done2 then
-
-			self:EmitSound(fall_sound, 0)
-
-			self.Done2 = true
 
 		end
 
@@ -64,18 +85,38 @@ function ENT:Think()
 
 end
 
+function ENT:Fall()
+
+	if not self.fallen then
+
+		self:SetSequence(self:LookupSequence("falling"))
+		self:SetPlaybackRate(1)
+		self:TriggerOutput("OnFall")
+		self.fallen = true
+
+		timer.Create("fnapgm_twilight_fall_sound_" .. self:EntIndex(), 0.5, 1,
+		function()
+
+			self:EmitSound(fall_sound, 140)
+
+		end)
+
+	end
+
+end
+
 function ENT:OnInjured(info)
+
 	info:SetDamage(0)
+
+	self:Fall()
+
 end
 
 function ENT:CanTool(ply, trace, mode)
-
-	return !GAMEMODE.IsFNAFGMDerived
-
+	return not GAMEMODE.IsFNAFGMDerived
 end
 
 function ENT:CanProperty(ply, property)
-
-	return !GAMEMODE.IsFNAFGMDerived
-
+	return not GAMEMODE.IsFNAFGMDerived
 end
