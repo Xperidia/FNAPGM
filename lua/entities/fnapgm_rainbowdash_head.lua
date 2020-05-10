@@ -30,9 +30,7 @@ function ENT:Initialize()
 end
 
 function ENT:RunBehaviour()
-
 	self.loco:SetDesiredSpeed(0)
-
 end
 
 function ENT:AcceptInput(name, activator, caller, data)
@@ -76,9 +74,7 @@ function ENT:Draw(flags)
 end
 
 function ENT:OnInjured(info)
-
 	info:SetDamage(0)
-
 end
 
 function ENT:Think()
@@ -112,13 +108,9 @@ function ENT:SetupDataTables()
 end
 
 function ENT:CanTool(ply, trace, mode)
-
 	return not GAMEMODE.IsFNAFGMDerived
-
 end
 
 function ENT:CanProperty(ply, property)
-
 	return not GAMEMODE.IsFNAFGMDerived
-
 end
