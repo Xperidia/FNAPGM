@@ -97,7 +97,11 @@ function ENT:Fall()
 		timer.Create("fnapgm_twilight_fall_sound_" .. self:EntIndex(), 0.5, 1,
 		function()
 
-			self:EmitSound(fall_sound, 140)
+			if IsValid(self) then
+
+				self:EmitSound(fall_sound, 140)
+
+			end
 
 		end)
 
