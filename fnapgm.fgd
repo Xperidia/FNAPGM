@@ -9,7 +9,9 @@
 @PointClass base(Targetname, Angles) studio("models/wubsy/vn_mecha_freddytwilight.mdl") = fnapgm_twilight : "Prop Twilight"
 [
 	input Fall(void) : "Make Twilight fall."
+	input UnFall(void) : "Make Twilight unfall."
 	output OnFall(void) : "Fired when Twilight fall."
+	output OnUnFall(void) : "Fired when Twilight unfall."
 ]
 
 @PointClass base(Targetname, Angles, EnableDisable) studio("models/pony_heads/rainbowdash_head.mdl") = fnapgm_rainbowdash_head : "Prop Rainbow Dash Head"
