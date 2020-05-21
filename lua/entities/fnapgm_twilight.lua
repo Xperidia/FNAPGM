@@ -49,6 +49,12 @@ function ENT:AcceptInput(name, activator, caller, data)
 
 		return true
 
+	elseif name == "UnFall" then
+
+		self:UnFall(activator or caller)
+
+		return true
+
 	end
 
 	return false
@@ -100,6 +106,18 @@ function ENT:Fall()
 				self:EmitSound(fall_sound, 140)
 			end
 		end)
+
+	end
+
+end
+
+function ENT:UnFall()
+
+	if self.fallen then
+
+		self:SetSequence(self:LookupSequence("ragdoll"))
+		self:TriggerOutput("OnUnFall")
+		self.fallen = false
 
 	end
 
