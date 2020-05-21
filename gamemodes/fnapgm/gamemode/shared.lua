@@ -15,7 +15,7 @@ GM.ShortName = "FNAPGM"
 GM.Author 	= "Xperidia"
 GM.Website 	= "steamcommunity.com/sharedfiles/filedetails/?id=542710334"
 
-GM.Version 	= 1.54
+GM.Version 	= 1.55
 
 if game.GetMap() == "fnap_cb" then
 	GM.FT = 2
