@@ -392,7 +392,15 @@ function fnapgmPowerCalc()
 
 		if GAMEMODE.Vars.power <= 0 and !GAMEMODE.Vars.poweroff then
 
-			ents.FindByName("NoMorePower")[1]:Fire("use")
+			self:TriggerLinkOutput("OnPowerDown")
+
+			local legacy_ent = ents.FindByName("NoMorePower")
+			if #legacy_ent > 0 then
+				legacy_ent = legacy_ent[1]
+				if IsValid(legacy_ent) then
+					legacy_ent:Fire("use")
+				end
+			end
 
 			for k, v in pairs(player.GetAll()) do
 				if v:Team() == 1 and v:Alive() then
