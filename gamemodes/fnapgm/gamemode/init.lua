@@ -392,7 +392,7 @@ function fnapgmPowerCalc()
 
 		if GAMEMODE.Vars.power <= 0 and !GAMEMODE.Vars.poweroff then
 
-			self:TriggerLinkOutput("OnPowerDown")
+			GAMEMODE:TriggerLinkOutput("OnPowerDown")
 
 			local legacy_ent = ents.FindByName("NoMorePower")
 			if #legacy_ent > 0 then
