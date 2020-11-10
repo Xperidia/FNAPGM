@@ -133,11 +133,11 @@ GM.CamsNames = {
 
 GM.MapList = {
 	fnap_scc = "Sugar Cube Corner",
-	fnap_cb = "Carousel Boutique"
+	fnap_cb = "Carousel Boutique",
 }
 
 GM.MapListLinks = {
-	fnap_scc = "https://steamcommunity.com/sharedfiles/filedetails/?id=542724054"
+	fnap_scc = "https://steamcommunity.com/sharedfiles/filedetails/?id=542724054",
 }
 
 GM.Animatronic = {}
