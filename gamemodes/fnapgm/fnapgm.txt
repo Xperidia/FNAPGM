@@ -3,6 +3,7 @@
 	"base"		"fnafgm"
 	"title"		"Five Nights at Pinkie's"
 	"maps"		"^fnap_"
+	"category"	"pve"
 	"menusystem"	"1"
 	"workshopid"	"542710334"
 }
