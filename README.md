@@ -14,7 +14,7 @@ This is a [FNAFGM](https://github.com/Xperidia/FNAFGM) extension so you need [FN
 
 ## Installation instructions
 
-* Subscribe to the [Worskhop collection](https://steamcommunity.com/sharedfiles/filedetails/?id=542940527).
+* Subscribe to the [Workshop collection](https://steamcommunity.com/sharedfiles/filedetails/?id=542940527).
 
 ## How to play
 
@@ -27,6 +27,6 @@ This is a [FNAFGM](https://github.com/Xperidia/FNAFGM) extension so you need [FN
 ## Some useful links
 
 * [The gamemode is on the Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=542710334)
-* [FNAFGM FAQ](https://github.com/Xperidia/FNAFGM/wiki/FAQ)
-* [Installation on a Dedicated Server](https://steamcommunity.com/workshop/filedetails/discussion/542710334/2143092024481113930/)
+* [FAQ](https://github.com/Xperidia/FNAPGM/wiki/FAQ)
+* [Installation on a Dedicated Server](https://github.com/Xperidia/FNAPGM/wiki/Installation-on-a-Dedicated-Server-(official))
 * [Customise the gamemode](https://github.com/Xperidia/FNAFGM/wiki/Customise-the-gamemode)
