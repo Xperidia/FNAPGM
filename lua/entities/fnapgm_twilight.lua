@@ -1,7 +1,7 @@
---[[---------------------------------------------------------
+﻿--[[---------------------------------------------------------
 
 	Five Nights at Pinkie's Gamemode for Garry's Mod
-			by VictorienXP@Xperidia (2015-2020)
+			by VickyFrenzy@Xperidia (2015-2025)
 
 -----------------------------------------------------------]]
 
@@ -18,19 +18,12 @@ local ent_model = Model("models/wubsy/vn_mecha_freddytwilight.mdl")
 local fall_sound = Sound("physics/metal/metal_barrel_impact_hard1.wav")
 
 function ENT:Initialize()
-
 	self:SetModel(ent_model)
-
 	self:SetHealth(2147483647)
-
-	if SERVER then
-		self:SetBloodColor(BLOOD_COLOR_MECH)
-	end
-
+	if SERVER then self:SetBloodColor(BLOOD_COLOR_MECH) end
 	if GAMEMODE.IsFNAFGMDerived and GAMEMODE.ASSEye[game.GetMap()] then
 		self:SetEyeTarget(GAMEMODE.ASSEye[game.GetMap()])
 	end
-
 end
 
 function ENT:RunBehaviour()
@@ -42,93 +35,55 @@ function ENT:Use(activator, caller, useType, value)
 end
 
 function ENT:AcceptInput(name, activator, caller, data)
-
 	if name == "Fall" then
-
 		self:Fall(activator or caller)
-
 		return true
-
 	elseif name == "UnFall" then
-
 		self:UnFall(activator or caller)
-
 		return true
-
 	end
-
 	return false
-
 end
 
 function ENT:KeyValue(k, v)
-
 	if string.Left(k, 2) == "On" then
-
 		self:StoreOutput(k, v)
-
 	end
-
 end
 
 function ENT:Think()
-
 	if not SERVER then return end
-
 	if GAMEMODE.IsFNAFGMDerived and GAMEMODE.Vars and GAMEMODE.Vars.startday then
-
 		if not self.WaitTime then self.WaitTime = CurTime() + math.random(120, 340) end
-
 		if self.WaitTime < CurTime() and not self.Done then
-
 			self:Fall()
-
 			self.Done = true
-
 		end
-
 	end
-
 end
 
 function ENT:Fall()
-
-	if not self.fallen then
-
-		self:SetSequence(self:LookupSequence("falling"))
-		self:SetPlaybackRate(1)
-		self:TriggerOutput("OnFall")
-		self.fallen = true
-
-		timer.Create("fnapgm_twilight_fall_sound_" .. self:EntIndex(), 0.5, 1,
-		function()
-			if IsValid(self) then
-				self:EmitSound(fall_sound, 140)
-			end
-		end)
-
-	end
-
+	if self.fallen then return end
+	self:SetSequence(self:LookupSequence("falling"))
+	self:SetPlaybackRate(1)
+	self:TriggerOutput("OnFall")
+	self.fallen = true
+	timer.Create("fnapgm_twilight_fall_sound_" .. self:EntIndex(), 0.5, 1, function()
+		if IsValid(self) then return end
+		self:EmitSound(fall_sound, 140)
+	end)
 end
 
 function ENT:UnFall()
-
-	if self.fallen then
-
-		self:SetSequence(self:LookupSequence("ragdoll"))
-		self:TriggerOutput("OnUnFall")
-		self.fallen = false
-
-	end
-
+	if not self.fallen then return end
+	self:SetSequence(self:LookupSequence("ragdoll"))
+	self:TriggerOutput("OnUnFall")
+	self.fallen = false
 end
 
 function ENT:OnInjured(info)
-
 	info:SetDamage(0)
-
 	self:Fall()
-
 end
 
 function ENT:CanTool(ply, trace, mode)

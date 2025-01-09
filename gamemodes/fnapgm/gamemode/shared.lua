@@ -1,7 +1,7 @@
---[[---------------------------------------------------------
+﻿--[[---------------------------------------------------------
 
 	Five Nights at Pinkie's Gamemode for Garry's Mod
-			by VictorienXP@Xperidia (2015)
+			by VickyFrenzy@Xperidia (2015-2025)
 
 -----------------------------------------------------------]]
 
@@ -9,65 +9,57 @@ DeriveGamemode("fnafgm")
 DEFINE_BASECLASS("gamemode_fnafgm")
 
 --[[ Base config ]]--
-
-GM.Name 	= "Five Nights at Pinkie's"
+GM.Name = "Five Nights at Pinkie's"
 GM.ShortName = "FNAPGM"
-GM.Author 	= "Xperidia"
-GM.Website 	= "steamcommunity.com/sharedfiles/filedetails/?id=542710334"
-
-GM.Version 	= 1.58
-
-if game.GetMap() == "fnap_cb" then
-	GM.FT = 2
-end
+GM.Author = "Xperidia"
+GM.Website = "steamcommunity.com/sharedfiles/filedetails/?id=542710334"
+GM.Version = 1.59
+if game.GetMap() == "fnap_cb" then GM.FT = 2 end
 
 hook.Add("Initialize", "fnapgmInit", function()
-
 	table.Empty(GAMEMODE.Models_dead)
-
-	sound.Add( {
+	sound.Add({
 		name = "fnapgm_applejackscream",
 		channel = CHAN_AUTO,
 		volume = 0.8,
 		level = 0,
 		sound = "fnafsounds/applejackscream.wav"
-	} )
-	sound.Add( {
+	})
+	sound.Add({
 		name = "fnapgm_officesnd",
 		channel = CHAN_AUTO,
 		volume = 0.2,
 		level = 0,
 		sound = "fnafsounds/walkpony.wav"
-	} )
-	sound.Add( {
+	})
+	sound.Add({
 		name = "fnapgm_rarityknock",
 		channel = CHAN_AUTO,
 		volume = 0.2,
 		level = 0,
 		sound = "fnafsounds/knockwindow.wav"
-	} )
-	sound.Add( {
+	})
+	sound.Add({
 		name = "fnapgm_pinkiescare",
 		channel = CHAN_AUTO,
 		volume = 0.8,
 		level = 0,
 		sound = "fnafsounds/pinkieisscary.wav"
-	} )
-	sound.Add( {
+	})
+	sound.Add({
 		name = "fnapgm_runrainbowdash",
 		channel = CHAN_AUTO,
 		volume = 0.8,
 		level = 0,
 		sound = "fnafsounds/runrainbowdash.wav"
-	} )
-	sound.Add( {
+	})
+	sound.Add({
 		name = "fnapgm_rainbowknock",
 		channel = CHAN_AUTO,
 		volume = 0.8,
 		level = 0,
 		sound = "physics/metal/metal_barrel_impact_hard1.wav"
-	} )
-
+	})
 end)
 
 GM.Sound_end = {
@@ -75,25 +67,24 @@ GM.Sound_end = {
 }
 
 GM.Sound_Calls = {
-	fnap_scc = { "fnapgm/call_1.ogg", "fnapgm/call_2.ogg", "fnapgm/call_3.ogg", "fnapgm/call_4.ogg", "fnapgm/call_5.ogg" }
+	fnap_scc = {"fnapgm/call_1.ogg", "fnapgm/call_2.ogg", "fnapgm/call_3.ogg", "fnapgm/call_4.ogg", "fnapgm/call_5.ogg"}
 }
 
 GM.Sound_Animatronic = {}
-GM.Sound_Animatronic[11] = { Sound("fnapgm/laught1.ogg"), Sound("fnapgm/laught2.ogg"), Sound("fnapgm/laught3.ogg"), Sound("fnapgm/laught4.ogg") }
-
+GM.Sound_Animatronic[11] = {Sound("fnapgm/laught1.ogg"), Sound("fnapgm/laught2.ogg"), Sound("fnapgm/laught3.ogg"), Sound("fnapgm/laught4.ogg")}
 GM.SecurityRoom = {
-	fnap_scc = { Vector(-510,-372,26), Vector(-334,-125,170), Vector(-510,-258,26), Vector(-195,-125,170) },
-	fnap_cb = { Vector(144,-80,339), Vector(337,-319,210) },
+	fnap_scc = {Vector(-510, -372, 26), Vector(-334, -125, 170), Vector(-510, -258, 26), Vector(-195, -125, 170)},
+	fnap_cb = {Vector(144, -80, 339), Vector(337, -319, 210)},
 }
 
 GM.DeadBodiesTeleport = {
-	fnap_scc = { Vector(200, 432, 96) },
-	fnap_cb = { Vector(177, -224, 144) },
+	fnap_scc = {Vector(200, 432, 96)},
+	fnap_cb = {Vector(177, -224, 144)},
 }
 
 GM.FNaFView = {
-	fnap_scc = { Vector( -465, -255, 32 ), Angle( 0, 0, 0 ), Angle( 0, 58, 0 ), Angle( 0, -58, 0 ) },
-	fnap_cb = { Vector( 256, -272, 208 ), Angle( 0, 90, 0 ), Angle( 0, 128, 0 ), Angle( 0, 50, 0 ) },
+	fnap_scc = {Vector(-465, -255, 32), Angle(0, 0, 0), Angle(0, 58, 0), Angle(0, -58, 0)},
+	fnap_cb = {Vector(256, -272, 208), Angle(0, 90, 0), Angle(0, 128, 0), Angle(0, 50, 0)},
 }
 
 GM.Models_dead = {}
@@ -249,51 +240,50 @@ GM.AnimatronicAPos[GM.Animatronic.Applejack] = {}
 GM.AnimatronicAPos[GM.Animatronic.RainbowDash] = {}
 
 GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc = {}
-GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(64.193, 139.1, 90.3044), Angle(0,270,0) }
-GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.NHA] = { Vector(-341.436, 299.512, 32.031250), Angle(0,-173,0) }
-GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Pinkie] = { Vector(-374.231, 426.545, 32.9537), Angle(0,213,0) }
-GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SR] = { Vector(242.611, 470.115, 79.554), Angle(0,300,0) }
-GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Cave] = { Vector(260.138, -331.65, -98.2724), Angle(0,220,0) }
-GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Generator] = { Vector(-342.764, -257.734, -96.1159), Angle(0,75,0) }
-GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-427.235, -416.156, 32), Angle(0,90,0) }
-GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.StaffD] = { Vector(-227.427, -428.674, 31.1774), Angle(0,150,0) }
-GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Staff] = { Vector(-377.114, -451.607, 31.3187), Angle(0,135,0) }
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SS] = {Vector(64.193, 139.1, 90.3044), Angle(0, 270, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.NHA] = {Vector(-341.436, 299.512, 32.031250), Angle(0, -173, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Pinkie] = {Vector(-374.231, 426.545, 32.9537), Angle(0, 213, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SR] = {Vector(242.611, 470.115, 79.554), Angle(0, 300, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Cave] = {Vector(260.138, -331.65, -98.2724), Angle(0, 220, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Generator] = {Vector(-342.764, -257.734, -96.1159), Angle(0, 75, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Office] = {Vector(-427.235, -416.156, 32), Angle(0, 90, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.StaffD] = {Vector(-227.427, -428.674, 31.1774), Angle(0, 150, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Staff] = {Vector(-377.114, -451.607, 31.3187), Angle(0, 135, 0)}
 GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc = {}
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen] = { Vector(-207.467, 39.4443, 32.031250), Angle(0,234,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(146.607, 129.722, 63.4359), Angle(0,237,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.DA] = { Vector(-35.0655, -378.776, 32.031250), Angle(0,113,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Entrance] = { Vector(468.435, -473.789, 32.031250), Angle(0,150,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.BR] = { Vector(441.505, 79.8756, 32.031250), Angle(0,115,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.NHA] = { Vector(-81.9206, 287.78, 32.031250), Angle(0,180,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.StorageT] = { Vector(-79.3985, 456.384, 32.031250), Angle(0,240,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Cave] = { Vector(214.599, -292.129, -91.8968), Angle(0,243,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-434.534, -78.391, 32.031250), Angle(0,270,0) }
-GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { Vector(-351.923, 21.8385, 32.031250), Angle(0,250,0) }
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen] = {Vector(-207.467, 39.4443, 32.031250), Angle(0, 234, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.SS] = {Vector(146.607, 129.722, 63.4359), Angle(0, 237, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.DA] = {Vector(-35.0655, -378.776, 32.031250), Angle(0, 113, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Entrance] = {Vector(468.435, -473.789, 32.031250), Angle(0, 150, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.BR] = {Vector(441.505, 79.8756, 32.031250), Angle(0, 115, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.NHA] = {Vector(-81.9206, 287.78, 32.031250), Angle(0, 180, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.StorageT] = {Vector(-79.3985, 456.384, 32.031250), Angle(0, 240, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Cave] = {Vector(214.599, -292.129, -91.8968), Angle(0, 243, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Office] = {Vector(-434.534, -78.391, 32.031250), Angle(0, 270, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen2] = {Vector(-351.923, 21.8385, 32.031250), Angle(0, 250, 0)}
 GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc = {}
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen] = { Vector(-145.811, -3.71502, 32), Angle(0,180,0) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(229.355, 566.11, 87), Angle(0,234,87) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.NHA] = { Vector(226.063, 307.311, 32), Angle(0,320,0) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.BR] = { Vector(423.922, 29.9327, 32), Angle(0,90,0) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SR] = { Vector(217.167, 417.786, 32), Angle(0,270,0) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.StorageD] = { Vector(-54.393, -92.0667, -96.1156), Angle(0,64,0) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Generator] = { Vector(-336.451, -342.729, -96.9048), Angle(0,90,0) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-362.534, -85.6415, 64.2119), Angle(0,270,0) }
-GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { Vector(-292.778, 43.7329, 32), Angle(0,235,0) }
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen] = {Vector(-145.811, -3.71502, 32), Angle(0, 180, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SS] = {Vector(229.355, 566.11, 87), Angle(0, 234, 87)}
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.NHA] = {Vector(226.063, 307.311, 32), Angle(0, 320, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.BR] = {Vector(423.922, 29.9327, 32), Angle(0, 90, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.SR] = {Vector(217.167, 417.786, 32), Angle(0, 270, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.StorageD] = {Vector(-54.393, -92.0667, -96.1156), Angle(0, 64, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Generator] = {Vector(-336.451, -342.729, -96.9048), Angle(0, 90, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Office] = {Vector(-362.534, -85.6415, 64.2119), Angle(0, 270, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Twilight].fnap_scc[GM.APos.fnap_scc.Kitchen2] = {Vector(-292.778, 43.7329, 32), Angle(0, 235, 0)}
 GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc = {}
-GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(577.209, -479.944, 55.5574), Angle(0,143,0) }
-GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Entrance] = { Vector(435.05, -411.066, 34.6907), Angle(0,195,0) }
-GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.EntranceD] = { Vector(238.816, -381.027, 34.6907), Angle(0,175,0) }
-GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.DA] = { Vector(44.7517, -392.845, 33.6907), Angle(0,180,0) }
-GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD] = { Vector(-150.427, -431.847, 33.6907), Angle(0,180,0) }
-GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff] = { Vector(-194.663, -300.543, 47.3979), Angle(0,180,0) }
-GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-289.801, -336, 64.6867), Angle(0,180,0) }
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.SS] = {Vector(577.209, -479.944, 55.5574), Angle(0, 143, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Entrance] = {Vector(435.05, -411.066, 34.6907), Angle(0, 195, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.EntranceD] = {Vector(238.816, -381.027, 34.6907), Angle(0, 175, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.DA] = {Vector(44.7517, -392.845, 33.6907), Angle(0, 180, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD] = {Vector(-150.427, -431.847, 33.6907), Angle(0, 180, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff] = {Vector(-194.663, -300.543, 47.3979), Angle(0, 180, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Office] = {Vector(-289.801, -336, 64.6867), Angle(0, 180, 0)}
 GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc = {}
-GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = { Vector(744, 584, 32), Angle(0,-135,0) }
-GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(-237.473, -191.82, 75.8022), Angle(0,180,0) }
+GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = {Vector(744, 584, 32), Angle(0, -135, 0)}
+GM.AnimatronicAPos[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = {Vector(-237.473, -191.82, 75.8022), Angle(0, 180, 0)}
 GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc = {}
-GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash] = { Vector(441.369, -397.072, -99.6947), Angle(0, 138.75, 0) }
-GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = { Vector(441.369, -397.072, -99.6947), Angle(0, 138.75, 0) }
-
+GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash] = {Vector(441.369, -397.072, -99.6947), Angle(0, 138.75, 0)}
+GM.AnimatronicAPos[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = {Vector(441.369, -397.072, -99.6947), Angle(0, 138.75, 0)}
 GM.AnimatronicsCD = {}
 GM.AnimatronicsCD[GM.Animatronic.Pinkie] = {}
 GM.AnimatronicsCD[GM.Animatronic.Pinkie].fnap_scc = {}
@@ -436,41 +426,39 @@ GM.AnimatronicsSkins[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Offic
 GM.AnimatronicsFlex = {}
 GM.AnimatronicsFlex[GM.Animatronic.Pinkie] = {}
 GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc = {}
-GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SS] = { {21,1}, {11,0.5}, {12,0.5}  }
-GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Office] = { {0,1}, {19,1}, {1,1}, {2,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.StaffD] = { {1,1}, {2,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Staff] = { {0,1}, {19,1}, {1,1}, {2,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Pinkie] = { {1,0.3}, {2,0.3} }
-GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SR] = { {1,1}, {2,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.NHA] = { {5,1}, {6,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SS] = {{21, 1}, {11, 0.5}, {12, 0.5}}
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Office] = {{0, 1}, {19, 1}, {1, 1}, {2, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.StaffD] = {{1, 1}, {2, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Staff] = {{0, 1}, {19, 1}, {1, 1}, {2, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.Pinkie] = {{1, 0.3}, {2, 0.3}}
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.SR] = {{1, 1}, {2, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Pinkie].fnap_scc[GM.APos.fnap_scc.NHA] = {{5, 1}, {6, 1}}
 GM.AnimatronicsFlex[GM.Animatronic.Fluttershy] = {}
 GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc = {}
-GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.SS] = { {21,1}, {9,0.6}, {10,0.6} }
-GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Office] = { {0,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.StorageT] = { {3,1}, {4,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.NHA] = { {3,1}, {4,1}, {21,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen] = { {3,1}, {4,1}, {21,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen2] = { {3,1}, {4,1}, {0,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.BR] = { {3,1}, {4,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Cave] = { {21,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.SS] = {{21, 1}, {9, 0.6}, {10, 0.6}}
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Office] = {{0, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.StorageT] = {{3, 1}, {4, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.NHA] = {{3, 1}, {4, 1}, {21, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen] = {{3, 1}, {4, 1}, {21, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Kitchen2] = {{3, 1}, {4, 1}, {0, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.BR] = {{3, 1}, {4, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Fluttershy].fnap_scc[GM.APos.fnap_scc.Cave] = {{21, 1}}
 GM.AnimatronicsFlex[GM.Animatronic.Applejack] = {}
 GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc = {}
-GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = { {0,1}, {1,1}, {18,1}, {49,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = { {20,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.Office] = {{0, 1}, {1, 1}, {18, 1}, {49, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Applejack].fnap_scc[GM.APos.fnap_scc.SS] = {{20, 1}}
 GM.AnimatronicsFlex[GM.Animatronic.Rarity] = {}
 GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc = {}
-GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.SS] = { {21,1}, {10,1}, {11,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Entrance] = { {21,1}, {10,1}, {11,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.EntranceD] = { {21,1}, {0,1}, {1,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.DA] = { {21,1}, {0,1}, {1,1} }
-GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD] = { {38,1}, {6,1}, {7,1}, {18,0.5} }
-GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff] = { {38,1}, {0,1}, {1,1}, {18,0.5} }
-GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Office] = { {21,1}, {0,1}, {1,1} }
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.SS] = {{21, 1}, {10, 1}, {11, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Entrance] = {{21, 1}, {10, 1}, {11, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.EntranceD] = {{21, 1}, {0, 1}, {1, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.DA] = {{21, 1}, {0, 1}, {1, 1}}
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.StaffD] = {{38, 1}, {6, 1}, {7, 1}, {18, 0.5}}
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Staff] = {{38, 1}, {0, 1}, {1, 1}, {18, 0.5}}
+GM.AnimatronicsFlex[GM.Animatronic.Rarity].fnap_scc[GM.APos.fnap_scc.Office] = {{21, 1}, {0, 1}, {1, 1}}
 GM.AnimatronicsFlex[GM.Animatronic.RainbowDash] = {}
 GM.AnimatronicsFlex[GM.Animatronic.RainbowDash].fnap_scc = {}
-GM.AnimatronicsFlex[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = { {1,1}, {2,1} }
-
-
+GM.AnimatronicsFlex[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = {{1, 1}, {2, 1}}
 GM.AnimatronicsAnim = {}
 GM.AnimatronicsAnim[GM.Animatronic.Twilight] = {}
 GM.AnimatronicsAnim[GM.Animatronic.Twilight].fnap_scc = {}
@@ -490,39 +478,26 @@ GM.AnimatronicsAnim[GM.Animatronic.RainbowDash].fnap_scc = {}
 GM.AnimatronicsAnim[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Trash] = "trashstand"
 GM.AnimatronicsAnim[GM.Animatronic.RainbowDash].fnap_scc[GM.APos.fnap_scc.Office] = "gallop"
 
-
 function GM:CheckDerivCreator(ply)
-	if (ply:SteamID() == "STEAM_0:1:33606814" or ply:SteamID() == "STEAM_0:0:59390945") then
-		return true
-	end
+	if ply:SteamID() == "STEAM_0:1:33606814" or ply:SteamID() == "STEAM_0:0:59390945" then return true end
 	return false
 end
 
-
 function fnapgmAnimatronicMove(self, me, apos)
-
 	local gm = GAMEMODE
 	local map = game.GetMap()
-
 	if apos ~= nil and self.OldAPos ~= apos then
-
 		self.OldAPos = apos
-
 		if me ~= gm.Animatronic.RainbowDash then
-
 			self:SetColor(Color(255, 255, 255, 0))
-
 			if gm.AnimatronicAPos[me] and gm.AnimatronicAPos[me][map] and gm.AnimatronicAPos[me][map][apos] then
 				self:SetPos(gm.AnimatronicAPos[me][map][apos][1])
 				self:SetAngles(gm.AnimatronicAPos[me][map][apos][2])
 			end
 
 			self:SetColor(Color(255, 255, 255, 255))
-
 		end
-
 	elseif me == gm.Animatronic.RainbowDash and apos == gm.APos[map].Office and self.FoxyWillMove2 then
-
 		if not self.preltime or self.preltime < 1 then
 			self.preltime = (self.preltime or 0) + FrameTime()
 		elseif not self.preltime or self.preltime >= 1 then
@@ -543,21 +518,15 @@ function fnapgmAnimatronicMove(self, me, apos)
 			self:SetCycle(0)
 			self:SetPlaybackRate(0)
 		end
-
 	elseif me == gm.Animatronic.RainbowDash and apos == gm.APos[map].Office and self.FoxyWillMove then
-
 		if self:GetColor() ~= Color(255, 255, 255, 255) then self:SetColor(Color(255, 255, 255, 255)) end
-
 		if self:GetSequence() ~= self:LookupSequence(gm.AnimatronicsAnim[me][map][gm.APos.fnap_scc.Trash]) then
 			self:SetSequence(self:LookupSequence(gm.AnimatronicsAnim[me][map][gm.APos.fnap_scc.Trash]))
 			self:ResetSequenceInfo()
 			self:SetCycle(0)
 		end
-
 	elseif me == gm.Animatronic.RainbowDash and apos == gm.APos[map].Office and self.FoxyMove2 then
-
 		if self:GetColor() ~= Color(255, 255, 255, 255) then self:SetColor(Color(255, 255, 255, 255)) end
-
 		if not self.ltime or self.ltime < 1 then
 			local multip = 1
 			if self.sta == 3 then
@@ -602,54 +571,31 @@ function fnapgmAnimatronicMove(self, me, apos)
 			self.FoxyMove2 = false
 			self:SetPlaybackRate(0.1)
 		end
-
 	elseif me == gm.Animatronic.RainbowDash and apos == gm.APos[map].Trash then
-
 		if self:GetColor() ~= Color(255, 255, 255, 0) then self:SetColor(Color(255, 255, 255, 0)) end
-
 		if not self.sta or self.sta > 0 then self.sta = 0 end
 		if self.presta then self.presta = false end
-
 	elseif me == gm.Animatronic.Twilight and (apos == gm.APos[map].Office or apos == gm.APos[map].Kitchen or apos == gm.APos[map].Kitchen2) then
-
 		self:SetSkin(math.random(0, 1))
-
 	end
-
 	return true
-
 end
 hook.Add("fnafgmAnimatronicMove", "fnapgmAnimatronicMove", fnapgmAnimatronicMove)
 
 if not (GM or GAMEMODE).IsFNAFGMDerived and not BaseClass.IsFNAFGMDerived then
-
-	local no_fnafgm_msg_error	=	"FNAFGM is not loaded!\n"
-	local no_fnafgm_msg			=	no_fnafgm_msg_error ..
-									"Please make sure that you are subscribed to it.\n" ..
-									"FNAPGM will not work without FNAFGM."
-
+	local no_fnafgm_msg_error = "FNAFGM is not loaded!\n"
+	local no_fnafgm_msg = no_fnafgm_msg_error .. "Please make sure that you are subscribed to it.\nFNAPGM will not work without FNAFGM."
 	hook.Add("PlayerSpawn", "fnafgm_not_loaded_warning", function()
-
 		if not GAMEMODE.IsFNAFGMDerived then
-
 			PrintMessage(HUD_PRINTTALK, no_fnafgm_msg)
-
 			ErrorNoHalt(no_fnafgm_msg_error)
-
 		end
-
 	end)
 
 	hook.Add("HUDPaint", "fnafgm_not_loaded_warning_hud", function()
-
 		if not GAMEMODE.IsFNAFGMDerived then
-
 			draw.DrawText(no_fnafgm_msg, "DermaLarge", ScrW() * .5, ScrH() * .5 + 8, Color(255, 0, 0, 255), TEXT_ALIGN_CENTER)
-
 		end
-
 	end)
-
 	ErrorNoHalt(no_fnafgm_msg_error)
-
 end
